@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+
+// Update these once and forget about it
+const APPLY_LINK = "mailto:gauthamail@gmail.com?subject=Consulting%20%E2%80%94%20Clarity%20Sprint";
+const CONNECT_LINK = "mailto:gauthamail@gmail.com?subject=Consulting%20Question";
+
+// Structured offers (v1). We’ll refine pricing + details later.
+const offers = [
+  {
+    title: "Clarity Sprint",
+    badge: "START HERE",
+    desc:
+      "A focused working session to untangle the mess, find the real bottleneck, and leave with a prioritised to-do list for the next 2–6 weeks.",
+    url: APPLY_LINK,
+  },
+  {
+    title: "Execution Support (4 weeks)",
+    badge: "LIMITED",
+    desc:
+      "Weekly working sessions + async feedback to help you execute the plan. Designed for founders who want follow-through, not just insight.",
+    url: APPLY_LINK,
+  },
+  {
+    title: "Go-to-Market Reset",
+    badge: "POPULAR",
+    desc:
+      "Positioning, messaging, channel strategy, and a concrete experiment plan. Ideal if you’re not sure who it’s for, why it wins, or how to sell it.",
+    url: APPLY_LINK,
+  },
+  {
+    title: "Founder Systems & Delegation",
+    desc:
+      "If you’re overwhelmed: we redesign your operating system — what you do, what you delegate, and how you build leverage without chaos.",
+    url: APPLY_LINK,
+  },
+];
+---
+
+<BaseLayout title="Consulting" sideBarActiveItemID="consulting">
+  <!-- HERO / EXPLAINER -->
+  <section class="mt-2">
+    <div class="text-3xl w-full font-bold">Consulting</div>
+
+    <div class="mt-4 space-y-4">
+      <p class="text-lg">
+        Most founders don’t need another framework. They need clarity — and a ruthless to-do list they can actually execute.
+      </p>
+
+      <p class="text-lg">
+        I work like a founder–operator: we go deep into your context, identify the real bottleneck (not the symptoms),
+        and translate that into a clear plan with priorities, sequencing, and next actions.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a class="btn" href={APPLY_LINK}>Apply for a Clarity Sprint</a>
+        <a class="btn btn-outline" href={CONNECT_LINK}>Ask a question</a>
+      </div>
+
+      <div class="mt-6">
+        <div class="text-sm text-slate-500">
+          Good fit: internet-first businesses (SaaS, D2C, education, content, info-products).
+          Not a fit: offline/ops-heavy businesses or fundraising intros.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-3">How it works</div>
+
+    <div class="space-y-3 text-lg">
+      <p><b>1) You share context.</b> A short note about the business, current traction, and what’s stuck.</p>
+      <p><b>2) We do a working session.</b> We diagnose, challenge assumptions, and get to the root cause.</p>
+      <p><b>3) You leave with a plan.</b> A prioritised to-do list + clear sequencing for the next few weeks.</p>
+      <p><b>4) Optional follow-through.</b> If you want, we work together for 4 weeks to execute.</p>
+    </div>
+  </section>
+
+  <!-- STRUCTURED OFFERS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Engagements</div>
+
+    {offers.map((o, idx) => (
+      <>
+        <HorizontalCard
+          title={o.title}
+          img="/post_img.webp"
+          desc={o.desc}
+          badge={o.badge}
+          url={o.url}
+          target="_self"
+        />
+        {idx !== offers.length - 1 && <div class="divider my-0"></div>}
+      </>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-12">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+      <div class="text-xl font-bold">Ready to get unstuck?</div>
+      <p class="mt-2 text-lg">
+        Send a short note about what you’re building and where you’re stuck. If I can help, I’ll reply with next steps.
+      </p>
+      <div class="mt-5">
+        <a class="btn" href={APPLY_LINK}>Apply for a Clarity Sprint</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

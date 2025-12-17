@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+
+const INTEREST_LINK =
+  "mailto:gauthamail@gmail.com?subject=Academy%20%E2%80%94%20I%27m%20interested&body=Hey%20Gautham%2C%0A%0AI%27m%20interested%20in%20Turpentine%20Academy.%20Here%27s%20what%20I%27m%20building%20and%20what%20I%27d%20love%20to%20learn%3A%0A%0A-%20What%20I%27m%20building%3A%20%0A-%20What%20I%27m%20stuck%20on%3A%20%0A-%20Topics%20I%27m%20most%20interested%20in%3A%20%0A%0AThanks!";
+
+const upcoming = [
+  {
+    title: "Reverse Engineer Product–Market Fit",
+    img: "/post_img.webp",
+    desc:
+      "A practical workshop for founders to identify the real bottleneck, define the buyer and promise, and leave with an execution plan.",
+    url: "#",
+    badge: "COMING SOON",
+  },
+  {
+    title: "Performance Marketing for the Indian Market",
+    img: "/post_img.webp",
+    desc:
+      "A founder-friendly course on running ads with clarity: offers, landing pages, measurement, creatives, and iteration — tailored to India.",
+    url: "#",
+    badge: "COMING SOON",
+  },
+  {
+    title: "Design Your Own Cohort-Based Course",
+    img: "/post_img.webp",
+    desc:
+      "For founders and professionals who want to teach: curriculum design, session cadence, assignments, community, and learning outcomes.",
+    url: "#",
+    badge: "COMING SOON",
+  },
+  {
+    title: "Online Course Creation Kickstarter",
+    img: "/post_img.webp",
+    desc:
+      "A fast-start workshop to go from idea → outline → first module → launch plan, without overthinking or perfectionism.",
+    url: "#",
+    badge: "COMING SOON",
+  },
+];
+---
+
+<BaseLayout title="Academy" sideBarActiveItemID="academy">
+  <!-- INTRO -->
+  <section class="mt-2">
+    <div class="text-3xl w-full font-bold">Academy</div>
+
+    <div class="mt-4 space-y-4">
+      <p class="text-lg">
+        Turpentine Academy is where I turn real business learning into practical workshops and playbooks.
+      </p>
+
+      <p class="text-lg">
+        Not theory. Not “content”. Just the kind of material founders actually use — clarity, execution, marketing,
+        leverage, and building internet-first businesses.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a class="btn" href={INTEREST_LINK}>Get notified</a>
+        <a class="btn btn-outline" href="/blog">Read what I'm learning</a>
+      </div>
+
+      <div class="mt-4 text-sm text-slate-500">
+        Status: <b>Coming soon</b>. If you want early access, hit “Get notified” and tell me what you’re building.
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Upcoming workshops & courses</div>
+
+    {upcoming.map((c, idx) => (
+      <>
+        <HorizontalCard
+          title={c.title}
+          img={c.img}
+          desc={c.desc}
+          url={c.url}
+          badge={c.badge}
+          target="_self"
+        />
+        {idx !== upcoming.length - 1 && <div class="divider my-0"></div>}
+      </>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-12">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+      <div class="text-xl font-bold">Want this tailored to your team or community?</div>
+      <p class="mt-2 text-lg">
+        If you run a founder group, student community, or internal team, I can run a workshop privately.
+      </p>
+      <div class="mt-5">
+        <a class="btn" href={INTEREST_LINK}>Email me</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

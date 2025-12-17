@@ -1,92 +1,120 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
+
+const CONTACT_LINK = "mailto:gautham@growthtodo.com";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
-  </div>
+<BaseLayout title="CV" sideBarActiveItemID="cv">
+  <!-- HEADER -->
+  <section class="mt-2">
+    <div class="text-3xl w-full font-bold">CV</div>
 
-  <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </div>
+    <div class="mt-4 space-y-4">
+      <p class="text-lg">
+        I’m a founder–operator who has spent the last 15+ years building, running, and learning from
+        internet-first businesses — across education, software, and consulting.
+      </p>
+      <p class="text-lg">
+        This is a short, honest snapshot of what I’ve done, what I’m doing now, and what I’m good at.
+      </p>
+    </div>
+  </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
+  <!-- CURRENT -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">What I’m doing now</div>
 
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-  </div>
+    <ul class="space-y-3 text-lg list-disc pl-6">
+      <li>
+        Building and operating <b>SellOnTube</b>, a YouTube-first customer acquisition system for internet businesses.
+      </li>
+      <li>
+        Running <b>Turpentine Academy</b>, where I turn real business learning into practical workshops and playbooks.
+      </li>
+      <li>
+        Working on a <b>US healthcare nurse scheduling product</b> — a long-term SaaS bet focused on operations and burnout reduction.
+      </li>
+      <li>
+        Consulting with founders to help them cut through noise, find the real bottleneck, and execute with clarity.
+      </li>
+    </ul>
+  </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
-  </div>
+  <!-- EXPERIENCE -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">Experience</div>
 
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-  </div>
+    <div class="space-y-6 text-lg">
+      <div>
+        <div class="font-semibold">VC-backed Education Company</div>
+        <div class="text-sm text-slate-500">Founder / Operator — ~8 years</div>
+        <p class="mt-1">
+          Built and ran a venture-backed education company in India. Designed programs, built teams,
+          scaled operations, and worked closely with students, professionals, and partners.
+        </p>
+      </div>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
+      <div>
+        <div class="font-semibold">Bootstrap Education Design Studio</div>
+        <div class="text-sm text-slate-500">Founder — 2021 to present</div>
+        <p class="mt-1">
+          A bootstrapped studio focused on cohort-based learning, curriculum design, facilitator training,
+          and creating transformational learning environments.
+        </p>
+      </div>
 
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
+      <div>
+        <div class="font-semibold">Startup Village Collective / Pupilfirst</div>
+        <div class="text-sm text-slate-500">Co-founder / Early Operator</div>
+        <p class="mt-1">
+          Worked on early-stage founder education and incubation. Helped students and professionals
+          learn by building real products, not just studying theory.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
-  </div>
+  <!-- SKILLS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">What I’m good at</div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
+    <ul class="space-y-2 text-lg list-disc pl-6">
+      <li>Breaking complex problems into clear, actionable plans</li>
+      <li>Product thinking and product–market fit diagnosis</li>
+      <li>Go-to-market strategy for internet-first businesses</li>
+      <li>Education design: curriculum, cohorts, learning cadence</li>
+      <li>Founder operating systems, delegation, and leverage</li>
+      <li>Writing and teaching to clarify thinking</li>
+    </ul>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-4">Context & constraints</div>
+
+    <div class="space-y-3 text-lg">
+      <p>
+        I’ve worked across <b>VC-backed</b> and <b>bootstrapped</b> environments, with teams both large and small,
+        across India and the US market.
+      </p>
+      <p>
+        I don’t claim deep domain expertise in every industry. Where I add value is in the
+        <b>horizontal skills</b> that cut across businesses: clarity, execution, positioning, and systems.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-12">
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+      <div class="text-xl font-bold">Want to work together?</div>
+      <p class="mt-2 text-lg">
+        If you’re building something internet-first and feel stuck or overwhelmed,
+        I’m happy to take a look.
+      </p>
+      <div class="mt-5">
+        <a class="btn" href={CONTACT_LINK}>Email me</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

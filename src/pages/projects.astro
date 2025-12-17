@@ -1,51 +1,114 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+
+// You’ll edit these lists over time.
+// Keep them here so you don’t have to hunt through JSX later.
+
+const currentProjects = [
+  {
+    title: "SellOnTube",
+    img: "/post_img.webp",
+    desc:
+      "YouTube-first customer acquisition for internet businesses. Strategy, execution, and productization around bottom-of-funnel video content.",
+    url: "https://sellontube.com",
+    badge: "ACTIVE",
+  },
+  {
+    title: "Turpentine Academy",
+    img: "/post_img.webp",
+    desc:
+      "Workshops and playbooks for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
+    url: "/academy",
+    badge: "BUILDING",
+  },
+  {
+    title: "US Nurse Scheduling Product",
+    img: "/post_img.webp",
+    desc:
+      "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
+    url: "#",
+    badge: "R&D",
+  },
+];
+
+const pastProjects = [
+  {
+    title: "VC-backed Education Company",
+    img: "/post_img.webp",
+    desc:
+      "Built and ran a VC-backed education company in India for nearly 8 years. Scaled programs, teams, and operations across multiple cohorts.",
+    url: "#",
+  },
+  {
+    title: "Bootstrap Education Studio",
+    img: "/post_img.webp",
+    desc:
+      "A bootstrapped education design studio focused on cohort-based learning, curriculum design, and facilitator training.",
+    url: "#",
+  },
+  {
+    title: "Startup Village Collective / Pupilfirst",
+    img: "/post_img.webp",
+    desc:
+      "Early-stage founder education and incubation. Worked with students and professionals to build real-world skills and products.",
+    url: "#",
+    badge: "FOSS",
+  },
+];
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
-  </div>
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+  <!-- INTRO -->
+  <section class="mt-2">
+    <div class="text-3xl w-full font-bold">Projects</div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+    <div class="mt-4 space-y-4">
+      <p class="text-lg">
+        I build internet-first businesses — some as experiments, some as serious long-term bets.
+      </p>
+      <p class="text-lg">
+        This page is a snapshot of what I’m actively working on right now, and what I’ve built in the past
+        across products, education, and founder ecosystems.
+      </p>
+    </div>
+  </section>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
-  </div>
+  <!-- CURRENT PROJECTS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Current projects</div>
 
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+    {currentProjects.map((p, idx) => (
+      <>
+        <HorizontalCard
+          title={p.title}
+          img={p.img}
+          desc={p.desc}
+          url={p.url}
+          badge={p.badge}
+          target={p.url.startsWith("http") ? "_blank" : "_self"}
+        />
+        {idx !== currentProjects.length - 1 && <div class="divider my-0"></div>}
+      </>
+    ))}
+  </section>
+
+  <!-- PAST PROJECTS -->
+  <section class="mt-12">
+    <div class="text-2xl font-bold mb-5">Past projects</div>
+
+    {pastProjects.map((p, idx) => (
+      <>
+        <HorizontalCard
+          title={p.title}
+          img={p.img}
+          desc={p.desc}
+          url={p.url}
+          badge={p.badge}
+          target="_self"
+        />
+        {idx !== pastProjects.length - 1 && <div class="divider my-0"></div>}
+      </>
+    ))}
+  </section>
 </BaseLayout>
