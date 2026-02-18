@@ -1,16 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Themed images for projects (Unsplash)
+// Themed images for active/upcoming projects (Unsplash)
 const images = {
   youtube: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=450&fit=crop",
   education: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=450&fit=crop",
   academy: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=450&fit=crop",
   healthcare: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
-  // Indian college students/youth (20-25 age)
-  indianCollege1: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=450&fit=crop",
-  indianCollege2: "https://images.unsplash.com/photo-1529390079861-591f12543756?w=800&h=450&fit=crop",
-  indianCollege3: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=450&fit=crop",
 };
 
 const activeProjects = [
@@ -50,28 +46,24 @@ const upcomingProjects = [
 const pastProjects = [
   {
     title: "HowToCBC",
-    img: images.education,
     desc: "Taught founders how to build and run cohort-based courses, centered for the US market.",
     url: "https://web.archive.org/web/20240424175652/https://howtocbc.com/",
     badge: "PAST",
   },
   {
     title: "Pupilfirst",
-    img: images.indianCollege1,
     desc: "The evolution of Startup Village into a tech company, running cohort-based courses to help students upskill.",
     url: "https://www.pupilfirst.org/",
     badge: "PAST",
   },
   {
     title: "Startup Village Collective (SV.CO)",
-    img: images.indianCollege2,
     desc: "Early-stage founder education and incubation. Helping students and professionals build real products and skills.",
     url: "https://web.archive.org/web/20180822114305/https://www.sv.co/",
     badge: "PAST",
   },
   {
     title: "SV Labs",
-    img: images.indianCollege3,
     desc: "Digitized the award-winning Kochi-based incubator, Startup Village. The SV Road course took the entire incubator experience online for early-stage founder education.",
     url: "https://web.archive.org/web/20150219070232/http://www.startupvillage.in/",
     badge: "PAST",
@@ -110,7 +102,7 @@ const allSections = [
     <section class="mb-16">
       <h2 class="text-2xl font-bold mb-8">{section.title}</h2>
 
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class={section.title === "Past" ? "space-y-3" : "grid md:grid-cols-2 gap-6"}>
         {section.projects.map((p) => (
           <a
             href={p.url}
@@ -118,26 +110,30 @@ const allSections = [
             rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
             class="group block bg-base-200/50 border border-base-300/50 rounded-xl overflow-hidden hover-glow transition-all"
           >
-            <div class="aspect-video overflow-hidden bg-base-300/30">
-              <img
-                src={p.img}
-                alt={p.title}
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
+            {p.img && (
+              <div class="aspect-video overflow-hidden bg-base-300/30">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            )}
             <div class="p-6">
               <div class="flex items-center gap-3 mb-2">
                 <h3 class="text-lg font-bold group-hover:text-primary transition-colors">{p.title}</h3>
-                <span class="badge badge-primary badge-sm font-medium">{p.badge}</span>
+                <span class={`badge badge-sm font-medium ${p.img ? 'badge-primary' : 'badge-outline'}`}>{p.badge}</span>
               </div>
               <p class="text-base-content/70 text-sm leading-relaxed">{p.desc}</p>
-              <div class="mt-4 flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                <span>View project</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
+              {p.img && (
+                <div class="mt-4 flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>View project</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              )}
             </div>
           </a>
         ))}
