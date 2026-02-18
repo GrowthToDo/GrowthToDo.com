@@ -7,27 +7,13 @@
    Linear.app-Style Custom Utilities
    ======================================== */
 
-/* Gradient text effect for headings */
+/* Accent text colors for headings */
 .gradient-text {
-    background: linear-gradient(135deg, #e4e4e7 0%, #71717a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    color: #e4e4e7;
 }
 
 .gradient-text-primary {
-    background: linear-gradient(135deg, #5e6ad2 0%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    color: #5e6ad2;
 }
 
 /* Subtle glow effect for cards on hover */
