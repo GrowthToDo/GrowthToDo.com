@@ -1,254 +1,192 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 const CONTACT_LINK = "mailto:gauthamail@gmail.com";
 
-// Engagement types = your productized offers.
-// Keep these sharp and specific. This is what converts.
 const engagements = [
   {
     title: "Clarity Sprint",
-    badge: "CORE",
-    duration: "60–90 min working session",
-    forWho: "Founders who are stuck, overwhelmed, or second-guessing their next moves.",
-    outcome: "A crisp diagnosis + a prioritised, sequenced to-do list for the next 2–4 weeks.",
-    topics: ["Positioning & messaging", "Prioritisation & sequencing", "Go-to-market bottlenecks", "Founder operating system"],
-    ctaText: "Apply for a Clarity Sprint",
-    ctaLink: "/clarity-sprint",
+    badge: "START HERE",
+    duration: "60-90 min",
+    desc: "One working session. We diagnose what is actually stuck, cut through the noise, and build a sequenced action plan for the next 2-4 weeks.",
+    outcome: "You leave with a prioritized to-do list you can execute immediately.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
   },
   {
-    title: "Reverse Engineer Product–Market Fit",
-    badge: "WORKSHOP / 1:1",
-    duration: "90–120 min (or split across 2 sessions)",
-    forWho: "Early-stage founders with unclear demand signals or noisy feedback loops.",
-    outcome: "A PMF scorecard + testable hypotheses + the next 3 experiments to run.",
-    topics: ["ICP definition", "Jobs-to-be-done & pains", "Offer + pricing pressure test", "Distribution reality check"],
-    ctaText: "Ask about PMF",
-    ctaLink: CONTACT_LINK,
+    title: "PMF Deep Dive",
+    badge: "WORKSHOP",
+    duration: "90-120 min",
+    desc: "For founders with unclear demand signals. We pressure test your ICP, offer, and distribution. You walk away with testable hypotheses and your next 3 experiments.",
+    outcome: "A PMF scorecard and a clear path to validate or pivot.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
   },
   {
-    title: "4-Week Follow-through",
-    badge: "OPTIONAL",
+    title: "4-Week Execution",
+    badge: "FOLLOW-UP",
     duration: "4 weeks",
-    forWho: "Founders who want help executing the plan (not just thinking about it).",
-    outcome: "Weekly cadence + execution support to ship the plan with momentum.",
-    topics: ["Weekly planning + review", "Constraint-based execution", "Decision support", "Accountability without theatre"],
-    ctaText: "Ask about follow-through",
-    ctaLink: CONTACT_LINK,
+    desc: "Weekly cadence to ship the plan with momentum. Planning, review, decision support, and accountability without theatre.",
+    outcome: "The plan actually gets done. Momentum compounds.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`,
   },
 ];
 
-// Paste LinkedIn URLs for each person below.
 const testimonials = [
   {
-    name: "Saishree Bandekar",
-    linkedin: "#",
-    title: "Founder, Purple Bakehouse",
-    quote:
-      "He helped me get to the root of my problems and made intimidating things feel learnable — the mindset shift in one hour was essential.",
-  },
-  {
-    name: "Andre Schaffer",
-    linkedin: "#",
-    title: "First-time founder",
-    quote:
-      "He helped me prioritise demand over infrastructure early — saving months of unnecessary work and preventing wasted spend.",
+    name: "Abhishek Bose",
+    title: "Founder",
+    quote: "He can point out something in a 30-minute call that might take you a year to figure out on your own.",
   },
   {
     name: "Pradeep Pandey",
-    linkedin: "#",
-    title: "Product builder",
-    quote:
-      "He transformed my approach to product development in 3 days — turning scattered ideas into structured, actionable steps.",
+    title: "Product Builder",
+    quote: "He transformed my approach to product development in 3 days. Scattered ideas became structured, actionable steps.",
   },
   {
-    name: "Abhishek Bose",
-    linkedin: "#",
-    title: "Founder",
-    quote:
-      "He can point out something in a 30-minute call that might take you a year to figure out on your own.",
+    name: "Saishree Bandekar",
+    title: "Founder, Purple Bakehouse",
+    quote: "He helped me get to the root of my problems and made intimidating things feel learnable. The mindset shift in one hour was essential.",
   },
+  {
+    name: "Andre Schaffer",
+    title: "First-time Founder",
+    quote: "He helped me prioritize demand over infrastructure early. Saved months of unnecessary work and prevented wasted spend.",
+  },
+];
+
+const steps = [
+  { num: "01", title: "Share context", desc: "A short note on what you are building, current traction, and what feels stuck." },
+  { num: "02", title: "Working session", desc: "We diagnose, challenge assumptions, and find the root cause together." },
+  { num: "03", title: "Walk away with a plan", desc: "A prioritized, sequenced to-do list. Not a PDF. Something you can execute." },
 ];
 ---
 
 <BaseLayout title="Consulting" sideBarActiveItemID="consulting">
   <!-- HERO -->
-  <section class="mt-2">
-    <div class="text-3xl w-full font-bold">Consulting</div>
-
-    <div class="mt-4 space-y-4">
-      <p class="text-lg">
-        Growth To Do is execution-first consulting for founders building internet-first businesses.
-        We cut through noise, find the real bottleneck, and turn clarity into a sequenced to-do list you can execute.
-      </p>
-
-      <div class="flex flex-wrap gap-3 pt-2">
-        <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
-        <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
+  <section class="relative mt-4 mb-16">
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+        <span class="text-primary">CONSULTING</span>
+        <span class="text-base-content/30">•</span>
+        <span class="text-base-content/60">For founders who build</span>
       </div>
 
-      <p class="text-sm opacity-75">
-        <span class="font-semibold">Good fit:</span> internet-first businesses (SaaS, D2C, education, content, info-products).
-        <span class="ml-1 font-semibold">Not a fit:</span> offline / ops-heavy businesses or fundraising intros.
+      <h1 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-3xl">
+        <span class="gradient-text">Cut through the chaos.</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
+        You know the business. You know the market. But somewhere between strategy and execution, things get stuck. I help founders cut through noise and turn clarity into a sequenced to-do list that actually moves the needle.
+      </p>
+
+      <div class="flex flex-wrap gap-4 pt-2">
+        <a class="btn btn-primary btn-lg gap-2" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
+          Book a call
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg border border-base-300/50 hover:border-primary/50 hover:bg-primary/5" href={CONTACT_LINK}>
+          Ask a question
+        </a>
+      </div>
+
+      <p class="text-sm text-base-content/50 pt-2">
+        Best fit: SaaS, D2C, education, content, info-products. Not a fit: offline businesses or fundraising intros.
       </p>
     </div>
   </section>
 
-  <!-- HOW IT WORKS (GRAPHIC) -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">How it works</div>
+  <!-- HOW IT WORKS -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8">How it works</h2>
 
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-      <div class="grid gap-4 md:grid-cols-4">
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
-          <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">1</div>
-            <div>
-              <div class="font-bold">You share context</div>
-              <div class="text-sm opacity-80 mt-1">A short note on the business, traction, and what’s stuck.</div>
-            </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {steps.map((step) => (
+        <div class="group relative">
+          <div class="absolute -top-3 -left-2 text-6xl font-bold text-primary/10 group-hover:text-primary/20 transition-colors">{step.num}</div>
+          <div class="relative bg-base-200/50 border border-base-300/50 rounded-xl p-6 hover-glow">
+            <h3 class="text-lg font-semibold mb-2">{step.title}</h3>
+            <p class="text-base-content/70 text-sm leading-relaxed">{step.desc}</p>
           </div>
         </div>
-
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
-          <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">2</div>
-            <div>
-              <div class="font-bold">We do a working session</div>
-              <div class="text-sm opacity-80 mt-1">Diagnose, challenge assumptions, and find the root cause.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
-          <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">3</div>
-            <div>
-              <div class="font-bold">You leave with a plan</div>
-              <div class="text-sm opacity-80 mt-1">A prioritised to-do list + sequencing for the next few weeks.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
-          <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-full bg-base-200 flex items-center justify-center font-bold">4</div>
-            <div>
-              <div class="font-bold">Optional follow-through</div>
-              <div class="text-sm opacity-80 mt-1">If you want, we work together for ~4 weeks to execute.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-5 text-sm opacity-70">
-        Output is always something you can execute: a plan, a list, a sequence — not a PDF.
-      </div>
+      ))}
     </div>
   </section>
 
-  <!-- ENGAGEMENT TYPES (KEEP THESE) -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">Engagement types</div>
+  <!-- ENGAGEMENTS -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8">Ways to work together</h2>
 
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-6">
       {engagements.map((e) => (
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-          {/* FIXED HEADER: stacks on mobile, aligns on desktop */}
-          <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-            <div class="text-xl font-bold leading-snug">{e.title}</div>
-            <div class="badge badge-outline self-start sm:self-auto whitespace-nowrap">{e.badge}</div>
-          </div>
+        <div class="bg-base-200/50 border border-base-300/50 rounded-xl p-6 md:p-8 hover-glow transition-all">
+          <div class="flex flex-col md:flex-row md:items-start gap-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center" set:html={e.icon} />
 
-          <div class="mt-2 text-sm opacity-75">{e.duration}</div>
+            <div class="flex-grow space-y-3">
+              <div class="flex flex-wrap items-center gap-3">
+                <h3 class="text-xl font-bold">{e.title}</h3>
+                <span class="badge badge-primary badge-sm font-medium">{e.badge}</span>
+                <span class="text-sm text-base-content/50">{e.duration}</span>
+              </div>
 
-          <div class="mt-4 space-y-3">
-            <div>
-              <div class="font-semibold">Best for</div>
-              <div class="text-sm opacity-80">{e.forWho}</div>
-            </div>
+              <p class="text-base-content/70 leading-relaxed">{e.desc}</p>
 
-            <div>
-              <div class="font-semibold">Outcome</div>
-              <div class="text-sm opacity-80">{e.outcome}</div>
-            </div>
-
-            <div>
-              <div class="font-semibold">Common topics</div>
-              <ul class="mt-2 text-sm opacity-80 list-disc pl-5 space-y-1">
-                {e.topics.map((t) => <li>{t}</li>)}
-              </ul>
-            </div>
-
-            <div class="pt-3">
-              <a class="btn btn-sm" href={e.ctaLink}>
-                {e.ctaText}
-              </a>
+              <p class="text-sm">
+                <span class="text-primary font-medium">Outcome:</span>
+                <span class="text-base-content/80 ml-1">{e.outcome}</span>
+              </p>
             </div>
           </div>
         </div>
       ))}
     </div>
 
-    <div class="mt-5 text-sm opacity-70">
-      If you’re unsure which one fits, just email context — I’ll route you to the right starting point.
-    </div>
+    <p class="text-sm text-base-content/50 mt-6">
+      Not sure which fits? Book a call and I will point you to the right starting point.
+    </p>
   </section>
 
-  <!-- QUALIFYING CTA STRIP (RETAIN THIS) -->
-  <section class="mt-12">
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div class="flex flex-wrap gap-3">
-          <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
-          <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
-        </div>
+  <!-- TESTIMONIALS -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8">What founders say</h2>
 
-        <div class="text-sm opacity-75 max-w-2xl">
-          <span class="font-semibold">Good fit:</span> internet-first businesses (SaaS, D2C, education, content, info-products).
-          <span class="ml-1 font-semibold">Not a fit:</span> offline / ops-heavy businesses or fundraising intros.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS (LINKEDIN-LINKED NAMES) -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-4">Testimonials</div>
-
-    <div class="grid gap-4">
+    <div class="grid md:grid-cols-2 gap-6">
       {testimonials.map((t) => (
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <a
-              href={t.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-bold link link-hover"
-              title="Open LinkedIn"
-            >
-              {t.name}
-            </a>
-            <div class="text-sm opacity-70">{t.title}</div>
+        <div class="bg-base-200/50 border border-base-300/50 rounded-xl p-6 hover-glow">
+          <blockquote class="text-lg leading-relaxed text-base-content/90 mb-4">
+            "{t.quote}"
+          </blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+              {t.name.charAt(0)}
+            </div>
+            <div>
+              <div class="font-semibold">{t.name}</div>
+              <div class="text-sm text-base-content/50">{t.title}</div>
+            </div>
           </div>
-
-          <div class="mt-3 text-lg leading-relaxed">“{t.quote}”</div>
         </div>
       ))}
     </div>
+  </section>
 
-    <div class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-      <div class="text-xl font-bold">Want to work together?</div>
-      <p class="mt-2 text-lg">
-        Email me a short note with your context + what’s stuck. I’ll tell you if I can help and what the best first step is.
+  <!-- FINAL CTA -->
+  <section class="mb-8">
+    <div class="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-8 md:p-10">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to get unstuck?</h2>
+      <p class="text-lg text-base-content/70 mb-6 max-w-2xl">
+        Book a call. Share what you are building, what is working, and what feels stuck. I will tell you if I can help and what the best first step is.
       </p>
-      <div class="mt-5 flex flex-wrap gap-3">
-        <a class="btn" href="/clarity-sprint">Apply for a Clarity Sprint</a>
-        <a class="btn btn-outline" href={CONTACT_LINK}>Ask a question</a>
+
+      <div class="flex flex-wrap gap-4">
+        <a class="btn btn-primary btn-lg gap-2" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
+          Book a call
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
       </div>
-      <p class="mt-3 text-sm opacity-70">
-        If you send 5 lines with: what you sell, who you sell to, current traction, what’s stuck, and what you’ve tried —
-        I can be decisive fast.
+
+      <p class="text-sm text-base-content/50 mt-6">
+        If you send 5 lines with: what you sell, who you sell to, current traction, what is stuck, and what you have tried, I can be decisive fast.
       </p>
     </div>
   </section>

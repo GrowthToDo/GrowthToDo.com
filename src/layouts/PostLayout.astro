@@ -8,36 +8,62 @@ export interface Props extends BlogSchema {}
 
 const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
 dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format("ll")
-import { Image } from "astro:assets";
+const displayDate = dayjs(pubDate).format("ll");
+
+const isExternalImage = typeof heroImage === 'string' && heroImage.startsWith('http');
 ---
 
-<BaseLayout title={title} description={description} image={heroImage}, ogType="article">
+<BaseLayout title={title} description={description} image={heroImage} ogType="article">
   <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
-      {heroImage && <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />}
-      <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-      {pubDate && <time>{displayDate}</time>}
-      <br />
-      {badge && <div class="badge badge-secondary my-1">{badge}</div>}
-      {
-        tags &&
-          tags.map((tag) => (
-            <a href={`/blog/tag/${tag}`} class="badge badge-outline ml-2 no-underline">
-              {tag}
-            </a>
-          ))
-      }
-      {
-        updatedDate && (
-          <div>
-            {" "}
-            Last updated on <time>{updatedDate}</time>{" "}
-          </div>
-        )
-      }
-      <div class="divider my-2"></div>
+    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto prose-headings:text-base-content prose-p:text-base-content/80 prose-li:text-base-content/80 prose-strong:text-base-content">
+      <!-- Hero image -->
+      {heroImage && (
+        <div class="rounded-xl overflow-hidden mb-8 -mx-4 md:mx-0">
+          <img
+            src={heroImage}
+            alt={title}
+            class="w-full h-auto object-cover !my-0"
+            loading="eager"
+          />
+        </div>
+      )}
+
+      <!-- Title -->
+      <h1 class="!text-3xl md:!text-4xl font-bold !mb-4 !mt-0">{title}</h1>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-3 !mb-6 not-prose">
+        {pubDate && (
+          <span class="text-sm text-base-content/50">{displayDate}</span>
+        )}
+        {badge && <span class="badge badge-primary badge-sm">{badge}</span>}
+        {tags?.map((tag) => (
+          <a href={`/blog/tag/${tag}`} class="badge badge-outline badge-sm hover:badge-primary transition-colors">
+            {tag}
+          </a>
+        ))}
+      </div>
+
+      {updatedDate && (
+        <p class="text-sm text-base-content/50 !mb-6">
+          Last updated on {dayjs(updatedDate).format("ll")}
+        </p>
+      )}
+
+      <div class="border-t border-base-300/50 !mb-8"></div>
+
+      <!-- Content -->
       <slot />
+
+      <!-- Back link -->
+      <div class="border-t border-base-300/50 !mt-12 !pt-8 not-prose">
+        <a href="/blog" class="btn btn-ghost border border-base-300/50 hover:border-primary/50 gap-2">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to blog
+        </a>
+      </div>
     </article>
   </main>
 </BaseLayout>

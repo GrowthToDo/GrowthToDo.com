@@ -2,7 +2,7 @@
 title: "Reverse Engineering Product Market Fit"
 description: "A data driven, demand first approach to building internet native businesses that actually make money, without relying on vibes, opinions, or false certainty."
 pubDate: "Dec 15 2024"
-heroImage: "/post_img.webp"
+heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop"
 tags: ["product-market-fit", "startups", "demand", "ideation", "validation"]
 ---
 

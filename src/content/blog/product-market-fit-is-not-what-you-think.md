@@ -2,7 +2,7 @@
 title: "What Is AODM Fit and Why PMF Alone Is Not Enough"
 description: "A practical breakdown of Audience, Offering, Distribution, and Money fit, and why real businesses fail when even one of these is weak."
 pubDate: "Sep 11 2022"
-heroImage: "/post_img.webp"
+heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=630&fit=crop"
 ---
 
 Product market fit is a useful phrase, but it hides more than it reveals.

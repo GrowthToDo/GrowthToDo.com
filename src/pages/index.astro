@@ -1,183 +1,57 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug";
-
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-const last_posts = posts.slice(0, 3);
 
 // ---- EDIT THESE LINKS ONCE AND YOU'RE DONE ----
-const CONNECT_LINK = "mailto:gauthamail@gmail.com";
+const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 const BLOG_PAGE = "/blog";
 // ------------------------------------------------
-
-// Only 2 active projects on homepage (in this order)
-const currentProjects = [
-  {
-    title: "SellOnTube",
-    img: "https://sellontube.com/og-image.png",
-    desc:
-      "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
-    url: "https://sellontube.com",
-    badge: "ACTIVE",
-  },
-  {
-    title: "The Second Design",
-    img: "https://theseconddesign.com/og-image.png",
-    desc:
-      "An education design studio-curriculum, cohort-based learning, facilitator training, and transformational learning environments.",
-    url: "https://theseconddesign.com",
-    badge: "ACTIVE",
-  },
-];
-
-// Proof strip (keep it honest + simple)
-const proof = [
-  { label: "Built across", value: "Education + SaaS + GTM" },
-  { label: "Style", value: "Clarity → Execution" },
-  { label: "Default mode", value: "Builder, not pundit" },
-];
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <!-- HERO (LINEAR STYLE) -->
-  <section class="relative mt-4 mb-16">
+  <!-- HERO - Single screen, focused on the visitor -->
+  <section class="relative min-h-[calc(100vh-12rem)] flex flex-col justify-center">
     <!-- Subtle gradient orb background -->
     <div
       class="pointer-events-none absolute -top-20 -left-20 w-96 h-96 -z-10 rounded-full
              bg-primary/5 blur-3xl"
     />
-    <div class="px-0 py-12 md:py-16">
+    <div
+      class="pointer-events-none absolute bottom-0 right-0 w-72 h-72 -z-10 rounded-full
+             bg-primary/3 blur-3xl"
+    />
+
+    <div class="py-12 md:py-0">
       <!-- Tag pill -->
       <div class="animate-fade-in inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
         <span class="text-primary">GROWTHTODO</span>
         <span class="text-base-content/30">•</span>
-        <span class="text-base-content/60">Founder–operator notes</span>
+        <span class="text-base-content/60">For founders who build</span>
       </div>
 
       <div class="mt-8 space-y-6">
-        <h1 class="animate-fade-in text-5xl md:text-6xl font-bold leading-[1.05] tracking-tighter gradient-text" style="animation-delay: 0.1s; opacity: 0;">
-          I'm Gautham.
+        <h1 class="animate-fade-in text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tighter max-w-4xl" style="animation-delay: 0.1s; opacity: 0;">
+          <span class="gradient-text">Too many directions.</span><br/>
+          <span class="text-base-content/90">Not enough clarity.</span><br/>
+          <span class="text-primary">Let's fix that.</span>
         </h1>
 
-        <h2 class="animate-fade-in text-2xl md:text-3xl font-semibold leading-snug max-w-3xl text-base-content/90 tracking-tight" style="animation-delay: 0.15s; opacity: 0;">
-          I help founders cut through noise and turn clarity into a sequenced to-do list.
-        </h2>
-
-        <div class="animate-fade-in max-w-3xl space-y-4" style="animation-delay: 0.2s; opacity: 0;">
-          <p class="text-base leading-relaxed text-base-content/70">
-            This site is where I document what I'm building and what I'm learning—across products,
-            education, and go-to-market.
-          </p>
-          <p class="text-base leading-relaxed text-base-content/70">
-            If you're building an internet-first product (SaaS, D2C, education, info-products) and you're stuck or overwhelmed,
-            I can help you get unstuck fast.
-          </p>
-        </div>
-
-        <div class="animate-fade-in mt-8 flex flex-wrap gap-3" style="animation-delay: 0.25s; opacity: 0;">
-          <a class="btn btn-primary btn-md gap-2 font-medium" href={CONNECT_LINK}>
-            Let's connect
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-          </a>
-          <a class="btn btn-ghost btn-md border border-base-300/50 hover:border-primary/50 hover:bg-primary/5 font-medium" href={BLOG_PAGE}>Read the blog</a>
-        </div>
-
-        <!-- Proof strip -->
-        <div class="animate-fade-in mt-10 grid gap-3 md:grid-cols-3" style="animation-delay: 0.3s; opacity: 0;">
-          {proof.map((p, i) => (
-            <div class="rounded-xl border border-base-300/30 bg-base-200/30 p-4 hover-glow">
-              <div class="text-xs uppercase tracking-wider text-base-content/50 font-medium">{p.label}</div>
-              <div class="mt-1.5 font-semibold text-base-content/90">{p.value}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CURRENT PROJECTS (2-UP GRID) -->
-  <section class="mt-12">
-    <div class="flex items-end justify-between gap-4 mb-6">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Current projects</h2>
-        <p class="mt-1 text-sm text-base-content/60">
-          The two things I'm actively operating right now.
+        <p class="animate-fade-in text-lg md:text-xl leading-relaxed text-base-content/70 max-w-2xl" style="animation-delay: 0.2s; opacity: 0;">
+          You're building something real. SaaS, D2C, education, info-products. But you're stuck. Overwhelmed. Unsure what to do next.
         </p>
-      </div>
-    </div>
 
-    <div class="grid gap-4 md:grid-cols-2">
-      {currentProjects.map((p) => (
-        <a
-          href={p.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group block rounded-xl border border-base-300/30 bg-base-200/30 overflow-hidden hover-glow"
-        >
-          <div class="p-6">
-            <div class="flex items-start justify-between gap-3">
-              <div class="text-xl font-semibold tracking-tight text-base-content">{p.title}</div>
-              <div class="badge badge-primary badge-sm font-medium">{p.badge}</div>
-            </div>
+        <p class="animate-fade-in text-lg md:text-xl leading-relaxed text-base-content/90 max-w-2xl font-medium" style="animation-delay: 0.25s; opacity: 0;">
+          I help founders cut through noise, generate clarity, and turn it into a sequenced to-do list that actually grows the company. Hence, <span class="text-primary">GrowthToDo</span>.
+        </p>
 
-            <p class="mt-3 text-sm leading-relaxed text-base-content/70">
-              {p.desc}
-            </p>
-
-            <div class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
-              <span>Open</span>
-              <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
-            </div>
-          </div>
-
-          {/* image footer */}
-          <div class="px-6 pb-6">
-            <div class="rounded-lg border border-base-300/30 bg-base-300/30 overflow-hidden">
-              <img
-                src={p.img}
-                alt={p.title}
-                loading="lazy"
-                class="w-full h-[160px] object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <!-- LATEST BLOG (SECTION SEPARATION) -->
-  <section class="mt-16">
-    <div class="rounded-xl border border-base-300/30 bg-base-200/20 p-6 md:p-8">
-      <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-        <div>
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Latest from the blog</h2>
-          <p class="mt-1 text-sm text-base-content/60">
-            Recent notes on building, marketing, and clarity.
-          </p>
+        <div class="animate-fade-in pt-6 flex flex-wrap gap-4" style="animation-delay: 0.35s; opacity: 0;">
+          <a class="btn btn-primary btn-lg gap-2 font-medium" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
+            Book a call
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-lg border border-base-300/50 hover:border-primary/50 hover:bg-primary/5 font-medium" href={BLOG_PAGE}>
+            Read the blog
+          </a>
         </div>
-
-        <a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1" href={BLOG_PAGE}>
-          View all posts
-          <span>→</span>
-        </a>
-      </div>
-
-      <div class="space-y-3">
-        {last_posts.map((post, idx) => (
-          <HorizontalCard
-            title={post.data.title}
-            img={post.data.heroImage}
-            desc={post.data.description}
-            url={"/blog/" + createSlug(post.data.title, post.slug)}
-            target="_self"
-            badge={post.data.badge}
-          />
-        ))}
       </div>
     </div>
   </section>

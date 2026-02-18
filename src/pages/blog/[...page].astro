@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HorizontalCard from "../../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../../lib/createSlug"
 
@@ -14,74 +13,84 @@ const { page } = Astro.props;
 ---
 
 <BaseLayout title="Blog" sideBarActiveItemID="blog">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Blog</div>
-  </div>
-
-  {
-    page.data.length === 0 ? (
-      <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-        <p class="font-bold">Sorry!</p>
-        <p>There are no blog posts to show at the moment. Check back later!</p>
+  <!-- HERO -->
+  <section class="relative mt-4 mb-12">
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+        <span class="text-primary">BLOG</span>
+        <span class="text-base-content/30">•</span>
+        <span class="text-base-content/60">Ideas & insights</span>
       </div>
-    ) : (
-      <ul>
-        {page.data.map((post) => (
-          <>
-            <HorizontalCard
-              title={post.data.title}
-              img={post.data.heroImage}
-              desc={post.data.description}
-              url={"/blog/" + createSlug(post.data.title, post.slug)}
-              target="_self"
-              badge={post.data.badge}
-              tags={post.data.tags}
-            />
-            <div class="divider my-0" />
-          </>
-        ))}
-      </ul>
-    )
-  }
 
-  <div class="flex justify-between">
-    {
-      page.url.prev ? (
-        <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
-          {" "}
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-          </svg>{" "}
-          Recent posts
+      <h1 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight">
+        <span class="gradient-text">Writing.</span>
+      </h1>
+
+      <p class="text-lg text-base-content/70 max-w-2xl">
+        Thoughts on product, strategy, distribution, and building internet-first businesses.
+      </p>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  {page.data.length === 0 ? (
+    <div class="bg-base-200/50 border border-base-300/50 rounded-xl p-6">
+      <p class="font-bold">No posts yet</p>
+      <p class="text-base-content/60">Check back later for new content.</p>
+    </div>
+  ) : (
+    <div class="space-y-4">
+      {page.data.map((post) => (
+        <a
+          href={"/blog/" + createSlug(post.data.title, post.slug)}
+          class="group block bg-base-200/50 border border-base-300/50 rounded-xl overflow-hidden hover-glow transition-all"
+        >
+          <div class="flex flex-col md:flex-row">
+            {post.data.heroImage && (
+              <div class="md:w-48 md:h-32 flex-shrink-0 overflow-hidden bg-base-300/30">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="p-5 flex-grow">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <h2 class="text-lg font-bold group-hover:text-primary transition-colors">{post.data.title}</h2>
+                {post.data.badge && <span class="badge badge-primary badge-sm">{post.data.badge}</span>}
+              </div>
+              <p class="text-sm text-base-content/60 line-clamp-2 mb-3">{post.data.description}</p>
+              <div class="flex flex-wrap items-center gap-2">
+                {post.data.tags?.map((tag) => (
+                  <span class="badge badge-outline badge-sm">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </a>
-      ) : (
-        <div />
-      )
-    }
-    {
-      page.url.next ? (
-        <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
-          Older Posts{" "}
-          <svg
-            class="h-6 w-6 fill-current md:h-8 md:w-8"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            {" "}
-            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-          </svg>
-        </a>
-      ) : (
-        <div />
-      )
-    }
+      ))}
+    </div>
+  )}
+
+  <!-- PAGINATION -->
+  <div class="flex justify-between mt-12">
+    {page.url.prev ? (
+      <a href={page.url.prev} class="btn btn-ghost border border-base-300/50 hover:border-primary/50 gap-2">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Newer posts
+      </a>
+    ) : <div />}
+    {page.url.next ? (
+      <a href={page.url.next} class="btn btn-ghost border border-base-300/50 hover:border-primary/50 gap-2">
+        Older posts
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    ) : <div />}
   </div>
 </BaseLayout>

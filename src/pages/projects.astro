@@ -1,149 +1,138 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 
-// Active: only what’s live + being operated right now
+// Screenshot service for live website previews
+const screenshot = (url: string) => `https://image.thum.io/get/width/600/crop/400/${url}`;
+
 const activeProjects = [
   {
     title: "SellOnTube",
-    img: "/post_img.webp",
-    desc: "YouTube-first customer acquisition for internet businesses in a 'Done-For-You' model.",
+    img: screenshot("https://sellontube.com"),
+    desc: "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
     url: "https://sellontube.com",
     badge: "ACTIVE",
   },
   {
     title: "The Second Design",
-    img: "/post_img.webp",
-    desc:
-      "An education design studio building transformational learning environments - cohort-based programs, curriculum design, and facilitator training.",
+    img: screenshot("https://theseconddesign.com"),
+    desc: "An education design studio building transformational learning environments. Cohort-based programs, curriculum design, and facilitator training.",
     url: "https://theseconddesign.com",
     badge: "ACTIVE",
   },
 ];
 
-// Upcoming: in progress / building
 const upcomingProjects = [
   {
     title: "Turpentine Academy",
     img: "/post_img.webp",
-    desc:
-      "Workshops and playbooks for founders on clarity, execution, marketing, and leverage - built from real projects, not theory.",
+    desc: "Workshops and playbooks for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
     url: "/academy",
     badge: "UPCOMING",
   },
   {
-    title: "Healthcare Staff Scheduling Project",
-    img: "/post_img.webp",
-    desc:
-      "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
-    url: "#",
+    title: "SimpleScheduleAI",
+    img: screenshot("https://simplescheduleai.com"),
+    desc: "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
+    url: "https://simplescheduleai.com",
     badge: "R&D",
   },
 ];
 
-// Past: completed / previous chapters
 const pastProjects = [
   {
     title: "HowToCBC",
-    img: "/post_img.webp",
-    desc: "Cohort-based learning initiative focused on structured learning and outcomes-driven programs.",
-    url: "https://web.archive.org/web/20230425052557/https://howtocbc.com/",
+    img: screenshot("https://web.archive.org/web/20240424175652/https://howtocbc.com/"),
+    desc: "Taught founders how to build and run cohort-based courses, centered for the US market.",
+    url: "https://web.archive.org/web/20240424175652/https://howtocbc.com/",
     badge: "PAST",
   },
   {
     title: "Pupilfirst",
-    img: "/post_img.webp",
-    desc: "Built and ran an education product/company focused on cohort-based learning and learning operations.",
+    img: screenshot("https://www.pupilfirst.org"),
+    desc: "The evolution of Startup Village into a tech company, running cohort-based courses to help students upskill.",
     url: "https://www.pupilfirst.org/",
     badge: "PAST",
   },
   {
     title: "Startup Village Collective (SV.CO)",
-    img: "/post_img.webp",
-    desc:
-      "Early-stage founder education and incubation — helping students and professionals build real products and skills.",
-    url: "https://www.sv.co/",
+    img: screenshot("https://web.archive.org/web/20180822114305/https://www.sv.co/"),
+    desc: "Early-stage founder education and incubation. Helping students and professionals build real products and skills.",
+    url: "https://web.archive.org/web/20180822114305/https://www.sv.co/",
     badge: "PAST",
   },
   {
     title: "SV Labs",
-    img: "/post_img.webp",
-    desc: "An experimental builder arm — shipping projects, prototypes, and tools in the early ecosystem days.",
-    url: "#",
+    img: screenshot("https://web.archive.org/web/20150219070232/http://www.startupvillage.in/"),
+    desc: "Digitized the award-winning Kochi-based incubator, Startup Village. The SV Road course took the entire incubator experience online for early-stage founder education.",
+    url: "https://web.archive.org/web/20150219070232/http://www.startupvillage.in/",
     badge: "PAST",
   },
+];
+
+const allSections = [
+  { title: "Active", projects: activeProjects },
+  { title: "Upcoming", projects: upcomingProjects },
+  { title: "Past", projects: pastProjects },
 ];
 ---
 
 <BaseLayout title="Projects" sideBarActiveItemID="projects">
-  <!-- INTRO -->
-  <section class="mt-2">
-    <div class="text-3xl w-full font-bold">Projects</div>
+  <!-- HERO -->
+  <section class="relative mt-4 mb-16">
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+        <span class="text-primary">PROJECTS</span>
+        <span class="text-base-content/30">•</span>
+        <span class="text-base-content/60">What I build</span>
+      </div>
 
-    <div class="mt-4 space-y-4">
-      <p class="text-lg">
-        I build internet-first businesses — some as experiments, some as serious long-term bets.
-      </p>
-      <p class="text-lg">
-        This page is a snapshot of what I’m actively running, what’s coming next, and what I’ve built in the past.
+      <h1 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-3xl">
+        <span class="gradient-text">Internet-first businesses.</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
+        Some are experiments. Some are serious long-term bets. This is a snapshot of what I am actively running, what is coming next, and what I have built in the past.
       </p>
     </div>
   </section>
 
-  <!-- ACTIVE PROJECTS -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-5">Active</div>
+  <!-- PROJECT SECTIONS -->
+  {allSections.map((section) => (
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">{section.title}</h2>
 
-    {activeProjects.map((p, idx) => (
-      <>
-        <HorizontalCard
-          title={p.title}
-          img={p.img}
-          desc={p.desc}
-          url={p.url}
-          badge={p.badge}
-          target={p.url.startsWith("http") ? "_blank" : "_self"}
-        />
-        {idx !== activeProjects.length - 1 && <div class="divider my-0"></div>}
-      </>
-    ))}
-  </section>
-
-  <!-- UPCOMING PROJECTS -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-5">Upcoming</div>
-
-    {upcomingProjects.map((p, idx) => (
-      <>
-        <HorizontalCard
-          title={p.title}
-          img={p.img}
-          desc={p.desc}
-          url={p.url}
-          badge={p.badge}
-          target={p.url.startsWith("http") ? "_blank" : "_self"}
-        />
-        {idx !== upcomingProjects.length - 1 && <div class="divider my-0"></div>}
-      </>
-    ))}
-  </section>
-
-  <!-- PAST PROJECTS -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-5">Past projects</div>
-
-    {pastProjects.map((p, idx) => (
-      <>
-        <HorizontalCard
-          title={p.title}
-          img={p.img}
-          desc={p.desc}
-          url={p.url}
-          badge={p.badge}
-          target={p.url.startsWith("http") ? "_blank" : "_self"}
-        />
-        {idx !== pastProjects.length - 1 && <div class="divider my-0"></div>}
-      </>
-    ))}
-  </section>
+      <div class="grid md:grid-cols-2 gap-6">
+        {section.projects.map((p) => (
+          <a
+            href={p.url}
+            target={p.url.startsWith("http") ? "_blank" : "_self"}
+            rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
+            class="group block bg-base-200/50 border border-base-300/50 rounded-xl overflow-hidden hover-glow transition-all"
+          >
+            <div class="aspect-video overflow-hidden bg-base-300/30">
+              <img
+                src={p.img}
+                alt={p.title}
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold group-hover:text-primary transition-colors">{p.title}</h3>
+                <span class="badge badge-primary badge-sm font-medium">{p.badge}</span>
+              </div>
+              <p class="text-base-content/70 text-sm leading-relaxed">{p.desc}</p>
+              <div class="mt-4 flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                <span>View project</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </BaseLayout>

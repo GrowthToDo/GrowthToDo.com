@@ -1,197 +1,172 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
 
-const INTEREST_LINK =
-  "mailto:gauthamail@gmail.com?subject=Turpentine%20Academy%20%E2%80%94%20I%27m%20interested&body=Hey%20Gautham%2C%0A%0AI%27m%20interested%20in%20Turpentine%20Academy.%20Here%27s%20what%20I%27m%20building%20and%20what%20I%27d%20love%20to%20learn%3A%0A%0A-%20What%20I%27m%20building%3A%20%0A-%20What%20I%27m%20stuck%20on%3A%20%0A-%20Topics%20I%27m%20most%20interested%20in%3A%20%0A%0AThanks!";
+const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 
-// Turpentine Academy (GrowthToDo) — what you run directly
-const turpentineReady = [
+const programs = [
   {
-    title: "Reverse Engineer Product–Market Fit",
-    img: "/post_img.webp",
-    desc:
-      "A practical workshop for founders to identify the real bottleneck, define the buyer + promise, and leave with a tight execution plan.",
-    url: "/consulting",
+    title: "Reverse Engineer Product-Market Fit",
+    desc: "A practical workshop for founders to identify the real bottleneck, define the buyer + promise, and leave with a tight execution plan.",
     badge: "READY",
+    url: "/consulting",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
   },
-];
-
-const turpentineComingSoon = [
   {
     title: "Performance Marketing for the Indian Market",
-    img: "/post_img.webp",
-    desc:
-      "A founder-friendly course on running ads with clarity: offers, landing pages, measurement, creatives, and iteration — tailored to India.",
-    url: "#",
+    desc: "A founder-friendly course on running ads with clarity: offers, landing pages, measurement, creatives, and iteration. Tailored to India.",
     badge: "COMING SOON",
+    url: "#",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>`,
   },
 ];
 
-// The Second Design — already available there (linked out)
-const secondDesignAvailable = [
+const secondDesignPrograms = [
   {
     title: "Design Your Own Code-Based Course",
-    img: "/post_img.webp",
-    desc:
-      "A practical program under The Second Design: design the curriculum, learning cadence, projects, and outcomes for a course people actually finish.",
+    desc: "A practical program: design the curriculum, learning cadence, projects, and outcomes for a course people actually finish.",
     url: "https://theseconddesign.com",
-    badge: "AVAILABLE",
   },
   {
     title: "Online Course Creation Kickstarter",
-    img: "/post_img.webp",
-    desc:
-      "A fast-start workshop under The Second Design to go from idea → outline → first module → launch plan, without perfectionism.",
+    desc: "A fast-start workshop to go from idea to outline to first module to launch plan, without perfectionism.",
     url: "https://theseconddesign.com",
-    badge: "AVAILABLE",
+  },
+];
+
+const principles = [
+  {
+    title: "Less theory theatre",
+    desc: "Fewer frameworks-for-the-sake-of-it. More decisions you can act on.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>`,
+  },
+  {
+    title: "More real craft",
+    desc: "Tools, constraints, distribution, shipping. The unglamorous truth.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+  },
+  {
+    title: "Workshops you use",
+    desc: "You leave with artifacts: plans, scorecards, experiments. Not vibes.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
   },
 ];
 ---
 
 <BaseLayout title="Academy" sideBarActiveItemID="academy">
-  <!-- HERO + MANIFESTO -->
-  <section class="mt-2">
-    <div class="text-3xl w-full font-bold">Turpentine Academy</div>
-
-    <div class="mt-5 grid gap-6">
-      <!-- Quote as hero artifact -->
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-7">
-        <div class="text-2xl md:text-3xl leading-snug font-semibold">
-          “When art critics get together they talk about Form and Structure and Meaning.
-          When artists get together they talk about where you can buy cheap turpentine.”
-        </div>
-        <div class="mt-3 text-sm opacity-75">— Pablo Picasso</div>
-
-        <!-- Tight explainer (scan-first) -->
-        <div class="mt-6 grid gap-3 md:grid-cols-3">
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-base-100">
-            <div class="font-bold">Less theory theatre</div>
-            <div class="mt-1 text-sm opacity-80">
-              Fewer frameworks-for-the-sake-of-it. More decisions you can act on.
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-base-100">
-            <div class="font-bold">More real craft</div>
-            <div class="mt-1 text-sm opacity-80">
-              Tools, constraints, distribution, shipping — the unglamorous truth.
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-base-100">
-            <div class="font-bold">Workshops you use</div>
-            <div class="mt-1 text-sm opacity-80">
-              You leave with artifacts: plans, scorecards, experiments — not vibes.
-            </div>
-          </div>
-        </div>
+  <!-- HERO -->
+  <section class="relative mt-4 mb-16">
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+        <span class="text-primary">ACADEMY</span>
+        <span class="text-base-content/30">•</span>
+        <span class="text-base-content/60">Workshops for builders</span>
       </div>
 
-      <!-- CTA strip (separate decision moment) -->
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex flex-wrap gap-3">
-            <a class="btn" href={INTEREST_LINK}>Get notified</a>
-            <a class="btn btn-outline" href="/blog">Read the blog</a>
-          </div>
-          <div class="text-sm opacity-75 max-w-2xl">
-            <span class="font-semibold">Not for:</span> people looking for generic “content”.
-            <span class="ml-1 font-semibold">For:</span> builders who want clarity + execution.
-          </div>
-        </div>
+      <h1 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-3xl">
+        <span class="gradient-text">Turpentine Academy.</span>
+      </h1>
+
+      <!-- Quote -->
+      <div class="bg-base-200/50 border border-base-300/50 rounded-xl p-6 max-w-2xl">
+        <p class="text-lg md:text-xl text-base-content/80 leading-relaxed italic">
+          "When art critics get together they talk about Form and Structure and Meaning. When artists get together they talk about where you can buy cheap turpentine."
+        </p>
+        <p class="text-sm text-base-content/50 mt-3">- Pablo Picasso</p>
       </div>
 
-      <div class="text-sm text-slate-500">
-        If you want a private run for your team/community, email context and I’ll tell you what fits.
+      <div class="flex flex-wrap gap-4 pt-2">
+        <a class="btn btn-primary btn-lg gap-2" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
+          Book a call
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg border border-base-300/50 hover:border-primary/50 hover:bg-primary/5" href="/blog">
+          Read the blog
+        </a>
       </div>
+
+      <p class="text-sm text-base-content/50">
+        For builders who want clarity + execution. Not for people looking for generic content.
+      </p>
     </div>
   </section>
 
-  <!-- PROGRAMS & WORKSHOPS (no redundant Turpentine header) -->
-  <section class="mt-12">
-    <div class="text-2xl font-bold mb-2">Programs & workshops</div>
-    <div class="text-sm opacity-75">
-      What’s available now, and what’s next under Turpentine Academy.
-    </div>
-
-    <!-- READY -->
-    <div class="mt-6">
-      <div class="flex items-center justify-between gap-3 mb-4">
-        <div class="text-xl font-bold">Ready</div>
-        <div class="badge">Run now</div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100 p-4 md:p-5">
-        {turpentineReady.map((c, idx) => (
-          <>
-            <HorizontalCard
-              title={c.title}
-              img={c.img}
-              desc={c.desc}
-              url={c.url}
-              badge={c.badge}
-              target={c.url.startsWith("http") ? "_blank" : "_self"}
-            />
-            {idx !== turpentineReady.length - 1 && <div class="divider my-0"></div>}
-          </>
-        ))}
-      </div>
-    </div>
-
-    <!-- COMING SOON (muted) -->
-    <div class="mt-10">
-      <div class="flex items-center justify-between gap-3 mb-4">
-        <div class="text-xl font-bold">Coming soon</div>
-        <div class="badge badge-outline">In build</div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-base-100/50 p-4 md:p-5 opacity-90">
-        {turpentineComingSoon.map((c, idx) => (
-          <>
-            <HorizontalCard
-              title={c.title}
-              img={c.img}
-              desc={c.desc}
-              url={c.url}
-              badge={c.badge}
-              target={c.url.startsWith("http") ? "_blank" : "_self"}
-            />
-            {idx !== turpentineComingSoon.length - 1 && <div class="divider my-0"></div>}
-          </>
-        ))}
-        <div class="mt-4 text-sm opacity-75">
-          Want early access? Hit <span class="font-semibold">Get notified</span> and tell me what you’re building.
+  <!-- PRINCIPLES -->
+  <section class="mb-16">
+    <div class="grid md:grid-cols-3 gap-6">
+      {principles.map((p) => (
+        <div class="bg-base-200/50 border border-base-300/50 rounded-xl p-6 hover-glow">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4" set:html={p.icon} />
+          <h3 class="font-bold mb-2">{p.title}</h3>
+          <p class="text-sm text-base-content/60">{p.desc}</p>
         </div>
-      </div>
+      ))}
     </div>
   </section>
 
-  <!-- CLEAR BRAND BOUNDARY -->
-  <section class="mt-12">
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-base-100">
-      <div class="text-sm uppercase tracking-wide opacity-70">Also available elsewhere</div>
-      <div class="mt-2 text-2xl font-bold">From The Second Design</div>
-      <div class="mt-2 text-sm opacity-75">
-        These programs are already live under The Second Design. You’ll be leaving GrowthToDo.
-      </div>
-    </div>
+  <!-- PROGRAMS -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-8">Programs & workshops</h2>
 
-    <!-- lighter, simpler list style (not the same visual weight as your own offerings) -->
-    <div class="mt-6 grid gap-3">
-      {secondDesignAvailable.map((c) => (
+    <div class="space-y-4">
+      {programs.map((p) => (
         <a
-          href={c.url}
+          href={p.url}
+          class={`group block bg-base-200/50 border rounded-xl p-6 hover-glow transition-all ${p.badge === 'READY' ? 'border-primary/30' : 'border-base-300/50'}`}
+        >
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center" set:html={p.icon} />
+
+            <div class="flex-grow">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold group-hover:text-primary transition-colors">{p.title}</h3>
+                <span class={`badge badge-sm font-medium ${p.badge === 'READY' ? 'badge-primary' : 'badge-outline'}`}>{p.badge}</span>
+              </div>
+              <p class="text-base-content/70">{p.desc}</p>
+            </div>
+
+            {p.badge === 'READY' && (
+              <div class="flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                <span>Learn more</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p class="text-sm text-base-content/50 mt-6">
+      Want early access to upcoming programs? Book a call and tell me what you are building.
+    </p>
+  </section>
+
+  <!-- SECOND DESIGN -->
+  <section class="mb-16">
+    <div class="bg-base-200/30 border border-base-300/30 rounded-xl p-6 mb-6">
+      <p class="text-xs uppercase tracking-wide text-base-content/50 mb-1">Also available elsewhere</p>
+      <h2 class="text-xl font-bold">From The Second Design</h2>
+      <p class="text-sm text-base-content/50 mt-1">These programs are already live under The Second Design. You will be leaving GrowthToDo.</p>
+    </div>
+
+    <div class="space-y-4">
+      {secondDesignPrograms.map((p) => (
+        <a
+          href={p.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-base-100 hover:bg-base-200 transition"
+          class="group block bg-base-200/50 border border-base-300/50 rounded-xl p-6 hover-glow"
         >
-          <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="flex items-start justify-between gap-4">
             <div>
-              <div class="text-lg font-bold">{c.title}</div>
-              <div class="mt-1 text-sm opacity-80 max-w-3xl">{c.desc}</div>
+              <h3 class="font-bold group-hover:text-primary transition-colors">{p.title}</h3>
+              <p class="text-sm text-base-content/60 mt-1">{p.desc}</p>
             </div>
-            <div class="flex items-center gap-2">
-              <div class="badge badge-outline">{c.badge}</div>
-              <span class="text-sm opacity-70">↗</span>
+            <div class="flex-shrink-0 text-base-content/30 group-hover:text-primary transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
             </div>
           </div>
         </a>
@@ -199,20 +174,20 @@ const secondDesignAvailable = [
     </div>
   </section>
 
-  <!-- FINAL CTA (stronger, less polite) -->
-  <section class="mt-12">
-    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-7 bg-base-100">
-      <div class="text-2xl font-bold">Want a private Turpentine Academy run for your team?</div>
-      <p class="mt-2 text-lg">
-        Don’t overthink it. Email context and I’ll tell you what fits, what doesn’t, and the fastest starting point.
+  <!-- FINAL CTA -->
+  <section class="mb-8">
+    <div class="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-8 md:p-10">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Want a private run for your team?</h2>
+      <p class="text-lg text-base-content/70 mb-6 max-w-2xl">
+        Do not overthink it. Email context and I will tell you what fits, what does not, and the fastest starting point.
       </p>
-      <div class="mt-5 flex flex-wrap gap-3">
-        <a class="btn" href={INTEREST_LINK}>Email me</a>
-        <a class="btn btn-outline" href="/consulting">See how I run sessions</a>
+
+      <div class="flex flex-wrap gap-4">
+        <a class="btn btn-primary btn-lg gap-2" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
+          Book a call
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
       </div>
-      <p class="mt-3 text-sm opacity-70">
-        Send 5 lines: what you’re building, who it’s for, traction, what’s stuck, and what you’ve tried.
-      </p>
     </div>
   </section>
 </BaseLayout>
