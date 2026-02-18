@@ -1,20 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Screenshot service for live website previews
-const screenshot = (url: string) => `https://image.thum.io/get/width/600/crop/400/${url}`;
+// Themed images for projects (Unsplash)
+const images = {
+  youtube: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=450&fit=crop",
+  education: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=450&fit=crop",
+  academy: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=450&fit=crop",
+  healthcare: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
+  incubator: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=450&fit=crop",
+  startup: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=450&fit=crop",
+};
 
 const activeProjects = [
   {
     title: "SellOnTube",
-    img: screenshot("https://sellontube.com"),
+    img: images.youtube,
     desc: "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
     url: "https://sellontube.com",
     badge: "ACTIVE",
   },
   {
     title: "The Second Design",
-    img: screenshot("https://theseconddesign.com"),
+    img: images.education,
     desc: "An education design studio building transformational learning environments. Cohort-based programs, curriculum design, and facilitator training.",
     url: "https://theseconddesign.com",
     badge: "ACTIVE",
@@ -24,14 +31,14 @@ const activeProjects = [
 const upcomingProjects = [
   {
     title: "Turpentine Academy",
-    img: "/post_img.webp",
+    img: images.academy,
     desc: "Workshops and playbooks for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
     url: "/academy",
     badge: "UPCOMING",
   },
   {
     title: "SimpleScheduleAI",
-    img: screenshot("https://simplescheduleai.com"),
+    img: images.healthcare,
     desc: "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
     url: "https://simplescheduleai.com",
     badge: "R&D",
@@ -41,28 +48,28 @@ const upcomingProjects = [
 const pastProjects = [
   {
     title: "HowToCBC",
-    img: screenshot("https://web.archive.org/web/20240424175652/https://howtocbc.com/"),
+    img: images.education,
     desc: "Taught founders how to build and run cohort-based courses, centered for the US market.",
     url: "https://web.archive.org/web/20240424175652/https://howtocbc.com/",
     badge: "PAST",
   },
   {
     title: "Pupilfirst",
-    img: screenshot("https://www.pupilfirst.org"),
+    img: images.academy,
     desc: "The evolution of Startup Village into a tech company, running cohort-based courses to help students upskill.",
     url: "https://www.pupilfirst.org/",
     badge: "PAST",
   },
   {
     title: "Startup Village Collective (SV.CO)",
-    img: screenshot("https://web.archive.org/web/20180822114305/https://www.sv.co/"),
+    img: images.incubator,
     desc: "Early-stage founder education and incubation. Helping students and professionals build real products and skills.",
     url: "https://web.archive.org/web/20180822114305/https://www.sv.co/",
     badge: "PAST",
   },
   {
     title: "SV Labs",
-    img: screenshot("https://web.archive.org/web/20150219070232/http://www.startupvillage.in/"),
+    img: images.startup,
     desc: "Digitized the award-winning Kochi-based incubator, Startup Village. The SV Road course took the entire incubator experience online for early-stage founder education.",
     url: "https://web.archive.org/web/20150219070232/http://www.startupvillage.in/",
     badge: "PAST",
