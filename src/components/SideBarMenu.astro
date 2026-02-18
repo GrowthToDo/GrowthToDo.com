@@ -1,36 +1,36 @@
 ---
 const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; // active item highlight
+const activeClass = "active-nav-item"; // active item highlight
 ---
 
-<ul class="menu grow shrink menu-md overflow-y-auto">
+<ul class="menu grow shrink menu-md overflow-y-auto gap-1">
   <li>
-    <a class="py-3 text-base" id="home" href="/">Home</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="home" href="/">Home</a>
   </li>
 
   <li>
-    <a class="py-3 text-base" id="projects" href="/projects">Projects</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="projects" href="/projects">Projects</a>
   </li>
 
   <li>
-    <a class="py-3 text-base" id="consulting" href="/consulting">Consulting</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="consulting" href="/consulting">Consulting</a>
   </li>
 
   <li>
-    <a class="py-3 text-base" id="blog" href="/blog/">Blog</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="blog" href="/blog/">Blog</a>
   </li>
 
   <li>
-    <a class="py-3 text-base" id="academy" href="/academy">Academy</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="academy" href="/academy">Academy</a>
   </li>
 
   <li>
-    <a class="py-3 text-base" id="cv" href="/cv">CV</a>
+    <a class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200" id="cv" href="/cv">CV</a>
   </li>
 
   <li>
     <a
-      class="py-3 text-base"
+      class="nav-item py-2.5 px-3 text-sm font-medium rounded-lg text-base-content/70 hover:text-base-content hover:bg-base-300/50 transition-all duration-200"
       href="mailto:gauthamail@gmail.com"
       target="_blank"
       referrerpolicy="no-referrer-when-downgrade"
@@ -39,6 +39,25 @@ const activeClass = "bg-base-300"; // active item highlight
     </a>
   </li>
 </ul>
+
+<style>
+  .active-nav-item {
+    background: linear-gradient(135deg, rgba(94, 106, 210, 0.15) 0%, rgba(94, 106, 210, 0.05) 100%);
+    color: #e4e4e7 !important;
+    position: relative;
+  }
+  .active-nav-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    background: #5e6ad2;
+    border-radius: 0 2px 2px 0;
+  }
+</style>
 
 <script define:vars={{ sideBarActiveItemID, activeClass }}>
   const activeItemElem = document.getElementById(sideBarActiveItemID);

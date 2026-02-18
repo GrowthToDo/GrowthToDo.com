@@ -2,15 +2,23 @@
 const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
 import { Image } from "astro:assets";
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const isStringPath = typeof img === "string";
 ---
 
 <div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
+  class="rounded-xl bg-base-200/50 border border-base-300/50 hover-glow p-1"
 >
-  <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
+  <a href={url} target={target} class="block">
+    <div class="hero-content flex-col md:flex-row gap-4">
       {
-        img && (
+        img && isStringPath ? (
+          <img
+            src={img}
+            alt={title}
+            class="max-w-full md:max-w-[13rem] rounded-lg object-cover"
+            loading="lazy"
+          />
+        ) : img ? (
           <Image
             src={img}
             width={750}
@@ -19,19 +27,19 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
             alt={title}
             class="max-w-full md:max-w-[13rem] rounded-lg"
           />
-        )
+        ) : null
       }
       <div class="grow w-full">
-        <h1 class="text-xl font-bold">
+        <h1 class="text-xl font-semibold tracking-tight text-base-content">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {badge && <div class="badge badge-primary badge-sm mx-2 font-medium">{badge}</div>}
         </h1>
-        <p class="py-1 text-1xl">{desc}</p>
-        <div class="card-actions justify-end">
+        <p class="py-2 text-base text-base-content/70 leading-relaxed">{desc}</p>
+        <div class="card-actions justify-end pt-2">
           {
             tags &&
               tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="badge badge-outline">
+                <a href={`${tag_url}/${tag}`} class="badge badge-outline badge-sm hover:badge-primary transition-colors">
                   {tag}
                 </a>
               ))

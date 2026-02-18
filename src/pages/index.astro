@@ -18,7 +18,7 @@ const BLOG_PAGE = "/blog";
 const currentProjects = [
   {
     title: "SellOnTube",
-    img: "/post_img.webp",
+    img: "https://sellontube.com/og-image.png",
     desc:
       "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
     url: "https://sellontube.com",
@@ -26,7 +26,7 @@ const currentProjects = [
   },
   {
     title: "The Second Design",
-    img: "/post_img.webp",
+    img: "https://theseconddesign.com/og-image.png",
     desc:
       "An education design studio-curriculum, cohort-based learning, facilitator training, and transformational learning environments.",
     url: "https://theseconddesign.com",
@@ -43,52 +43,55 @@ const proof = [
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <!-- HERO (UPGRADED) -->
-  <section class="relative mt-4 mb-12">
-    <!-- Background wash -->
+  <!-- HERO (LINEAR STYLE) -->
+  <section class="relative mt-4 mb-16">
+    <!-- Subtle gradient orb background -->
     <div
-      class="pointer-events-none absolute inset-0 -z-10 rounded-3xl
-             bg-gradient-to-b from-base-200/70 via-base-100 to-base-100"
+      class="pointer-events-none absolute -top-20 -left-20 w-96 h-96 -z-10 rounded-full
+             bg-primary/5 blur-3xl"
     />
-    <div class="px-0 py-10 md:py-14">
+    <div class="px-0 py-12 md:py-16">
       <!-- Tag pill -->
-      <div class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1 text-xs font-semibold tracking-wide">
-        <span class="opacity-70">GROWTHTODO</span>
-        <span class="opacity-50">•</span>
-        <span class="opacity-70">Founder–operator notes</span>
+      <div class="animate-fade-in inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+        <span class="text-primary">GROWTHTODO</span>
+        <span class="text-base-content/30">•</span>
+        <span class="text-base-content/60">Founder–operator notes</span>
       </div>
 
-      <div class="mt-6 space-y-4">
-        <h1 class="text-5xl md:text-6xl font-bold leading-[1.05]">
-          I’m Gautham.
+      <div class="mt-8 space-y-6">
+        <h1 class="animate-fade-in text-5xl md:text-6xl font-bold leading-[1.05] tracking-tighter gradient-text" style="animation-delay: 0.1s; opacity: 0;">
+          I'm Gautham.
         </h1>
 
-        <h2 class="text-2xl md:text-3xl font-bold leading-snug max-w-3xl">
+        <h2 class="animate-fade-in text-2xl md:text-3xl font-semibold leading-snug max-w-3xl text-base-content/90 tracking-tight" style="animation-delay: 0.15s; opacity: 0;">
           I help founders cut through noise and turn clarity into a sequenced to-do list.
         </h2>
 
-        <div class="max-w-3xl space-y-3">
-          <p class="text-lg leading-relaxed opacity-90">
-            This site is where I document what I’m building and what I’m learning-across products,
+        <div class="animate-fade-in max-w-3xl space-y-4" style="animation-delay: 0.2s; opacity: 0;">
+          <p class="text-base leading-relaxed text-base-content/70">
+            This site is where I document what I'm building and what I'm learning—across products,
             education, and go-to-market.
           </p>
-          <p class="text-lg leading-relaxed opacity-90">
-            If you’re building an internet-first product (SaaS, D2C, education, info-products) and you’re stuck or overwhelmed,
+          <p class="text-base leading-relaxed text-base-content/70">
+            If you're building an internet-first product (SaaS, D2C, education, info-products) and you're stuck or overwhelmed,
             I can help you get unstuck fast.
           </p>
         </div>
 
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="btn" href={CONNECT_LINK}>Let’s connect</a>
-          <a class="btn btn-outline" href={BLOG_PAGE}>Read the blog</a>
+        <div class="animate-fade-in mt-8 flex flex-wrap gap-3" style="animation-delay: 0.25s; opacity: 0;">
+          <a class="btn btn-primary btn-md gap-2 font-medium" href={CONNECT_LINK}>
+            Let's connect
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
+          <a class="btn btn-ghost btn-md border border-base-300/50 hover:border-primary/50 hover:bg-primary/5 font-medium" href={BLOG_PAGE}>Read the blog</a>
         </div>
 
         <!-- Proof strip -->
-        <div class="mt-8 grid gap-3 md:grid-cols-3">
-          {proof.map((p) => (
-            <div class="rounded-2xl border border-base-300 bg-base-100 p-4">
-              <div class="text-xs uppercase tracking-wide opacity-60">{p.label}</div>
-              <div class="mt-1 font-semibold">{p.value}</div>
+        <div class="animate-fade-in mt-10 grid gap-3 md:grid-cols-3" style="animation-delay: 0.3s; opacity: 0;">
+          {proof.map((p, i) => (
+            <div class="rounded-xl border border-base-300/30 bg-base-200/30 p-4 hover-glow">
+              <div class="text-xs uppercase tracking-wider text-base-content/50 font-medium">{p.label}</div>
+              <div class="mt-1.5 font-semibold text-base-content/90">{p.value}</div>
             </div>
           ))}
         </div>
@@ -97,48 +100,48 @@ const proof = [
   </section>
 
   <!-- CURRENT PROJECTS (2-UP GRID) -->
-  <section class="mt-8">
-    <div class="flex items-end justify-between gap-4">
+  <section class="mt-12">
+    <div class="flex items-end justify-between gap-4 mb-6">
       <div>
-        <div class="text-3xl font-bold">Current projects</div>
-        <div class="mt-1 text-sm opacity-70">
-          The two things I’m actively operating right now.
-        </div>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Current projects</h2>
+        <p class="mt-1 text-sm text-base-content/60">
+          The two things I'm actively operating right now.
+        </p>
       </div>
     </div>
 
-    <div class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="grid gap-4 md:grid-cols-2">
       {currentProjects.map((p) => (
         <a
           href={p.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="group block rounded-3xl border border-base-300 bg-base-100 overflow-hidden transition hover:-translate-y-[2px] hover:shadow-lg"
+          class="group block rounded-xl border border-base-300/30 bg-base-200/30 overflow-hidden hover-glow"
         >
           <div class="p-6">
             <div class="flex items-start justify-between gap-3">
-              <div class="text-2xl font-bold leading-tight">{p.title}</div>
-              <div class="badge badge-outline">{p.badge}</div>
+              <div class="text-xl font-semibold tracking-tight text-base-content">{p.title}</div>
+              <div class="badge badge-primary badge-sm font-medium">{p.badge}</div>
             </div>
 
-            <p class="mt-3 text-base leading-relaxed opacity-85">
+            <p class="mt-3 text-sm leading-relaxed text-base-content/70">
               {p.desc}
             </p>
 
-            <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold">
-              <span class="opacity-80">Open</span>
-              <span class="transition group-hover:translate-x-1">→</span>
+            <div class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
+              <span>Open</span>
+              <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
             </div>
           </div>
 
           {/* image footer */}
           <div class="px-6 pb-6">
-            <div class="rounded-2xl border border-base-300 bg-base-200 overflow-hidden">
+            <div class="rounded-lg border border-base-300/30 bg-base-300/30 overflow-hidden">
               <img
                 src={p.img}
                 alt={p.title}
                 loading="lazy"
-                class="w-full h-[180px] object-cover transition duration-300 group-hover:scale-[1.02]"
+                class="w-full h-[160px] object-cover transition duration-500 group-hover:scale-105"
               />
             </div>
           </div>
@@ -148,34 +151,32 @@ const proof = [
   </section>
 
   <!-- LATEST BLOG (SECTION SEPARATION) -->
-  <section class="mt-12">
-    <div class="rounded-3xl border border-base-300 bg-base-100 p-6 md:p-8">
-      <div class="flex flex-wrap items-end justify-between gap-4">
+  <section class="mt-16">
+    <div class="rounded-xl border border-base-300/30 bg-base-200/20 p-6 md:p-8">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
-          <div class="text-3xl font-bold">Latest from the blog</div>
-          <div class="mt-1 text-sm opacity-70">
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Latest from the blog</h2>
+          <p class="mt-1 text-sm text-base-content/60">
             Recent notes on building, marketing, and clarity.
-          </div>
+          </p>
         </div>
 
-        <a class="link link-hover text-sm font-semibold" href={BLOG_PAGE}>
-          View all posts →
+        <a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1" href={BLOG_PAGE}>
+          View all posts
+          <span>→</span>
         </a>
       </div>
 
-      <div class="mt-6">
+      <div class="space-y-3">
         {last_posts.map((post, idx) => (
-          <>
-            <HorizontalCard
-              title={post.data.title}
-              img={post.data.heroImage}
-              desc={post.data.description}
-              url={"/blog/" + createSlug(post.data.title, post.slug)}
-              target="_self"
-              badge={post.data.badge}
-            />
-            {idx !== last_posts.length - 1 && <div class="divider my-0" />}
-          </>
+          <HorizontalCard
+            title={post.data.title}
+            img={post.data.heroImage}
+            desc={post.data.description}
+            url={"/blog/" + createSlug(post.data.title, post.slug)}
+            target="_self"
+            badge={post.data.badge}
+          />
         ))}
       </div>
     </div>
