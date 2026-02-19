@@ -1,54 +1,41 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// ---- EDIT THESE LINKS ONCE AND YOU'RE DONE ----
 const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 const BLOG_PAGE = "/blog";
-// ------------------------------------------------
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <!-- HERO - Single screen, focused on the visitor -->
   <section class="relative min-h-[calc(100vh-12rem)] flex flex-col justify-center">
-    <!-- Subtle gradient orb background -->
-    <div
-      class="pointer-events-none absolute -top-20 -left-20 w-96 h-96 -z-10 rounded-full
-             bg-primary/5 blur-3xl"
-    />
-    <div
-      class="pointer-events-none absolute bottom-0 right-0 w-72 h-72 -z-10 rounded-full
-             bg-primary/3 blur-3xl"
-    />
-
     <div class="py-12 md:py-0">
       <!-- Tag pill -->
-      <div class="animate-fade-in inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
+      <div class="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-200 px-4 py-1.5 text-xs font-medium tracking-wide">
         <span class="text-primary">GROWTHTODO</span>
-        <span class="text-base-content/30">•</span>
-        <span class="text-base-content/60">For founders who build</span>
+        <span class="text-base-content">•</span>
+        <span class="text-base-content">For founders who build</span>
       </div>
 
       <div class="mt-8 space-y-6">
-        <h1 class="animate-fade-in text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tighter max-w-4xl" style="animation-delay: 0.1s; opacity: 0;">
-          <span class="gradient-text">Too many directions.</span><br/>
-          <span class="text-base-content/90">Not enough clarity.</span><br/>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight max-w-4xl">
+          <span class="text-base-content">Too many directions.</span><br/>
+          <span class="text-base-content">Not enough clarity.</span><br/>
           <span class="text-primary">Let's fix that.</span>
         </h1>
 
-        <p class="animate-fade-in text-lg md:text-xl leading-relaxed text-base-content/70 max-w-2xl" style="animation-delay: 0.2s; opacity: 0;">
+        <p class="text-lg md:text-xl leading-relaxed text-base-content max-w-2xl">
           You're building something real. SaaS, D2C, education, info-products. But you're stuck. Overwhelmed. Unsure what to do next.
         </p>
 
-        <p class="animate-fade-in text-lg md:text-xl leading-relaxed text-base-content/90 max-w-2xl font-medium" style="animation-delay: 0.25s; opacity: 0;">
-          I help founders cut through noise, generate clarity, and turn it into a sequenced to-do list that actually grows the company. Hence, <span class="text-primary">GrowthToDo</span>.
+        <p class="text-lg md:text-xl leading-relaxed text-base-content max-w-2xl font-medium">
+          I help founders cut through noise, generate clarity, and turn it into a sequenced to-do list that actually grows the company. Hence, <span class="text-primary font-bold">GrowthToDo</span>.
         </p>
 
-        <div class="animate-fade-in pt-6 flex flex-wrap gap-4" style="animation-delay: 0.35s; opacity: 0;">
+        <div class="pt-6 flex flex-wrap gap-4">
           <a class="btn btn-primary btn-lg gap-2 font-medium" href={BOOK_CALL_LINK} target="_blank" rel="noopener noreferrer">
             Book a call
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
           </a>
-          <a class="btn btn-ghost btn-lg border border-base-300/50 hover:border-primary/50 hover:bg-primary/5 font-medium" href={BLOG_PAGE}>
+          <a class="btn btn-ghost btn-lg border border-base-300 font-medium" href={BLOG_PAGE}>
             Read the blog
           </a>
         </div>

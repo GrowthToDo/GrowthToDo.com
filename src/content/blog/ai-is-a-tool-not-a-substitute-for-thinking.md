@@ -1,7 +1,7 @@
 ---
 title: "AI Is a Tool, Not a Substitute for Thinking"
 description: "Why building your own perspective before using AI is the highest leverage work you can do in product and strategy."
-pubDate: "Feb 18 2025"
+pubDate: "Feb 18 2026"
 heroImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=630&fit=crop"
 tags: ["ai", "strategy", "thinking", "product"]
 ---
