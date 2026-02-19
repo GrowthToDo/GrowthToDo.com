@@ -9,15 +9,11 @@ module.exports = {
 			letterSpacing: {
 				tighter: '-0.03em',
 			},
-			animation: {
-				'fade-in': 'fadeInUp 0.5s ease-out forwards',
-				'fade-in-slow': 'fadeInUp 0.7s ease-out forwards',
-			},
-			keyframes: {
-				fadeInUp: {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' },
-				},
+			colors: {
+				// Pre-computed muted colors (no opacity) for iOS compatibility
+				'muted': '#71717a',      // For secondary text
+				'muted-light': '#a1a1aa', // For less muted text
+				'muted-dark': '#52525b',  // For very muted text
 			},
 		},
 	},
