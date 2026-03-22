@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const testimonials = [
+  {
+    name: "Saishree Bandekar",
+    title: "Founder, Purple Bakehouse",
+    date: "December 2024",
+    linkedin: "https://www.linkedin.com/in/saishree-bandekar-6017b2256/",
+    quote: "He helped me get to the root of my problems and made intimidating things feel learnable. The mindset shift in one hour was essential.",
+    detail: "I've spoken to business coaches and career counselors before, but they mostly gave generic advice or templates that didn't align with my specific situation or thought process. That's where my conversation with Gautham from The Second Design was different. What started as a casual chat turned into a deeply insightful conversation that shifted my perspective on business. Instead of bombarding me with ideas or solutions, Gautham patiently helped me get to the root of my problems, validated my struggles, and supported my ideas with kindness and empathy. Gautham made me realize that the things intimidating me weren't insurmountable—it was simply the unfamiliarity that made them daunting. He helped me believe that these skills can be learned and that anyone can become a good businessperson with the right guidance and mindset."
+  },
+  {
+    name: "Andre Schaffer",
+    title: "First-time Founder",
+    date: "December 2024",
+    linkedin: "https://www.linkedin.com/in/andreschaffer/",
+    quote: "He helped me prioritize demand over infrastructure early. Saved months of unnecessary work and prevented wasted spend.",
+    detail: "As a first-time founder, I believed the key to solving any problem was building the most advanced and cutting-edge infrastructure possible. I paid little attention to generating demand early on, which made acquiring new customers nearly impossible. Meeting Gautham, however, was transformative. Drawing from his extensive business experience, he helped me understand the crucial importance of prioritising demand over infrastructure in the early days of a venture. His insights showed me how focusing on demand first can validate a business model, save months of unnecessary work, and prevent wasting thousands of dollars. Gautham's coaching style represents a symbiosis of guidance, reflection, and empowerment. His unique combination of kindness, attentive listening, perseverance, and extensive expertise fosters a supportive environment for both personal and professional growth."
+  },
+  {
+    name: "Pradeep Pandey",
+    title: "Product Builder",
+    date: "December 2024",
+    linkedin: "https://www.linkedin.com/in/pradeep-pandeyji/",
+    quote: "When most mentors say I'll help you, they mean a few casual coffee chats. Gautham transformed my entire approach to product development in 3 days.",
+    detail: "Before working with him, I had scattered ideas and no clear execution path. He introduced me to a structured framework that turned my product concept from vague thoughts into actionable steps. But their impact went beyond just product strategy. He pushed me to start writing consistently - a habit that has dramatically improved how I think about and communicate my ideas. The most valuable part? His ability to ask the right questions. Each conversation helped me gain more clarity about what I truly wanted to build and why. If you're looking for a mentor/coach who combines practical product expertise with genuine investment in your growth, Gautham is that rare find. He don't just guide - he help you build better thinking habits that last."
+  },
+  {
+    name: "Abhishek Bose",
+    title: "Founder",
+    date: "October 2024",
+    linkedin: "https://www.linkedin.com/in/abhishekbose87/",
+    quote: "If you are on the fence about hiring Gautham as your coach/mentor, trust me, he can point out something in a 30 min call that might take you the next 1 year to figure out.",
+    detail: "I was in a rut, feeling a bit confused, and that's when I reached out to Gautham for coaching. After a couple of calls with him, I gained a lot of clarity and confidence. The biggest breakthrough came when I was able to identify my needs with Gautham's help and the exercise he suggested. This process made me more self-aware, allowing me to develop a plan for the next three months. I am also grateful to Gautham for sharing his framework (where he breaks goals into different layers) which helped me to identify the areas that need more work. For eg. I realised how important emotional resilience is and how it can impact my odds of success."
+  },
+  {
+    name: "Sushma Teja",
+    title: "Team Member",
+    date: "July 2024",
+    linkedin: "https://www.linkedin.com/in/sushma-kamala-teja-9162417b/",
+    quote: "He is more than a mentor—he's a true friend and guide who helped me bring clarity to my scattered thoughts and ideas.",
+    detail: "I always heard of people having mentors at work, but I never truly experienced it until I met Gautham. With his constant support and encouragement, I learned how to organize my thoughts, put them into writing, and gain a clear direction for both my personal growth and the growth of my company. Gautham introduced me to the habit of writing down my thoughts and opinions, a simple practice that turned out to be incredibly powerful. It helped me break down complex problems and approach tasks with a clear plan. When I joined the company, everything felt new and unfamiliar. I was hesitant and unsure about asking questions, but Gautham created a safe space where no question was too silly or too small. Gautham has a unique way of identifying your potential and pushing you out of your comfort zone. He helps you realize your own capabilities, which is a transformative experience."
+  },
+  {
+    name: "Ajay Jaykrishnan",
+    title: "Consulting Company Founder",
+    date: "January 2023",
+    linkedin: "https://www.linkedin.com/in/ajay-k-a06396160/",
+    quote: "I highly recommend Gautham as a business coach who can take your venture from infancy to growth stage. I have known him for 30+ years and can vouch for his integrity and workmanship.",
+    detail: "From the very first session to scale my consulting company, Gautham provided me with a clear and sane direction for my business, helping me think several steps ahead. One of the things that stood out to me is his ability to break down complex strategies into easy-to-follow, actionable steps. This is invaluable if you are a first-time entrepreneur. He took the time to explain everything in detail, which made it much easier for me to understand what I needed to do and why it was important. Gautham's practical experience in navigating regulatory processes is of tremendous value, especially in today's business environment. What I appreciate most is how he has saved me a ton of time, energy, and most importantly, money. Instead of learning through costly mistakes, I was able to avoid many pitfalls and hit my business goals much faster than I expected."
+  },
+];
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout title="Testimonials" sideBarActiveItemID="testimonials">
+  <!-- HERO -->
+  <section class="py-12 md:py-12 max-w-7xl mx-auto px-6 md:px-12 border-x border-dashed border-base-content/10">
+    <div class="space-y-4 max-w-5xl">
+      <div class="inline-block border border-base-content/10 px-3 py-1.5">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/70">TESTIMONIALS</span>
+      </div>
+
+      <h1 class="font-serif text-5xl md:text-7xl font-bold leading-[0.85] tracking-tight text-base-content">
+        Client <span class="italic font-light">feedback.</span>
+      </h1>
+
+      <p class="font-serif text-xl md:text-2xl text-base-content/70 max-w-3xl leading-relaxed">
+        From founders, builders, and team members I've worked with.
+      </p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS GRID -->
+  <section class="bg-[#f9f9f7] py-12 md:py-12 border-y border-dashed border-base-content/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/50 mb-8">FIGURE 01: FOUNDER FEEDBACK</div>
+
+      <div class="space-y-6">
+        {testimonials.map((t) => (
+          <div class="bg-white border border-base-content/10 p-8 md:p-10">
+            <div class="mb-6">
+              <blockquote class="font-serif text-xl md:text-2xl italic leading-relaxed text-base-content/90 mb-6">
+                "{t.quote}"
+              </blockquote>
+              <p class="font-serif text-base md:text-lg text-base-content/70 leading-relaxed">
+                {t.detail}
+              </p>
+            </div>
+            <div class="pt-6 border-t border-base-content/10 flex items-center justify-between flex-wrap gap-4">
+              <div>
+                <a
+                  href={t.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-serif font-bold text-base-content text-lg hover:opacity-70 transition-opacity inline-flex items-center gap-2"
+                >
+                  {t.name}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+                <div class="font-mono text-xs text-base-content/50 mt-1 tracking-[0.1em]">{t.title}</div>
+              </div>
+              <div class="font-mono text-xs text-base-content/50 tracking-[0.1em]">{t.date}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-12 md:py-12 max-w-7xl mx-auto px-6 md:px-12 border-x border-dashed border-base-content/10">
+    <div class="max-w-4xl">
+      <h2 class="font-serif text-5xl md:text-6xl font-bold mb-8 text-base-content leading-[0.85]">
+        Work <span class="italic font-light">with</span> me
+      </h2>
+      <p class="font-serif text-xl md:text-2xl text-base-content/70 mb-10 leading-relaxed">
+        If you're a founder looking for clarity, execution support, or growth strategy, let's talk.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a
+          class="group inline-block px-8 py-4 bg-base-content text-base-100 font-mono text-sm uppercase tracking-[0.2em] border border-base-content shadow-[4px_4px_0px_0px_#272048] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#272048] transition-all duration-300"
+          href="https://growthtodo.neetocal.com/30mins"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a call
+          <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+        <a
+          class="inline-block px-8 py-4 bg-base-100 text-base-content font-mono text-sm uppercase tracking-[0.2em] border border-base-content shadow-[4px_4px_0px_0px_#272048] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#272048] transition-all duration-300"
+          href="/consulting"
+        >
+          Learn more
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+</div>

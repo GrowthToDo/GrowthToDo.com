@@ -19,7 +19,7 @@ const activeProjects = [
   },
   {
     title: "The Second Design",
-    img: images.education,
+    img: "/second-design.png",
     desc: "An education design studio building transformational learning environments. Cohort-based programs, curriculum design, and facilitator training.",
     url: "https://theseconddesign.com",
     badge: "ACTIVE",
@@ -28,116 +28,137 @@ const activeProjects = [
 
 const upcomingProjects = [
   {
-    title: "Turpentine Academy",
-    img: images.academy,
-    desc: "Workshops and playbooks for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
-    url: "/academy",
-    badge: "UPCOMING",
-  },
-  {
     title: "SimpleScheduleAI",
     img: images.healthcare,
     desc: "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
     url: "https://simplescheduleai.com",
     badge: "R&D",
   },
+  {
+    title: "Turpentine Academy",
+    img: images.academy,
+    desc: "Workshops, courses, playbooks and events for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
+    url: "/academy",
+    badge: "UPCOMING",
+  },
 ];
 
 const pastProjects = [
   {
-    title: "HowToCBC",
-    desc: "Taught founders how to build and run cohort-based courses, centered for the US market.",
+    title: "HowToCBC (2021-2023)",
+    desc: "Helped professionals in the US and European markets build and run cohort-based courses.",
     url: "https://web.archive.org/web/20240424175652/https://howtocbc.com/",
     badge: "PAST",
   },
   {
-    title: "Pupilfirst",
-    desc: "The evolution of Startup Village into a tech company, running cohort-based courses to help students upskill.",
+    title: "Pupilfirst (2018-2021)",
+    desc: "Evolved from Startup Village Collective into an education tech company, helping students in India upskill on product development and coding skills.",
     url: "https://www.pupilfirst.org/",
     badge: "PAST",
   },
   {
-    title: "Startup Village Collective (SV.CO)",
-    desc: "Early-stage founder education and incubation. Helping students and professionals build real products and skills.",
+    title: "Startup Village Collective (SV.CO) (2015-2018)",
+    desc: "Launched the online incubator after completing digitization. Helped students build real products and companies across India through cohort-style programs.",
     url: "https://web.archive.org/web/20180822114305/https://www.sv.co/",
     badge: "PAST",
   },
   {
-    title: "SV Labs",
-    desc: "Digitized the award-winning Kochi-based incubator, Startup Village. The SV Road course took the entire incubator experience online for early-stage founder education.",
+    title: "SV Labs (2013-2015)",
+    desc: "Built the digital platform that became the foundation for digitizing the award-winning Kochi-based incubator, Startup Village.",
     url: "https://web.archive.org/web/20150219070232/http://www.startupvillage.in/",
     badge: "PAST",
   },
 ];
 
 const allSections = [
-  { title: "Active", projects: activeProjects },
-  { title: "Upcoming", projects: upcomingProjects },
-  { title: "Past", projects: pastProjects },
+  { title: "Active", projects: activeProjects, bg: "bg-[#f9f9f7]" },
+  { title: "Upcoming", projects: upcomingProjects, bg: "bg-white" },
+  { title: "Past", projects: pastProjects, bg: "bg-white" },
 ];
 ---
 
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
 <BaseLayout title="Projects" sideBarActiveItemID="projects">
   <!-- HERO -->
-  <section class="relative mt-4 mb-16">
-    <div class="space-y-6">
-      <div class="inline-flex items-center gap-2 rounded-full border border-base-300/50 bg-base-200/50 px-4 py-1.5 text-xs font-medium tracking-wide">
-        <span class="text-primary">PROJECTS</span>
-        <span class="text-base-content/30">•</span>
-        <span class="text-base-content/60">What I build</span>
+  <section class="py-6 md:py-8 max-w-7xl mx-auto px-6 md:px-12 border-x border-dashed border-base-content/10">
+    <div class="space-y-3 max-w-5xl">
+      <div class="inline-block border border-base-content/10 px-3 py-1.5">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/70">PROJECTS</span>
       </div>
 
-      <h1 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-3xl">
-        <span class="gradient-text">Internet-first businesses.</span>
+      <h1 class="font-serif text-4xl md:text-5xl font-bold leading-[0.85] tracking-tight text-base-content">
+        What I <span class="italic font-light">build</span> and run.
       </h1>
 
-      <p class="text-lg md:text-xl text-base-content/70 max-w-2xl leading-relaxed">
-        Some are experiments. Some are serious long-term bets. This is a snapshot of what I am actively running, what is coming next, and what I have built in the past.
+      <p class="font-serif text-base md:text-lg text-base-content/70 max-w-3xl leading-relaxed">
+        This is a snapshot of my current, upcoming and past projects.
       </p>
     </div>
   </section>
 
   <!-- PROJECT SECTIONS -->
-  {allSections.map((section) => (
-    <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-8">{section.title}</h2>
+  {allSections.map((section, sectionIndex) => (
+    <section class={`${section.bg} py-6 md:py-8 border-y border-dashed border-base-content/10`}>
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/50 mb-2">FIGURE 0{sectionIndex + 1}: {section.title.toUpperCase()}</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-base-content leading-[0.85]">{section.title}</h2>
 
-      <div class={section.title === "Past" ? "space-y-3" : "grid md:grid-cols-2 gap-6"}>
-        {section.projects.map((p) => (
-          <a
-            href={p.url}
-            target={p.url.startsWith("http") ? "_blank" : "_self"}
-            rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
-            class="group block bg-base-200/50 border border-base-300/50 rounded-xl overflow-hidden hover-glow transition-all"
-          >
-            {p.img && (
-              <div class="aspect-video overflow-hidden bg-base-300/30">
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-            )}
-            <div class="p-6">
-              <div class="flex items-center gap-3 mb-2">
-                <h3 class="text-lg font-bold group-hover:text-primary transition-colors">{p.title}</h3>
-                <span class={`badge badge-sm font-medium ${p.img ? 'badge-primary' : 'badge-outline'}`}>{p.badge}</span>
-              </div>
-              <p class="text-base-content/70 text-sm leading-relaxed">{p.desc}</p>
-              {p.img && (
-                <div class="mt-4 flex items-center gap-2 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>View project</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {section.title === "Past" ? (
+          <div class="border-t border-base-content/10">
+            {section.projects.map((p) => (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block border-b border-base-content/10 py-4 hover:bg-base-content hover:-mx-12 hover:px-12 transition-all duration-500"
+              >
+                <div class="flex items-center justify-between gap-4">
+                  <div class="flex-grow">
+                    <div class="flex items-center gap-2 mb-1">
+                      <h3 class="font-serif text-lg md:text-xl font-bold text-base-content group-hover:text-white transition-colors">{p.title}</h3>
+                      <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] px-2 py-1 bg-base-content text-white border border-base-content group-hover:bg-white group-hover:text-base-content group-hover:border-white transition-all">{p.badge}</span>
+                    </div>
+                    <p class="font-serif text-sm md:text-base text-base-content/80 group-hover:text-white/90 transition-colors">{p.desc}</p>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/50 group-hover:text-white group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
-              )}
-            </div>
-          </a>
-        ))}
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div class="grid md:grid-cols-2 gap-0 border border-base-content/10">
+            {section.projects.map((p, index) => (
+              <a
+                href={p.url}
+                target={p.url.startsWith("http") ? "_blank" : "_self"}
+                rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                class="group block border-r last:border-r-0 border-b md:border-b-0 border-base-content/10 overflow-hidden bg-white hover:bg-base-content transition-all duration-500 flex flex-col"
+              >
+                {p.img && (
+                  <div class="aspect-[3/1] overflow-hidden bg-base-content/10 border-b border-base-content/10">
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-4 md:p-5">
+                  <div class="flex items-center gap-2 mb-2">
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-base-content group-hover:text-white transition-colors">{p.title}</h3>
+                    <span class="font-mono text-xs font-bold uppercase tracking-[0.15em] px-3 py-1.5 bg-base-content text-white border border-base-content group-hover:bg-white group-hover:text-base-content group-hover:border-white transition-all">{p.badge}</span>
+                  </div>
+                  <p class="font-serif text-sm md:text-base text-base-content/80 group-hover:text-white/90 leading-relaxed transition-colors">{p.desc}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   ))}
 </BaseLayout>
+</div>
