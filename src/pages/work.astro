@@ -24,29 +24,19 @@ const activeProjects = [
     url: "https://theseconddesign.com",
     badge: "ACTIVE",
   },
-];
-
-const upcomingProjects = [
   {
     title: "Shipping with AI",
     img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&h=450&fit=crop",
-    desc: "The no BS AI show. Real workflows, real business outcomes. Guests screen-share the workflow — every click, every prompt, every tool.",
-    url: "/shipping-with-ai",
-    badge: "UPCOMING",
+    desc: "The no BS AI show. Real workflows, real business outcomes. Guests screen-share the workflow: every click, every prompt, every tool.",
+    url: "https://shippingwith.ai/",
+    badge: "ACTIVE",
   },
   {
     title: "SimpleScheduleAI",
     img: images.healthcare,
     desc: "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
     url: "https://simplescheduleai.com",
-    badge: "R&D",
-  },
-  {
-    title: "Turpentine Academy",
-    img: images.academy,
-    desc: "Workshops, courses, playbooks and events for founders on clarity, execution, marketing, and leverage. Built from real projects, not theory.",
-    url: "/academy",
-    badge: "UPCOMING",
+    badge: "ACTIVE",
   },
 ];
 
@@ -77,38 +67,53 @@ const pastProjects = [
   },
 ];
 
+const partOf = [
+  {
+    title: "AI Boomi",
+    desc: "India's inner circle for AI-native founders and product builders.",
+    url: "https://aiboomi.org/",
+    badge: "VOLUNTEER",
+  },
+  {
+    title: "Roach Mafia",
+    desc: "An offline retreat for founders who chose resilience over hype.",
+    url: "https://roachmafia.com/",
+    badge: "FOUNDING MEMBER",
+  },
+];
+
 const allSections = [
-  { title: "Active", projects: activeProjects, bg: "bg-[#f9f9f7]" },
-  { title: "Upcoming", projects: upcomingProjects, bg: "bg-white" },
+  { title: "Building", projects: activeProjects, bg: "bg-base-200" },
+  { title: "Part of", projects: partOf, bg: "bg-base-100" },
   { title: "Past", projects: pastProjects, bg: "bg-white" },
 ];
 ---
 
 <div data-theme="cogniswitch" class="min-h-screen bg-base-100">
-<BaseLayout title="Projects" sideBarActiveItemID="projects">
+<BaseLayout title="Work" sideBarActiveItemID="work">
   <!-- HERO -->
-  <section class="py-6 md:py-8 max-w-7xl mx-auto px-6 md:px-12 border-x border-dashed border-base-content/10">
+  <section class="py-6 md:py-8 max-w-7xl mx-auto px-6 md:px-12 border-x border-solid border-base-content/10">
     <div class="space-y-3 max-w-5xl">
-      <div class="inline-block border border-base-content/10 px-3 py-1.5">
-        <span class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/70">PROJECTS</span>
+      <div class="inline-flex items-center bg-teal-50 px-3 py-1.5 rounded-full">
+        <span class="text-xs font-sans font-semibold text-teal-700 tracking-wide">WORK</span>
       </div>
 
-      <h1 class="font-serif text-4xl md:text-5xl font-bold leading-[0.85] tracking-tight text-base-content">
-        What I <span class="italic font-light">build</span> and run.
+      <h1 class="font-serif text-4xl md:text-5xl font-bold leading-tight tracking-tight text-base-content">
+        What I <span class="text-teal-600 font-normal">build</span> and what I'm part of.
       </h1>
 
       <p class="font-serif text-base md:text-lg text-base-content/70 max-w-3xl leading-relaxed">
-        This is a snapshot of my current, upcoming and past projects.
+        Things I'm actively building, communities I'm part of, and what came before.
       </p>
     </div>
   </section>
 
   <!-- PROJECT SECTIONS -->
   {allSections.map((section, sectionIndex) => (
-    <section class={`${section.bg} py-6 md:py-8 border-y border-dashed border-base-content/10`}>
+    <section class={`${section.bg} py-6 md:py-8 border-y border-solid border-base-content/10`}>
       <div class="max-w-7xl mx-auto px-6 md:px-12">
-        <div class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/50 mb-2">FIGURE 0{sectionIndex + 1}: {section.title.toUpperCase()}</div>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-base-content leading-[0.85]">{section.title}</h2>
+        <div class="font-mono text-xs uppercase tracking-[0.2em] text-base-content/50 mb-2">{section.title.toUpperCase()}</div>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-base-content leading-tight">{section.title}</h2>
 
         {section.title === "Past" ? (
           <div class="border-t border-base-content/10">
@@ -135,31 +140,24 @@ const allSections = [
             ))}
           </div>
         ) : (
-          <div class="grid md:grid-cols-2 gap-0 border border-base-content/10">
-            {section.projects.map((p, index) => (
+          <div class="grid md:grid-cols-2 gap-3">
+            {section.projects.map((p) => (
               <a
                 href={p.url}
                 target={p.url.startsWith("http") ? "_blank" : "_self"}
                 rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                class="group block border-r last:border-r-0 border-b md:border-b-0 border-base-content/10 overflow-hidden bg-white hover:bg-base-content transition-all duration-500 flex flex-col"
+                class="group flex items-start justify-between gap-4 bg-white border border-base-content/10 rounded-xl p-5 hover:border-base-content/30 hover:shadow-sm transition-all duration-200"
               >
-                {p.img && (
-                  <div class="aspect-[3/1] overflow-hidden bg-base-content/10 border-b border-base-content/10">
-                    <img
-                      src={p.img}
-                      alt={p.title}
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
+                <div>
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <h3 class="font-serif text-lg font-bold text-base-content">{p.title}</h3>
+                    <span class="text-xs font-sans font-semibold px-2 py-0.5 rounded-full bg-teal-50 text-teal-700">{p.badge}</span>
                   </div>
-                )}
-                <div class="p-4 md:p-5">
-                  <div class="flex items-center gap-2 mb-2">
-                    <h3 class="font-serif text-lg md:text-xl font-bold text-base-content group-hover:text-white transition-colors">{p.title}</h3>
-                    <span class="font-mono text-xs font-bold uppercase tracking-[0.15em] px-3 py-1.5 bg-base-content text-white border border-base-content group-hover:bg-white group-hover:text-base-content group-hover:border-white transition-all">{p.badge}</span>
-                  </div>
-                  <p class="font-serif text-sm md:text-base text-base-content/80 group-hover:text-white/90 leading-relaxed transition-colors">{p.desc}</p>
+                  <p class="font-serif text-sm text-base-content/60 leading-relaxed">{p.desc}</p>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-base-content/30 group-hover:text-base-content group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
               </a>
             ))}
           </div>

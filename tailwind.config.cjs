@@ -4,9 +4,9 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-				serif: ['Newsreader', 'Georgia', 'serif'],
-				mono: ['JetBrains Mono', 'Courier New', 'monospace'],
+				sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+				serif: ['Spectral', 'Georgia', 'serif'],
+				mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
 			},
 			letterSpacing: {
 				tighter: '-0.03em',
@@ -46,18 +46,18 @@ module.exports = {
 					"error-content": "#ffffff",
 				},
 				cogniswitch: {
-					"primary": "#6366f1",
+					"primary": "#0d9488",
 					"primary-content": "#ffffff",
-					"secondary": "#272048",
+					"secondary": "#292524",
 					"secondary-content": "#ffffff",
 					"accent": "#7c3aed",
 					"accent-content": "#ffffff",
-					"neutral": "#272048",
+					"neutral": "#292524",
 					"neutral-content": "#ffffff",
-					"base-100": "#ffffff",
-					"base-200": "#f9f9f7",
-					"base-300": "#f0f0eb",
-					"base-content": "#272048",
+					"base-100": "#faf8f4",
+					"base-200": "#f2ede6",
+					"base-300": "#e5ddd3",
+					"base-content": "#292524",
 					"info": "#3b82f6",
 					"info-content": "#ffffff",
 					"success": "#22c55e",

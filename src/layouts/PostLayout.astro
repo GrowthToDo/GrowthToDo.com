@@ -15,7 +15,7 @@ const isExternalImage = typeof heroImage === 'string' && heroImage.startsWith('h
 
 <div data-theme="cogniswitch" class="min-h-screen bg-base-100">
 <BaseLayout title={title} description={description} image={heroImage} ogType="article">
-  <main class="py-12 md:py-16 max-w-7xl mx-auto px-6 md:px-12 border-x border-dashed border-base-content/10">
+  <main class="py-12 md:py-16 max-w-7xl mx-auto px-6 md:px-12 border-x border-solid border-base-content/10">
     <article class="prose prose-lg max-w-[750px] mx-auto prose-img:mx-auto prose-headings:font-serif prose-headings:text-base-content prose-p:font-serif prose-p:text-base-content/80 prose-li:font-serif prose-li:text-base-content/80 prose-strong:text-base-content prose-a:text-base-content prose-a:underline hover:prose-a:opacity-70">
       <!-- Hero image -->
       {heroImage && (
@@ -62,7 +62,7 @@ const isExternalImage = typeof heroImage === 'string' && heroImage.startsWith('h
       <div class="border-t border-base-content/10 !mt-16 !pt-10 not-prose">
         <a
           href="/blog"
-          class="inline-block px-6 py-3 bg-base-100 text-base-content font-mono text-xs uppercase tracking-[0.2em] border border-base-content shadow-[3px_3px_0px_0px_#272048] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_#272048] transition-all duration-300"
+          class="inline-flex items-center gap-2 text-sm font-sans font-medium text-base-content/50 hover:text-base-content transition-colors duration-200"
         >
           ← Back to blog
         </a>

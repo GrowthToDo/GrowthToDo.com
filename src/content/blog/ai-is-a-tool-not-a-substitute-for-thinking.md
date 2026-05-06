@@ -18,6 +18,15 @@ We do. We are accountable for outcomes.
 
 That means we must begin with a strong internal hypothesis about what is happening in the market, what we believe will work, and why. AI can refine and pressure test that hypothesis, but it cannot be the source of it.
 
+yacineMTB put it well and Karpathy thought it worth amplifying:
+
+<div class="not-prose my-8 flex justify-center">
+  <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+    <a href="https://twitter.com/karpathy/status/2049907410303865030"></a>
+  </blockquote>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
 ## What perspective actually means
 
 By perspective, I mean a coherent model of reality.
@@ -69,3 +78,7 @@ If we are serious about building strong strategic thinking, this is the culture 
 - AI as a tool, not a substitute for judgment
 
 This is demanding work, but it is the work that leads to real outcomes.
+
+---
+
+**Further reading:** Steph Ango's [*Understand*](https://stephango.com/understand) is worth reading alongside this. Same thread, different angle.
