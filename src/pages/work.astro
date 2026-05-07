@@ -9,34 +9,37 @@ const images = {
   healthcare: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=450&fit=crop",
 };
 
-const activeProjects = [
+const establishedProjects = [
   {
     title: "SellOnTube",
     img: images.youtube,
     desc: "YouTube-first customer acquisition for internet businesses in a Done-For-You model.",
     url: "https://sellontube.com",
-    badge: "ACTIVE",
+    badge: "RUNNING",
   },
   {
     title: "The Second Design",
     img: "/second-design.png",
     desc: "An education design studio building transformational learning environments. Cohort-based programs, curriculum design, and facilitator training.",
     url: "https://theseconddesign.com",
-    badge: "ACTIVE",
+    badge: "RUNNING",
   },
+];
+
+const exploringProjects = [
   {
     title: "Shipping with AI",
     img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&h=450&fit=crop",
     desc: "The no BS AI show. Real workflows, real business outcomes. Guests screen-share the workflow: every click, every prompt, every tool.",
     url: "https://shippingwith.ai/",
-    badge: "ACTIVE",
+    badge: "NEW BET",
   },
   {
     title: "SimpleScheduleAI",
     img: images.healthcare,
     desc: "A product-in-progress for US healthcare scheduling, focused on reducing operational chaos, overtime, and burnout.",
     url: "https://simplescheduleai.com",
-    badge: "ACTIVE",
+    badge: "NEW BET",
   },
 ];
 
@@ -83,9 +86,10 @@ const partOf = [
 ];
 
 const allSections = [
-  { title: "Building", projects: activeProjects, bg: "bg-base-200" },
-  { title: "Part of", projects: partOf, bg: "bg-base-100" },
-  { title: "Past", projects: pastProjects, bg: "bg-white" },
+  { title: "Running", projects: establishedProjects, bg: "bg-base-200", badgeStyle: "established" },
+  { title: "New Bets", projects: exploringProjects, bg: "bg-base-100", badgeStyle: "exploring" },
+  { title: "Part of", projects: partOf, bg: "bg-base-100", badgeStyle: "default" },
+  { title: "Past", projects: pastProjects, bg: "bg-white", badgeStyle: "default" },
 ];
 ---
 
@@ -103,7 +107,7 @@ const allSections = [
       </h1>
 
       <p class="font-serif text-base md:text-lg text-base-content/70 max-w-3xl leading-relaxed">
-        Things I'm actively building, communities I'm part of, and what came before.
+        Running businesses, new bets, communities I'm part of, and what came before.
       </p>
     </div>
   </section>
@@ -151,7 +155,7 @@ const allSections = [
                 <div>
                   <div class="flex items-center gap-2 mb-1.5">
                     <h3 class="font-serif text-lg font-bold text-base-content">{p.title}</h3>
-                    <span class="text-xs font-sans font-semibold px-2 py-0.5 rounded-full bg-teal-50 text-teal-700">{p.badge}</span>
+                    <span class={`text-xs font-sans font-semibold px-2 py-0.5 rounded-full ${section.badgeStyle === 'established' ? 'bg-teal-50 text-teal-700' : section.badgeStyle === 'exploring' ? 'bg-amber-50 text-amber-700' : 'bg-base-200 text-base-content/60'}`}>{p.badge}</span>
                   </div>
                   <p class="font-serif text-sm text-base-content/60 leading-relaxed">{p.desc}</p>
                 </div>
