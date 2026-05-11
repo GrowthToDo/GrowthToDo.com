@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Rent Calculator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+      font-size: 18px;
+      padding: 20px 16px 60px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 28px 0 12px;
+    }
+
+    /* ── Main inputs ── */
+    .input-block {
+      margin-bottom: 14px;
+    }
+
+    .input-block label {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .input-block input {
+      width: 100%;
+      background: #111;
+      border: 2px solid #3d3d3d;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 26px;
+      font-weight: 600;
+      padding: 16px 18px;
+      outline: none;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .input-block input:focus { border-color: #444; }
+    .input-block input::-webkit-outer-spin-button,
+    .input-block input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+    /* ── Rate schedule ── */
+    .rate-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .yr-label {
+      width: 62px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .rate-wrap {
+      flex: 1;
+      position: relative;
+    }
+
+    .rate-wrap input {
+      width: 100%;
+      background: #111;
+      border: 2px solid #3d3d3d;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      padding: 13px 38px 13px 16px;
+      outline: none;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .rate-wrap input:focus { border-color: #666; }
+    .rate-wrap input::-webkit-outer-spin-button,
+    .rate-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .rate-wrap input:disabled { color: #666; -webkit-text-fill-color: #666; opacity: 1; }
+
+    .pct-symbol {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .fill-btn {
+      width: 48px;
+      height: 52px;
+      background: #111;
+      border: 2px solid #3d3d3d;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s;
+    }
+
+    .fill-btn:active { background: #1e1e1e; color: #fff; }
+
+    .reset-marker {
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #e07b00;
+      padding: 6px 0 2px;
+    }
+
+    /* ── Summary cards ── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: #0f0f0f;
+      border: 2px solid #333;
+      border-radius: 18px;
+      padding: 22px 20px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-total {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #fff;
+    }
+
+    .card-period {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #2a2a2a;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-period span {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── Year-by-year ── */
+    .toggle-btn {
+      width: 100%;
+      margin-top: 24px;
+      background: #0f0f0f;
+      border: 2px solid #333;
+      border-radius: 14px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 17px;
+      padding: 18px;
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: 0.2px;
+    }
+
+    .toggle-btn:active { background: #1a1a1a; }
+
+    .year-table { display: none; margin-top: 10px; }
+    .year-table.open { display: block; }
+
+    .table-header, .table-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 1fr 1fr;
+      gap: 4px;
+      padding: 13px 4px;
+      border-bottom: 1px solid #222;
+      align-items: center;
+    }
+
+    .table-header {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+    }
+
+    .table-header div:not(:first-child),
+    .table-row .col-r { text-align: right; }
+
+    .table-row .col-yr { font-size: 14px; font-weight: 700; color: #fff; }
+    .table-row .col-rate { font-size: 14px; font-weight: 700; color: #fff; text-align: right; }
+    .table-row .col-monthly { font-size: 16px; font-weight: 700; color: #fff; text-align: right; }
+    .table-row .col-annual { font-size: 14px; font-weight: 700; color: #fff; text-align: right; }
+
+    .table-reset {
+      font-size: 12px;
+      text-align: center;
+      color: #e07b00;
+      padding: 8px 0 2px;
+      letter-spacing: 1px;
+    }
+
+    /* ── Modal ── */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 0 0;
+    }
+
+    .modal-bg.open { display: flex; }
+
+    .modal {
+      background: #111;
+      border: 2px solid #3d3d3d;
+      border-bottom: none;
+      border-radius: 24px 24px 0 0;
+      padding: 28px 20px 40px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .modal h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .modal-sub {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+
+    .modal .input-block input {
+      font-size: 22px;
+      padding: 14px 16px;
+    }
+
+    .modal-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .modal-btns button {
+      flex: 1;
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-cancel { background: #1e1e1e; color: #fff; }
+    .btn-apply  { background: #fff;    color: #000; }
+    .btn-cancel:active { background: #2a2a2a; }
+    .btn-apply:active  { background: #ddd; }
+  </style>
+</head>
+<body>
+
+  <h1>Rent Calculator</h1>
+
+  <!-- Main inputs -->
+  <div class="section-label">Inputs</div>
+
+  <div class="input-block">
+    <label>Total Cents</label>
+    <input type="number" id="totalCents" value="66" min="1" inputmode="decimal" oninput="calc()">
+  </div>
+
+  <div class="input-block">
+    <label>Starting Rate (₹ per cent)</label>
+    <input type="number" id="startingRate" value="1250" min="0" inputmode="decimal" oninput="calc()">
+  </div>
+
+  <!-- Rate schedule -->
+  <div class="section-label">Rate Schedule</div>
+  <div id="rateRows"></div>
+
+  <!-- Summary -->
+  <div class="section-label">Summary</div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-title">10-YEAR CUMULATIVE RENT</div>
+      <div class="card-total" id="t10">—</div>
+      <div class="card-period">Years 1–10: <span id="p1_10">—</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">15-YEAR CUMULATIVE RENT</div>
+      <div class="card-total" id="t15">—</div>
+      <div class="card-period">Years 11–15: <span id="p11_15">—</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">20-YEAR CUMULATIVE RENT</div>
+      <div class="card-total" id="t20">—</div>
+      <div class="card-period">Years 16–20: <span id="p16_20">—</span></div>
+    </div>
+  </div>
+
+  <!-- Year-by-year -->
+  <button class="toggle-btn" id="toggleBtn" onclick="toggleTable()">
+    Show Year-by-Year Breakdown  ▼
+  </button>
+
+  <div class="year-table" id="yearTable">
+    <div class="table-header">
+      <div>Year</div>
+      <div style="text-align:right">Rate</div>
+      <div style="text-align:right">Monthly</div>
+      <div style="text-align:right">Annual</div>
+    </div>
+    <div id="yearRows"></div>
+  </div>
+
+  <!-- Fill range modal -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <h3>Apply Rate to Range</h3>
+      <div class="modal-sub">Set one rate across multiple years at once</div>
+      <div class="input-block">
+        <label>Rate (%)</label>
+        <input type="number" id="fillRate" value="5" min="0" max="100" step="0.5" inputmode="decimal">
+      </div>
+      <div class="modal-row">
+        <div class="input-block">
+          <label>From Year</label>
+          <input type="number" id="fillFrom" value="1" min="1" max="20" inputmode="numeric">
+        </div>
+        <div class="input-block">
+          <label>To Year</label>
+          <input type="number" id="fillTo" value="5" min="1" max="20" inputmode="numeric">
+        </div>
+      </div>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-apply" onclick="applyFill()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const YEARS = 20;
+
+    // Default rates matching the spreadsheet
+    const DEFAULT_RATES = [0, 0, 0, 10, 5, 5, 5, 5, 5, 5, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+
+    const PERIODS = [
+      '2026 Sep–2027 Aug','2027 Sep–2028 Aug','2028 Sep–2029 Aug',
+      '2029 Sep–2030 Aug','2030 Sep–2031 Aug','2031 Sep–2032 Aug',
+      '2032 Sep–2033 Aug','2033 Sep–2034 Aug','2034 Sep–2035 Aug',
+      '2035 Sep–2036 Aug','2036 Sep–2037 Aug','2037 Sep–2038 Aug',
+      '2038 Sep–2039 Aug','2039 Sep–2040 Aug','2040 Sep–2041 Aug',
+      '2041 Sep–2042 Aug','2042 Sep–2043 Aug','2043 Sep–2044 Aug',
+      '2044 Sep–2045 Aug','2045 Sep–2046 Aug'
+    ];
+
+    // ── Build rate rows ──────────────────────────────────────
+    function buildRateRows() {
+      const container = document.getElementById('rateRows');
+      for (let i = 0; i < YEARS; i++) {
+        const yr = i + 1;
+
+        if (yr === 11 || yr === 16) {
+          const div = document.createElement('div');
+          div.className = 'reset-marker';
+          div.textContent = `— RESET (Year ${yr}) —`;
+          container.appendChild(div);
+        }
+
+        const row = document.createElement('div');
+        row.className = 'rate-row';
+
+        const lbl = document.createElement('div');
+        lbl.className = 'yr-label';
+        lbl.textContent = `Year ${yr}`;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'rate-wrap';
+
+        const inp = document.createElement('input');
+        inp.type = 'number';
+        inp.id = `r${yr}`;
+        inp.value = DEFAULT_RATES[i];
+        inp.min = 0; inp.max = 100; inp.step = 0.5;
+        inp.inputMode = 'decimal';
+        inp.oninput = calc;
+        inp.disabled = (yr === 1); // Year 1 is always base, rate has no effect
+
+        const sym = document.createElement('span');
+        sym.className = 'pct-symbol';
+        sym.textContent = '%';
+
+        wrap.appendChild(inp);
+        wrap.appendChild(sym);
+
+        const btn = document.createElement('button');
+        btn.className = 'fill-btn';
+        btn.title = 'Apply to range';
+        btn.innerHTML = '&#8644;'; // ⇄
+        btn.onclick = () => openModal(yr);
+
+        row.appendChild(lbl);
+        row.appendChild(wrap);
+        row.appendChild(btn);
+        container.appendChild(row);
+      }
+    }
+
+    // ── Format currency ──────────────────────────────────────
+    function fmt(n) {
+      const abs = Math.abs(n);
+      if (abs >= 1e7) {
+        return '₹' + (n / 1e7).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Cr';
+      } else if (abs >= 1e5) {
+        return '₹' + (n / 1e5).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' L';
+      } else {
+        return '₹' + Math.round(n).toLocaleString('en-IN');
+      }
+    }
+
+    // ── Calculate ────────────────────────────────────────────
+    function calc() {
+      const cents      = parseFloat(document.getElementById('totalCents').value)    || 0;
+      const startRate  = parseFloat(document.getElementById('startingRate').value)  || 0;
+
+      const monthlys = [];
+      const annuals  = [];
+      let   monthly  = startRate * cents;
+
+      for (let yr = 1; yr <= YEARS; yr++) {
+        if (yr > 1) {
+          const rate = (parseFloat(document.getElementById(`r${yr}`).value) || 0) / 100;
+          monthly = monthly + monthly * rate;
+        }
+        monthlys.push(monthly);
+        annuals.push(monthly * 12);
+      }
+
+      const sum = (from, to) => annuals.slice(from, to).reduce((a, b) => a + b, 0);
+
+      const s1_10  = sum(0, 10);
+      const s11_15 = sum(10, 15);
+      const s16_20 = sum(15, 20);
+
+      document.getElementById('t10').textContent    = fmt(s1_10);
+      document.getElementById('p1_10').textContent  = fmt(s1_10);
+
+      document.getElementById('t15').textContent    = fmt(s1_10 + s11_15);
+      document.getElementById('p11_15').textContent = fmt(s11_15);
+
+      document.getElementById('t20').textContent    = fmt(s1_10 + s11_15 + s16_20);
+      document.getElementById('p16_20').textContent = fmt(s16_20);
+
+      // Year-by-year table
+      const container = document.getElementById('yearRows');
+      container.innerHTML = '';
+
+      for (let i = 0; i < YEARS; i++) {
+        const yr   = i + 1;
+        const rate = (yr === 1) ? '—' : (parseFloat(document.getElementById(`r${yr}`).value) || 0) + '%';
+
+        if (yr === 11 || yr === 16) {
+          const div = document.createElement('div');
+          div.className = 'table-reset';
+          div.textContent = `— RESET (Year ${yr}) —`;
+          container.appendChild(div);
+        }
+
+        const row = document.createElement('div');
+        row.className = 'table-row';
+        row.innerHTML = `
+          <div class="col-yr">Yr ${yr}</div>
+          <div class="col-rate">${rate}</div>
+          <div class="col-monthly">${fmt(monthlys[i])}</div>
+          <div class="col-annual">${fmt(annuals[i])}</div>
+        `;
+        container.appendChild(row);
+      }
+    }
+
+    // ── Toggle year table ────────────────────────────────────
+    function toggleTable() {
+      const table = document.getElementById('yearTable');
+      const btn   = document.getElementById('toggleBtn');
+      const open  = table.classList.toggle('open');
+      btn.textContent = open
+        ? 'Hide Year-by-Year Breakdown  ▲'
+        : 'Show Year-by-Year Breakdown  ▼';
+    }
+
+    // ── Modal ────────────────────────────────────────────────
+    function openModal(yr) {
+      const rate = yr === 1 ? 0 : (parseFloat(document.getElementById(`r${yr}`).value) || 0);
+      document.getElementById('fillRate').value = rate;
+      document.getElementById('fillFrom').value = yr;
+      document.getElementById('fillTo').value   = Math.min(yr + 4, YEARS);
+      document.getElementById('modalBg').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('modalBg').classList.remove('open');
+    }
+
+    function applyFill() {
+      const rate = parseFloat(document.getElementById('fillRate').value) || 0;
+      const from = Math.max(1, parseInt(document.getElementById('fillFrom').value) || 1);
+      const to   = Math.min(YEARS, parseInt(document.getElementById('fillTo').value) || YEARS);
+      for (let yr = from; yr <= to; yr++) {
+        const inp = document.getElementById(`r${yr}`);
+        if (inp && !inp.disabled) inp.value = rate;
+      }
+      closeModal();
+      calc();
+    }
+
+    document.getElementById('modalBg').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ── Init ─────────────────────────────────────────────────
+    buildRateRows();
+    calc();
+  </script>
+</body>
+</html>
