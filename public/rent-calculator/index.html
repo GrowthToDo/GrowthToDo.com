@@ -284,6 +284,92 @@
       letter-spacing: 1px;
     }
 
+    /* ── Snapshot card ── */
+    .snapshot-card {
+      margin-top: 36px;
+      border: 2px solid #fff;
+      border-radius: 20px;
+      padding: 24px 20px;
+      background: #0a0a0a;
+    }
+
+    .snapshot-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+    }
+
+    .snapshot-inputs {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .snapshot-input-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .snapshot-input-row span:last-child {
+      color: #FFD60A;
+    }
+
+    .snapshot-rates {
+      margin-bottom: 18px;
+    }
+
+    .snapshot-rate-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #1e1e1e;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .snapshot-rate-row:last-child { border-bottom: none; }
+
+    .snapshot-rate-row span:first-child { color: #fff; }
+    .snapshot-rate-row span:last-child  { color: #FFD60A; }
+
+    .snapshot-divider {
+      height: 1px;
+      background: #333;
+      margin-bottom: 16px;
+    }
+
+    .snapshot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #222;
+    }
+
+    .snapshot-row:last-child { border-bottom: none; }
+
+    .snapshot-label {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .snapshot-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
     /* ── Modal ── */
     .modal-bg {
       display: none;
@@ -426,6 +512,36 @@
       <div style="text-align:right">Annual</div>
     </div>
     <div id="yearRows"></div>
+  </div>
+
+  <!-- Snapshot card -->
+  <div class="snapshot-card">
+    <div class="snapshot-title">Kappuram Rent Calculator</div>
+    <div class="snapshot-inputs">
+      <div class="snapshot-input-row">
+        <span>Total Cents</span><span id="snap-cents">—</span>
+      </div>
+      <div class="snapshot-input-row">
+        <span>Starting Rate</span><span id="snap-rate">—</span>
+      </div>
+      <div class="snapshot-input-row">
+        <span>Monthly Rent (Yr 1)</span><span id="snap-monthly">—</span>
+      </div>
+    </div>
+    <div class="snapshot-rates" id="snap-rates"></div>
+    <div class="snapshot-divider"></div>
+    <div class="snapshot-row">
+      <span class="snapshot-label">10-Year Total</span>
+      <span class="snapshot-value" id="snap-10">—</span>
+    </div>
+    <div class="snapshot-row">
+      <span class="snapshot-label">15-Year Total</span>
+      <span class="snapshot-value" id="snap-15">—</span>
+    </div>
+    <div class="snapshot-row">
+      <span class="snapshot-label">20-Year Total</span>
+      <span class="snapshot-value" id="snap-20">—</span>
+    </div>
   </div>
 
   <!-- Fill range modal -->
@@ -572,6 +688,27 @@
       document.getElementById('s15').textContent = fmt(s1_10 + s11_15);
       document.getElementById('s20').textContent = fmt(s1_10 + s11_15 + s16_20);
 
+      // Snapshot card
+      document.getElementById('snap-cents').textContent   = cents;
+      document.getElementById('snap-rate').textContent    = '₹' + startRate.toLocaleString('en-IN') + '/cent';
+      document.getElementById('snap-monthly').textContent = fmt(monthlys[0]);
+      document.getElementById('snap-10').textContent      = fmt(s1_10);
+      document.getElementById('snap-15').textContent      = fmt(s1_10 + s11_15);
+      document.getElementById('snap-20').textContent      = fmt(s1_10 + s11_15 + s16_20);
+
+      // Rate groups in snapshot
+      const ratesEl = document.getElementById('snap-rates');
+      ratesEl.innerHTML = '';
+      const groups = groupRates();
+      // Always show Year 1 as base (0% / no change)
+      [{ from: 1, to: 1, rate: 0 }, ...groups].forEach(g => {
+        const label = g.from === g.to ? `Year ${g.from}` : `Yrs ${g.from}–${g.to}`;
+        const row = document.createElement('div');
+        row.className = 'snapshot-rate-row';
+        row.innerHTML = `<span>${label}</span><span>${g.rate}%</span>`;
+        ratesEl.appendChild(row);
+      });
+
       // Year-by-year table
       const container = document.getElementById('yearRows');
       container.innerHTML = '';
@@ -597,6 +734,24 @@
         `;
         container.appendChild(row);
       }
+    }
+
+    // ── Group consecutive same rates ─────────────────────────
+    function groupRates() {
+      const groups = [];
+      let start = 2; // Year 1 is always base, start grouping from year 2
+      let cur = parseFloat(document.getElementById('r2').value) || 0;
+
+      for (let yr = 3; yr <= YEARS; yr++) {
+        const val = parseFloat(document.getElementById(`r${yr}`).value) || 0;
+        if (val !== cur) {
+          groups.push({ from: start, to: yr - 1, rate: cur });
+          start = yr;
+          cur = val;
+        }
+      }
+      groups.push({ from: start, to: YEARS, rate: cur });
+      return groups;
     }
 
     // ── Toggle year table ────────────────────────────────────
