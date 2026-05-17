@@ -252,7 +252,7 @@
 
     .table-header, .table-row {
       display: grid;
-      grid-template-columns: 56px 1fr 1fr 1fr;
+      grid-template-columns: 56px 1fr 1fr 1fr 1fr;
       gap: 4px;
       padding: 13px 4px;
       border-bottom: 1px solid #222;
@@ -275,6 +275,7 @@
     .table-row .col-rate { font-size: 14px; font-weight: 700; color: #fff; text-align: right; }
     .table-row .col-monthly { font-size: 16px; font-weight: 700; color: #fff; text-align: right; }
     .table-row .col-annual { font-size: 14px; font-weight: 700; color: #fff; text-align: right; }
+    .table-row .col-percent { font-size: 13px; font-weight: 700; color: #fff; text-align: right; }
 
     .table-reset {
       font-size: 12px;
@@ -510,6 +511,7 @@
       <div style="text-align:right">Rate</div>
       <div style="text-align:right">Monthly</div>
       <div style="text-align:right">Annual</div>
+      <div style="text-align:right">₹/Cent</div>
     </div>
     <div id="yearRows"></div>
   </div>
@@ -726,11 +728,13 @@
 
         const row = document.createElement('div');
         row.className = 'table-row';
+        const perCent = cents > 0 ? Math.round(monthlys[i] / cents).toLocaleString('en-IN') : '—';
         row.innerHTML = `
           <div class="col-yr">Yr ${yr}</div>
           <div class="col-rate">${rate}</div>
           <div class="col-monthly">${fmt(monthlys[i])}</div>
           <div class="col-annual">${fmt(annuals[i])}</div>
+          <div class="col-percent">₹${perCent}</div>
         `;
         container.appendChild(row);
       }
