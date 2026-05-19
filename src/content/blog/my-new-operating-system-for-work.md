@@ -5,9 +5,11 @@ pubDate: "May 19 2026"
 heroImage: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&h=630&fit=crop"
 ---
 
-I run several projects simultaneously. I already knew what areas of my life actually mattered. That clarity was not the problem.
+Last year I spent real time figuring out exactly which areas of my life I should be focusing on. Not a vague exercise. I came out of it with specific targets I wanted to hit in each area. That work was deliberate and it was worth it.
 
-The problem was fragmentation. My to-dos lived in SimpleNote. Documents were scattered across Google Docs. My computer had a folder per project, a notes app turned graveyard, files that made sense when I created them and nothing three weeks later. None of it talked to each other.
+The consequence of having that clarity is that I run several projects simultaneously. That is not accidental. It is what hitting those targets actually requires.
+
+However, I struggled with a very fragmented online workspace. My to-dos lived in [SimpleNote](https://simplenote.com). Documents were scattered across Google Docs. My computer had a folder per project, a notes app turned graveyard, files that made sense when I created them and nothing three weeks later. None of it talked to each other.
 
 Today that changed. Everything is now in one place: plain markdown files, inside a single folder structure on my machine, organized by the life areas I had already identified. One top-level folder per area. Every project nests inside the relevant one. And an AI agent that can navigate all of it on my behalf.
 
@@ -15,7 +17,7 @@ That is the working operating system. Here is how it is built.
 
 ## Obsidian as the operating system
 
-The organizing layer lives in an Obsidian vault. I subscribed to Obsidian Sync today (for the first time), so the vault now stays in sync across my Mac and phone instantly.
+The organizing layer lives in an [Obsidian](https://obsidian.md) vault. I subscribed to Obsidian Sync today (for the first time), so the vault now stays in sync across my Mac and phone instantly.
 
 Inside the vault is a command center folder with a few files I open almost every day:
 
@@ -37,11 +39,21 @@ I interact with it entirely by voice. I dictate what I need: draft this email, u
 
 This is the part that surprised me most. It is not just faster. The nature of the work changes. You stop managing files and start making decisions.
 
-## One structural rule that helped
+## The accountability layer
 
-Inside each project area, I created a folder called "repos" for anything that is a git repository. Non-code content (notes, outreach materials, documents) sits alongside it at the same level. One glance tells you what is code and what is not.
+Tracking what you do is not the same as knowing whether you are making progress. I knew this from experience. You can stay busy and go nowhere.
 
-Small thing. Removes constant low-level friction.
+So the system has a metrics layer built in. Each project has a small set of numbers that matter: leads contacted, revenue, calls booked, whatever the actual needle is. These sit alongside the to-dos and the done tracker. When I log completed work, I am also updating the number.
+
+This creates something I did not have before: a weekly review with real data, not just feelings.
+
+Every fortnight I run a structured review. The format is simple — what moved, what did not, what is the honest assessment. But because the done tracker has a full log of the week and the metrics are there, the review is grounded. I cannot tell myself it was a good week if the numbers say otherwise. I cannot dismiss a week as bad if the log shows real output.
+
+The part that surprised me: I gave Claude Code the role of running this review with me. It reads the done tracker, checks the metrics, and then asks me the uncomfortable questions. Did this actually move the needle or just fill the week? Is this bet still real or are you dragging it along? Same questions a good manager would ask. Except I do not have a manager, and most founders do not.
+
+There is also a higher-level strategic review — less frequent, bigger picture — where the question is not "did I do the work" but "is the work even the right work." That one is harder. The system makes it possible because the data is there when you need it.
+
+The result: less self-deception. Which is, honestly, one of the most useful things a system can give you.
 
 ## What this changes
 
@@ -52,3 +64,5 @@ But when the structure reflects what actually matters, and when an AI agent can 
 Start with the question: what are the five or six areas of your life that genuinely matter? Make those your folders. Build from there.
 
 *(Want help figuring out what those areas are for you? Happy to think through it together.)*
+
+This is V1, shipped today. I am continuously iterating on this system and will be writing more as it evolves.
