@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const changelog = [
+  {
+    date: '2026-05-19',
+    version: '1.0.0',
+    title: 'Changelog created',
+    changes: [
+      {
+        category: 'Meta',
+        items: [
+          'Changelog page created to track all future updates to the site',
+        ],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Changelog" description="A log of updates and changes made to GrowthToDo.com." sideBarActiveItemID="changelog">
+  <div class="max-w-3xl mx-auto py-16">
+    <h1 class="text-3xl font-bold mb-2">Changelog</h1>
+    <p class="text-gray-500 mb-12">All updates to GrowthToDo.com, most recent first.</p>
+
+    <div class="space-y-12">
+      {changelog.map((entry) => (
+        <div class="border-l-2 border-gray-200 pl-6">
+          <div class="flex items-baseline gap-3 mb-1">
+            <span class="text-sm text-gray-400">{entry.date}</span>
+            <span class="text-xs font-mono bg-gray-100 px-2 py-0.5 rounded">v{entry.version}</span>
+          </div>
+          <h2 class="text-lg font-semibold mb-4">{entry.title}</h2>
+          {entry.changes.map((group) => (
+            <div class="mb-4">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">{group.category}</h3>
+              <ul class="space-y-1">
+                {group.items.map((item) => (
+                  <li class="text-sm text-gray-600">
+                    {typeof item === 'string' ? (
+                      <span>— {item}</span>
+                    ) : (
+                      <span>— <a href={item.url} class="underline hover:text-blue-500" target="_blank">{item.text}</a></span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
