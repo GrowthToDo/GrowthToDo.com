@@ -1,5 +1,5 @@
 ---
-title: "I Built a Working Operating System. Here's What Changed."
+title: "My New Operating System for Work"
 description: "I already knew what mattered in my life. The problem was everything was fragmented. Here's how I pulled it all into one place and made it talk to each other."
 pubDate: "May 19 2026"
 heroImage: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&h=630&fit=crop"
