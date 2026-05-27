@@ -4,6 +4,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const changelog = [
   {
     date: '2026-05-27',
+    version: '1.2.1',
+    title: 'Fix Netlify build failure',
+    changes: [
+      {
+        category: 'Build',
+        items: [
+          'Pinned @astrojs/sitemap to 3.2.0 (exact) to prevent pnpm resolving 3.7.3 which crashes the build',
+          'Updated pnpm-lock.yaml to match package.json and unblock Netlify CI',
+        ],
+      },
+    ],
+  },
+  {
+    date: '2026-05-27',
     version: '1.2.0',
     title: 'Site restructure and content updates',
     changes: [
