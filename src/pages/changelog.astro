@@ -5,8 +5,15 @@ const changelog = [
   {
     date: '2026-05-27',
     version: '1.2.1',
-    title: 'Fix Netlify build failure',
+    title: 'Performance and build fixes',
     changes: [
+      {
+        category: 'Performance',
+        items: [
+          'Compressed profile photo from 2.4MB to 81KB (97% reduction) by resizing to 200x200',
+          'Added lazy loading and explicit dimensions to profile image',
+        ],
+      },
       {
         category: 'Build',
         items: [
