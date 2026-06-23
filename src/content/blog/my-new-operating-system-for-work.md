@@ -5,6 +5,14 @@ pubDate: "May 19 2026"
 heroImage: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&h=630&fit=crop"
 ---
 
+**A three-part series on building a personal operating system:**
+
+1. **My New Operating System for Work** (this post)
+2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
+3. [The Real Test of a System Is Handing It to Someone Else](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else)
+
+---
+
 Last year I spent real time figuring out exactly which areas of my life I should be focusing on. Not a vague exercise. I came out of it with specific targets I wanted to hit in each area. That work was deliberate and it was worth it.
 
 The consequence of having that clarity is that I run several projects simultaneously. That is not accidental. It is what hitting those targets actually requires.
