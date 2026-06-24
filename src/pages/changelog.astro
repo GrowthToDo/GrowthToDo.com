@@ -3,6 +3,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const changelog = [
   {
+    date: '2026-06-24',
+    version: '1.4.1',
+    title: 'Build fix: unblock Netlify deploys',
+    changes: [
+      {
+        category: 'Build',
+        items: [
+          'Regenerated pnpm-lock.yaml to match package.json — it was missing rehype-external-links@^3.0.0 (added Jun 4 via npm without updating the pnpm lockfile)',
+          'Fixes the ERR_PNPM_OUTDATED_LOCKFILE failure that had blocked every Netlify deploy since Jun 4, including the v1.3.0 and v1.4.0 blog posts',
+        ],
+      },
+    ],
+  },
+  {
     date: '2026-06-23',
     version: '1.4.0',
     title: 'New blog series: building a personal operating system',
