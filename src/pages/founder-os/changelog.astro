@@ -17,7 +17,8 @@ const changelog = [
     phase: "Discipline",
     title: "Done means verified, not pushed",
     items: [
-      "A deploy is only done when the live result is checked, not when the work is pushed. Added after a silent failure let a 'done' claim sit false for a day.",
+      "Tightened the definition of done: shipping something is not finished until the result is checked live, not just sent. Added after a silent build failure let a 'shipped to production' claim sit false for a day.",
+      "Built this public overview and changelog of the system itself, with two diagrams of how it works.",
     ],
   },
   {
@@ -26,8 +27,9 @@ const changelog = [
     title: "Handed the system to someone else",
     items: [
       "The first install for someone who is not me, which is the real test of whether it is a method or just my personal habit.",
-      "Learned it is a fitting, not a template: the skeleton copies in minutes, but the value is the interview that shapes it to how the other person actually works.",
-      "Wrote it all up as a three-part series: the original build, what a month of daily use changed, and what handing it over taught me.",
+      "Did it as an interview, not a copy: learned how they actually work, then shaped the same skeleton to fit, a different messy inbox, a different set of projects, a nudge default tuned to what they drop.",
+      "Gap-analysed what their first version was missing against mine (the accountability layer, automatic backup, the Monday refill) and deliberately held those for a second pass.",
+      "Wrote the whole thing up as a three-part series: the build, a month in, and the handoff.",
     ],
     readMore: [PART3],
   },
@@ -36,8 +38,8 @@ const changelog = [
     phase: "Routines",
     title: "Monthly reconciliation routine",
     items: [
-      "A written routine that reads each statement, splits every line business versus personal, reconciles against known expenses, and flags subscriptions, category trends, and big-ticket items.",
-      "Wired into the email triage so statements get picked up and handed off automatically.",
+      "A written routine that reads each card statement, splits every line business versus personal, reconciles against known expenses, and runs four passes: recurring subscriptions, category trends, unknown charges, and big-ticket items.",
+      "Wired into the email triage so a statement landing in the inbox is picked up and handed off on its own.",
     ],
   },
   {
@@ -45,8 +47,8 @@ const changelog = [
     phase: "Routines",
     title: "Email triage routine",
     items: [
-      "At each session start it sweeps the inbox, pulls out the actions, updates the right contact and conversation records, drafts the replies I owe, and labels each message handled so nothing is processed twice.",
-      "One hard guardrail: it drafts, it never sends.",
+      "At each session start it sweeps the inbox, pulls out the actions, updates the right contact and conversation records, drafts the replies I owe into the working doc, and labels each message handled so nothing is processed twice.",
+      "One hard guardrail, written into the rulebook: it drafts, it never sends.",
     ],
     readMore: [PART2],
   },
@@ -55,7 +57,7 @@ const changelog = [
     phase: "Infrastructure",
     title: "Cheaper sessions",
     items: [
-      "Wired in a context-engineering tool through a hook to cut the token cost of routine operations, so longer working sessions stay cheap.",
+      "Wired a context-engineering tool into the agent through a hook, cutting the token cost of routine operations sharply so longer working sessions stay cheap.",
     ],
   },
   {
@@ -63,8 +65,8 @@ const changelog = [
     phase: "Discipline",
     title: "A writing guide and a live dashboard",
     items: [
-      "Writing guide: a long list of the tells that make text read like a machine wrote it. Everything I publish is checked against it, automatically and on demand.",
-      "A local dashboard that renders the day's agenda in the browser and refreshes itself, for a glance without opening a session.",
+      "Added a writing guide: a long list of the tells that make text read like a machine wrote it. Everything I publish is now checked against it, automatically and on demand.",
+      "Built a local dashboard that reads the to-dos and conversations and renders the day's agenda in the browser, refreshing on its own and starting itself on login, for a glance without opening a session.",
     ],
     readMore: [PART2],
   },
@@ -73,17 +75,17 @@ const changelog = [
     phase: "Discipline",
     title: "The triage pass",
     items: [
-      "The agent reads the notes I scribble into files between sessions (delegated, done, parked) and files each one where it belongs before it builds the agenda.",
-      "Added to both the session-start and session-end checklists, so nothing I jot down gets stranded.",
+      "Added a triage pass to both the session-start and session-end checklists: the agent reads the notes I scribble into files between sessions (delegated, done, parked) and files each one where it belongs before it builds the agenda.",
+      "It immediately started earning its keep, catching tasks marked obsolete, moving stalled items to the backlog with a trigger for when to revisit, and reconciling annotations across the to-dos and conversations.",
     ],
   },
   {
     date: "2026-06-01",
     phase: "Design",
-    title: "Immediate logging and a self-review",
+    title: "A self-review and a logging rule",
     items: [
-      "The done log gets written the moment a thing is finished, as the outcome rather than the file change, because context can compact mid-session and erase the morning.",
-      "Added a 'what is working' assessment to the design doc: the foundations worth building on rather than redesigning.",
+      "Made the done log immediate: a finished item is written the moment it is done, as the outcome rather than the file change, because context can compact mid-session and erase the morning's work.",
+      "Wrote a full assessment of the system into its design doc: the six things genuinely working (the two-layer split, the four-state people file, nudge dates, typed relationships, the session model, structured contact files) set against six structural problems still worth solving.",
     ],
   },
   {
@@ -91,10 +93,11 @@ const changelog = [
     phase: "Contacts",
     title: "Contacts became a queryable network",
     items: [
-      "Added a typed relationships block to every contact file (40-plus at the time): who introduced whom, who works with whom, who can introduce me to whom. The network is now answerable by query instead of by memory.",
-      "The idea is borrowed from Garry Tan's GBrain: prose descriptions of who knows whom are invisible to a query, typed edges are not.",
-      "Documented the schema so every new contact file gets the block automatically, wrote the design principles down, and stood up a standalone design doc for the system itself.",
-      "Added the 'to reply' state, finishing the four-state shape for people: reaching out now, owe a reply, waiting on them, not yet contacted.",
+      "Added a typed relationships block to every contact file, 40-plus at the time: who introduced whom, who works with whom, who can introduce me to whom, who shares an org or a community. The network is now answerable by query instead of by memory.",
+      "Borrowed from Garry Tan's GBrain: prose descriptions of who knows whom are invisible to a query, typed edges are not.",
+      "Documented the schema in the rulebook so every new contact file carries the block automatically.",
+      "Added the 'to reply' state to the people file, finishing the four-state shape: reaching out now, owe a reply, waiting on them, not yet contacted.",
+      "Stood up a standalone design doc for the system, and parked GBrain's graph traversal as a thing to revisit once the contact files cross a few hundred.",
     ],
     readMore: [PART2],
   },
@@ -104,9 +107,10 @@ const changelog = [
     title: "The people layer and its cadence",
     items: [
       "Built the delegation file: a checklist of what is handed to whom and by when, no narrative.",
-      "Pulled the last people-items out of the to-do list and put a nudge date on every item I am waiting on.",
-      "Added a weekly pull and a Monday refill so the list of people to contact does not rot into a graveyard.",
-      "Fixed the session-start agenda to use the real day and time, so it stops getting the day of the week wrong.",
+      "Restructured the daily flow, pulling the last people-items out of the to-do list (the old waiting and follow-up sections were deleted) and putting a nudge date on every one of the fifteen items I was waiting on.",
+      "Added a weekly pull to the queue and a Monday refill prompt, so the list of people to contact does not rot into a graveyard.",
+      "Fixed the session-start agenda to read the real day and time, which had been getting the day of the week wrong.",
+      "Wrote the daily-files rules into the rulebook so each file's one job is explicit.",
     ],
     readMore: [PART2],
   },
@@ -115,16 +119,36 @@ const changelog = [
     phase: "Sharing",
     title: "First attempt to document it for others",
     items: [
-      "Wrote a setup guide for the system and shared it, and carved out a dedicated improvements backlog for OS design work, kept separate from real tasks. The seed of the later handoff.",
+      "Wrote a full setup guide for the system and shared it, the first sign it might transfer to someone else.",
+      "Carved out a dedicated improvements backlog for OS design work, kept separate from real tasks, and captured the delegation file as the next thing to build.",
+      "Applied the same pattern sideways: stood up a small sibling ops repo for a podcast, where pushing a transcript triggers automatic content generation through CI.",
     ],
     readMore: [PART3],
   },
   {
+    date: "2026-05-28",
+    phase: "Accountability",
+    title: "Numbers, not feelings",
+    items: [
+      "Documented a hard cashflow baseline against the goal in the review doc, so the fortnightly review runs on real figures rather than a sense of how the week went.",
+    ],
+  },
+  {
     date: "2026-05-27",
     phase: "Cadence",
-    title: "The daily summary",
+    title: "The daily summary and the CRM",
     items: [
-      "Added a daily summary: one narrative paragraph per project, written at the start of each session from the done log, so I open the day knowing what moved yesterday.",
+      "Created the daily summary as a new file: one narrative paragraph per project, and made the session open by writing yesterday's summary first, so I start already oriented.",
+      "Declared the contact system the CRM: individual files, the index, and the communities map together do the job, no separate tool.",
+      "Added calendar guardrails to the rulebook, and started sequencing dependent to-dos explicitly so a blocked item shows what it is waiting on.",
+    ],
+  },
+  {
+    date: "2026-05-26",
+    phase: "Contacts",
+    title: "A pipeline for the contact backlog",
+    items: [
+      "Loaded the full phone-contact export into a working sheet with structured columns and a freeform comment field, then set up a voice-driven workflow: scroll, dictate row numbers and notes in batches, and the agent turns the output into proper contact files.",
     ],
   },
   {
@@ -132,37 +156,51 @@ const changelog = [
     phase: "Foundations",
     title: "People split from tasks",
     items: [
-      "Separated people-facing actions out of the to-do list into a dedicated conversations file for the first time. People are not tasks.",
-      "Added a rule to verify a name against the full contact export before creating any new contact file.",
-      "Created focused rulebooks for each of the six areas, so a working session can start anywhere.",
+      "Renamed the catch-all file to a dedicated conversations file and restructured the to-dos, separating people-facing actions from my own work for the first time.",
+      "Added a rule to verify any name against the full contact export before creating a new contact file, locked into both the rulebook and memory.",
+      "Created focused rulebooks for each of the six areas, all on absolute paths, so a working session can start from anywhere.",
     ],
   },
   {
     date: "2026-05-21",
     phase: "Guardrails",
-    title: "Hard rules for the agent",
+    title: "Hard rules and the first index",
     items: [
       "Email allowlist: the agent can only send to approved addresses, and anything else needs explicit approval.",
-      "Calendar rules: events only when asked, and never add outside parties without confirmation.",
+      "Calendar rule: every event the agent creates leaves attendees able to edit it.",
+      "Built the top-level navigation index for the whole system, and a context file for each of seven properties so that side of life reads the same way as the projects.",
     ],
   },
   {
     date: "2026-05-20",
     phase: "Foundations",
-    title: "The session loop and backup",
+    title: "The session loop, backup, and profile",
     items: [
-      "Added the session-end checklist that updates every touched file when a session closes, so the system is always consistent at the edges of a session.",
-      "Put the whole system under nightly backup, with a short README explaining the structure.",
+      "Worked out how context and to-dos should be captured: a context file per project, a separate operational folder for the day, a session-end hook that updates every touched file, and a backup of the whole thing to GitHub.",
+      "Added a README explaining the structure and the session flow, and a personal profile file holding the durable facts (background, which email to send from in which context, handles, location).",
+      "Wrote the deployment and git practices into the orientation doc: pull first, the deploy workflow, the repo map, the naming convention for pushes.",
     ],
+    readMore: [PART1],
   },
   {
     date: "2026-05-19",
     phase: "Foundations",
     title: "Day one",
     items: [
-      "Restructured everything into folders mapped to six life goals, with a context file per project and a separate operational layer for the day's work.",
-      "Stood up the contact system and the rulebook the agent follows.",
+      "Settled on three plain tools and never left them: an Obsidian vault of markdown files, Claude Code as the agent that reads and writes it, and the terminal it all runs in. No custom app, nothing to lock into.",
+      "Restructured everything into folders mapped to six life goals, with each project nested under the goal it serves and code repos separated from plain content.",
+      "Renamed the Obsidian vault and set up the accounting folder, the first pieces of the reference layer.",
+      "Ran a catch-up review covering the previous five months and added a metrics layer to the review template, so future reviews would have numbers to stand on.",
       "Wrote about it publicly for the first time, which is what eventually turned a private habit into something worth handing over.",
+    ],
+    readMore: [PART1],
+  },
+  {
+    date: "before",
+    phase: "Origins",
+    title: "The practice that came first",
+    items: [
+      "Before any of the folders existed, there was a fortnightly review: what moved, what did not, and an honest assessment of why. The whole system was eventually built to feed that one habit, and to make it impossible to lie to.",
     ],
     readMore: [PART1],
   },
@@ -178,8 +216,9 @@ const changelog = [
       <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600">Founder OS</p>
       <h1 class="font-serif text-3xl md:text-4xl font-normal leading-tight tracking-tight text-base-content">Changelog</h1>
       <p class="font-serif text-lg leading-relaxed text-base-content/60">
-        Every change since day one, most recent first. The system is built in small steps, and this
-        is the record of them. New entries land as it evolves. For the story behind it, read the
+        Every change since day one, most recent first. The whole thing is plain markdown in an
+        Obsidian vault, run by Claude Code from the terminal, built in small steps. This is the
+        record of them. New entries land as it evolves. For the story behind it, read the
         <a href="/blog/my-new-operating-system-for-work" class="text-teal-600 hover:underline">series</a>,
         or start at the <a href="/founder-os" class="text-teal-600 hover:underline">overview</a>.
       </p>
@@ -189,7 +228,7 @@ const changelog = [
       {changelog.map((entry) => (
         <div class="border-l-2 border-base-content/10 pl-6">
           <div class="flex items-baseline gap-3 mb-1 flex-wrap">
-            <span class="font-sans text-sm text-base-content/40">{entry.date}</span>
+            <span class="font-sans text-sm text-base-content/40">{entry.date === "before" ? "earlier" : entry.date}</span>
             <span class="font-sans text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">{entry.phase}</span>
           </div>
           <h2 class="font-serif text-xl font-normal text-base-content mb-4">{entry.title}</h2>

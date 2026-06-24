@@ -75,6 +75,44 @@ const fixed = [
         </p>
       </div>
 
+      <!-- Runs on three tools -->
+      <div class="mb-12">
+        <h3 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-2">Runs on three ordinary tools</h3>
+        <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-5 max-w-2xl">
+          No custom software. Nothing to lock into. The whole thing is built on three tools a lot of
+          people already have open.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.5 4.5 9l7.5 12.5L19.5 9 12 2.5zM4.5 9h15M9 9l3 12.5M15 9l-3 12.5" /></svg>
+              </div>
+              <p class="font-serif text-lg text-base-content">Obsidian</p>
+            </div>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">A vault of plain markdown files. The whole system is just text on disk.</p>
+          </div>
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.5l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" /></svg>
+              </div>
+              <p class="font-serif text-lg text-base-content">Claude Code</p>
+            </div>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">The AI agent that reads and writes the vault, by voice. It does the reasoning and the typing.</p>
+          </div>
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75a1.5 1.5 0 0 1 1.5-1.5h13.5a1.5 1.5 0 0 1 1.5 1.5v10.5a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V6.75zM7 10l2.5 2.5L7 15M12.5 15h4" /></svg>
+              </div>
+              <p class="font-serif text-lg text-base-content">The terminal</p>
+            </div>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">Where it all runs. No app, no dashboard, no tab to keep open.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- shared SVG defs: icons, gradients, shadow, arrowheads -->
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
@@ -99,9 +137,9 @@ const fixed = [
       <div class="mb-12">
         <h3 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-2">The architecture</h3>
         <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-5 max-w-2xl">
-          The shape is simple. One AI agent, driven by your voice, sits between two layers of plain
-          text. One layer holds what is true and barely changes. The other holds what is happening
-          now. The agent reads from both and writes back to both.
+          The shape is simple. One AI agent (Claude Code), driven by your voice, sits between two
+          layers of plain text in an Obsidian vault. One layer holds what is true and barely changes.
+          The other holds what is happening now. The agent reads from both and writes back to both.
         </p>
 
         <div class="rounded-2xl border border-base-content/10 bg-base-100 p-2 md:p-4 overflow-x-auto">
