@@ -4,6 +4,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const changelog = [
   {
     date: '2026-06-24',
+    version: '1.5.1',
+    title: 'Prevent recurring Netlify deploy failures',
+    changes: [
+      {
+        category: 'Build',
+        items: [
+          'Standardized on pnpm as the only package manager: removed package-lock.json (now gitignored) so it can no longer drift from pnpm-lock.yaml and break Netlify',
+          'Added a preinstall guard (scripts/ensure-pnpm.mjs) that blocks npm and yarn, plus a pinned packageManager and Node engine',
+          'Added netlify.toml and .nvmrc pinning Node 22 so local and CI builds match',
+        ],
+      },
+    ],
+  },
+  {
+    date: '2026-06-24',
     version: '1.5.0',
     title: 'Denser rewrite of OS series parts 2 and 3',
     changes: [

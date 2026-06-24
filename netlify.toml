@@ -1,0 +1,11 @@
+# Build settings. We standardize on pnpm: package.json has a `preinstall`
+# guard (only-allow pnpm) and pnpm-lock.yaml is the single source of truth.
+# Do not commit package-lock.json (it is gitignored). To change deps, run
+# `pnpm install` so pnpm-lock.yaml stays in sync, or Netlify's frozen-lockfile
+# install will fail.
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

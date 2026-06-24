@@ -3,6 +3,9 @@ dist/
 .cache
 # dependencies
 node_modules/
+# we standardize on pnpm; npm's lockfile must never be committed (it drifts
+# from pnpm-lock.yaml and silently breaks Netlify's frozen-lockfile install)
+package-lock.json
 
 # logs
 npm-debug.log*
