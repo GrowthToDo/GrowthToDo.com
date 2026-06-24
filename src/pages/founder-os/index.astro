@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Founder OS";
+const description =
+  "The plain-text operating system I run my work from. An AI agent, a set of markdown files, and a few rules that keep several businesses from falling through the cracks.";
+
+const stats = [
+  { value: "6", label: "life areas, one structure" },
+  { value: "1", label: "AI agent, by voice" },
+  { value: "100%", label: "plain text, no app" },
+  { value: "Daily", label: "since May 2026" },
+];
+
+const loop = [
+  { n: "1", title: "Open a session", caption: "It reads the day's files" },
+  { n: "2", title: "Get the agenda", caption: "Prioritized, overdue first" },
+  { n: "3", title: "Do the work", caption: "Notes, contacts, drafts" },
+  { n: "4", title: "Close it out", caption: "It files everything away" },
+];
+
+const people = [
+  { state: "Now", note: "Reaching out" },
+  { state: "To Reply", note: "I owe a reply" },
+  { state: "In Flight", note: "Waiting on them" },
+  { state: "Queue", note: "Not yet contacted" },
+];
+
+const fixed = [
+  {
+    title: "People stopped slipping",
+    body: "Every reply I owe carries a nudge date. Miss it and it surfaces at the top of tomorrow.",
+  },
+  {
+    title: "Contacts became queryable",
+    body: "Typed links between people. Ask who can introduce me to a company and the answer comes from the graph.",
+  },
+  {
+    title: "Nothing gets re-explained",
+    body: "Repeating jobs are written as routines. The agent runs them; I review the output.",
+  },
+];
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout title={title} description={description} sideBarActiveItemID="founder-os">
+
+  <div class="py-6 md:py-14 max-w-3xl mx-auto px-1 md:px-0">
+
+    <!-- Hero -->
+    <header class="space-y-5 mb-12">
+      <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600">Founder OS</p>
+      <h1 class="font-serif text-3xl md:text-5xl font-normal leading-[1.1] tracking-tight text-base-content">
+        The operating system<br class="hidden md:block" /> I run my work from.
+      </h1>
+      <p class="font-serif text-xl md:text-2xl leading-snug text-base-content/60 max-w-2xl">
+        Plain text files. An AI agent that works them by voice. A few rules that keep several
+        businesses from falling through the cracks.
+      </p>
+    </header>
+
+    <!-- Stat band -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-base-content/10 border border-base-content/10 rounded-2xl overflow-hidden mb-16">
+      {stats.map((s) => (
+        <div class="bg-base-100 p-5 md:p-6">
+          <div class="font-serif text-3xl md:text-4xl text-teal-600 leading-none mb-1.5">{s.value}</div>
+          <div class="font-sans text-xs md:text-sm text-base-content/50 leading-tight">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- The bet -->
+    <section class="mb-16">
+      <p class="font-serif text-2xl md:text-3xl leading-snug text-base-content text-center max-w-2xl mx-auto">
+        Most systems become a place to <span class="text-base-content/40">store things.</span><br />
+        This one is a place to <span class="text-teal-600">act from.</span>
+      </p>
+    </section>
+
+    <!-- Architecture: two folders, one rule -->
+    <section class="mb-16">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">Two folders, one rule</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="border border-base-content/10 rounded-2xl p-6 bg-base-100">
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>
+            <span class="font-serif text-lg text-base-content">Context</span>
+            <span class="font-sans text-xs text-base-content/40 ml-auto">changes slowly</span>
+          </div>
+          <p class="font-serif text-base text-base-content/70 mb-4">What is true about the world.</p>
+          <div class="flex flex-wrap gap-2">
+            {["Projects", "People", "Durable facts"].map((t) => (
+              <span class="font-sans text-xs px-2.5 py-1 rounded-full bg-base-200 text-base-content/60">{t}</span>
+            ))}
+          </div>
+        </div>
+        <div class="border border-base-content/10 rounded-2xl p-6 bg-base-100">
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h.75c.414 0 .75.336.75.75v.75c0 .414-.336.75-.75.75h-.75a.75.75 0 00-.75.75v.75c0 .414.336.75.75.75h.75c.414 0 .75.336.75.75v.75c0 .414-.336.75-.75.75h-.75a.75.75 0 00-.75.75M3.75 6.75h.75m-.75 3h.75m-.75 3h.75M6.75 3v18m10.5-18v18M3.75 21h16.5" /></svg>
+            <span class="font-serif text-lg text-base-content">Daily</span>
+            <span class="font-sans text-xs text-base-content/40 ml-auto">changes constantly</span>
+          </div>
+          <p class="font-serif text-base text-base-content/70 mb-4">What is happening right now.</p>
+          <div class="flex flex-wrap gap-2">
+            {["Agenda", "To-dos", "People in motion", "Done log"].map((t) => (
+              <span class="font-sans text-xs px-2.5 py-1 rounded-full bg-base-200 text-base-content/60">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p class="font-serif text-center text-base text-base-content/50 mt-4">
+        One tells you what is true, the other what to do next. They never overlap.
+      </p>
+    </section>
+
+    <!-- The session loop -->
+    <section class="mb-16">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">The session loop</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {loop.map((step) => (
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="w-7 h-7 rounded-full bg-teal-50 border border-teal-200 text-teal-700 font-sans text-sm font-semibold flex items-center justify-center mb-3">{step.n}</div>
+            <p class="font-serif text-base text-base-content leading-tight mb-1">{step.title}</p>
+            <p class="font-sans text-xs text-base-content/45 leading-tight">{step.caption}</p>
+          </div>
+        ))}
+      </div>
+      <p class="font-serif text-center text-base text-base-content/50 mt-4">
+        Nothing runs in the background. It only has to be right at the edges of a session.
+      </p>
+    </section>
+
+    <!-- People pipeline -->
+    <section class="mb-16">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">People are not tasks</h2>
+      <div class="flex flex-col md:flex-row items-stretch md:items-center gap-2">
+        {people.map((p, i) => (
+          <Fragment>
+            <div class="flex-1 border border-base-content/10 rounded-xl px-4 py-3 bg-base-100 text-center">
+              <p class="font-serif text-base text-base-content leading-tight">{p.state}</p>
+              <p class="font-sans text-xs text-base-content/45">{p.note}</p>
+            </div>
+            {i < people.length - 1 && <span class="hidden md:block text-teal-500/50 font-sans">&rarr;</span>}
+          </Fragment>
+        ))}
+      </div>
+      <p class="font-serif text-center text-base text-base-content/50 mt-4">
+        Every waiting item carries a nudge date. Overdue surfaces first, the next morning.
+      </p>
+    </section>
+
+    <!-- What it fixed -->
+    <section class="mb-16">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">What it fixed</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        {fixed.map((f) => (
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center mb-3">
+              <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            </div>
+            <p class="font-serif text-lg text-base-content leading-tight mb-1.5">{f.title}</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Links -->
+    <div class="grid md:grid-cols-2 gap-4 mb-12">
+      <a href="/blog/my-new-operating-system-for-work"
+         class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
+        <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-1">Read the story</p>
+        <p class="font-serif text-lg text-base-content">A three-part series <span class="text-base-content/40">&rarr;</span></p>
+      </a>
+      <a href="/founder-os/changelog"
+         class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
+        <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-1">Follow the evolution</p>
+        <p class="font-serif text-lg text-base-content">Every change since day one <span class="text-base-content/40">&rarr;</span></p>
+      </a>
+    </div>
+
+    <!-- Footer CTA -->
+    <footer class="pt-8 border-t border-base-content/10">
+      <p class="font-serif text-lg leading-relaxed text-base-content/70">
+        Run several things at once and your work lives in five disconnected places?
+        Setting this up for someone is something I enjoy.
+        <a href="mailto:gautham@growthtodo.com" class="text-teal-600 hover:underline">Reach out</a>
+        and we can think through your version.
+      </p>
+    </footer>
+
+  </div>
+
+</BaseLayout>
+</div>

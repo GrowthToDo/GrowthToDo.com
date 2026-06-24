@@ -1,0 +1,217 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Founder OS — Changelog";
+const description =
+  "Every change to Founder OS since day one. A living log of how a plain-text operating system for running several businesses got built, one small change at a time.";
+
+// The three-part series, for linking entries to where they are written about.
+const PART1 = { label: "My New Operating System for Work", href: "/blog/my-new-operating-system-for-work" };
+const PART2 = { label: "My Operating System, One Month Later", href: "/blog/my-operating-system-one-month-later" };
+const PART3 = { label: "The Real Test of a System", href: "/blog/the-real-test-of-a-system-is-handing-it-to-someone-else" };
+
+// Newest first. A living log; dates are when the change went in.
+const changelog = [
+  {
+    date: "2026-06-24",
+    phase: "Discipline",
+    title: "Done means verified, not pushed",
+    items: [
+      "A deploy is only done when the live result is checked, not when the work is pushed. Added after a silent failure let a 'done' claim sit false for a day.",
+    ],
+  },
+  {
+    date: "2026-06-23",
+    phase: "Milestone",
+    title: "Handed the system to someone else",
+    items: [
+      "The first install for someone who is not me, which is the real test of whether it is a method or just my personal habit.",
+      "Learned it is a fitting, not a template: the skeleton copies in minutes, but the value is the interview that shapes it to how the other person actually works.",
+      "Wrote it all up as a three-part series: the original build, what a month of daily use changed, and what handing it over taught me.",
+    ],
+    readMore: [PART3],
+  },
+  {
+    date: "2026-06-17",
+    phase: "Routines",
+    title: "Monthly reconciliation routine",
+    items: [
+      "A written routine that reads each statement, splits every line business versus personal, reconciles against known expenses, and flags subscriptions, category trends, and big-ticket items.",
+      "Wired into the email triage so statements get picked up and handed off automatically.",
+    ],
+  },
+  {
+    date: "2026-06-15",
+    phase: "Routines",
+    title: "Email triage routine",
+    items: [
+      "At each session start it sweeps the inbox, pulls out the actions, updates the right contact and conversation records, drafts the replies I owe, and labels each message handled so nothing is processed twice.",
+      "One hard guardrail: it drafts, it never sends.",
+    ],
+    readMore: [PART2],
+  },
+  {
+    date: "2026-06-11",
+    phase: "Infrastructure",
+    title: "Cheaper sessions",
+    items: [
+      "Wired in a context-engineering tool through a hook to cut the token cost of routine operations, so longer working sessions stay cheap.",
+    ],
+  },
+  {
+    date: "2026-06-05",
+    phase: "Discipline",
+    title: "A writing guide and a live dashboard",
+    items: [
+      "Writing guide: a long list of the tells that make text read like a machine wrote it. Everything I publish is checked against it, automatically and on demand.",
+      "A local dashboard that renders the day's agenda in the browser and refreshes itself, for a glance without opening a session.",
+    ],
+    readMore: [PART2],
+  },
+  {
+    date: "2026-06-03",
+    phase: "Discipline",
+    title: "The triage pass",
+    items: [
+      "The agent reads the notes I scribble into files between sessions (delegated, done, parked) and files each one where it belongs before it builds the agenda.",
+      "Added to both the session-start and session-end checklists, so nothing I jot down gets stranded.",
+    ],
+  },
+  {
+    date: "2026-06-01",
+    phase: "Design",
+    title: "Immediate logging and a self-review",
+    items: [
+      "The done log gets written the moment a thing is finished, as the outcome rather than the file change, because context can compact mid-session and erase the morning.",
+      "Added a 'what is working' assessment to the design doc: the foundations worth building on rather than redesigning.",
+    ],
+  },
+  {
+    date: "2026-05-31",
+    phase: "Contacts",
+    title: "Contacts became a queryable network",
+    items: [
+      "Added a typed relationships block to every contact file (40-plus at the time): who introduced whom, who works with whom, who can introduce me to whom. The network is now answerable by query instead of by memory.",
+      "The idea is borrowed from Garry Tan's GBrain: prose descriptions of who knows whom are invisible to a query, typed edges are not.",
+      "Documented the schema so every new contact file gets the block automatically, wrote the design principles down, and stood up a standalone design doc for the system itself.",
+      "Added the 'to reply' state, finishing the four-state shape for people: reaching out now, owe a reply, waiting on them, not yet contacted.",
+    ],
+    readMore: [PART2],
+  },
+  {
+    date: "2026-05-30",
+    phase: "People",
+    title: "The people layer and its cadence",
+    items: [
+      "Built the delegation file: a checklist of what is handed to whom and by when, no narrative.",
+      "Pulled the last people-items out of the to-do list and put a nudge date on every item I am waiting on.",
+      "Added a weekly pull and a Monday refill so the list of people to contact does not rot into a graveyard.",
+      "Fixed the session-start agenda to use the real day and time, so it stops getting the day of the week wrong.",
+    ],
+    readMore: [PART2],
+  },
+  {
+    date: "2026-05-29",
+    phase: "Sharing",
+    title: "First attempt to document it for others",
+    items: [
+      "Wrote a setup guide for the system and shared it, and carved out a dedicated improvements backlog for OS design work, kept separate from real tasks. The seed of the later handoff.",
+    ],
+    readMore: [PART3],
+  },
+  {
+    date: "2026-05-27",
+    phase: "Cadence",
+    title: "The daily summary",
+    items: [
+      "Added a daily summary: one narrative paragraph per project, written at the start of each session from the done log, so I open the day knowing what moved yesterday.",
+    ],
+  },
+  {
+    date: "2026-05-23",
+    phase: "Foundations",
+    title: "People split from tasks",
+    items: [
+      "Separated people-facing actions out of the to-do list into a dedicated conversations file for the first time. People are not tasks.",
+      "Added a rule to verify a name against the full contact export before creating any new contact file.",
+      "Created focused rulebooks for each of the six areas, so a working session can start anywhere.",
+    ],
+  },
+  {
+    date: "2026-05-21",
+    phase: "Guardrails",
+    title: "Hard rules for the agent",
+    items: [
+      "Email allowlist: the agent can only send to approved addresses, and anything else needs explicit approval.",
+      "Calendar rules: events only when asked, and never add outside parties without confirmation.",
+    ],
+  },
+  {
+    date: "2026-05-20",
+    phase: "Foundations",
+    title: "The session loop and backup",
+    items: [
+      "Added the session-end checklist that updates every touched file when a session closes, so the system is always consistent at the edges of a session.",
+      "Put the whole system under nightly backup, with a short README explaining the structure.",
+    ],
+  },
+  {
+    date: "2026-05-19",
+    phase: "Foundations",
+    title: "Day one",
+    items: [
+      "Restructured everything into folders mapped to six life goals, with a context file per project and a separate operational layer for the day's work.",
+      "Stood up the contact system and the rulebook the agent follows.",
+      "Wrote about it publicly for the first time, which is what eventually turned a private habit into something worth handing over.",
+    ],
+    readMore: [PART1],
+  },
+];
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout title={title} description={description} sideBarActiveItemID="founder-os">
+
+  <div class="py-6 md:py-16 max-w-2xl mx-auto px-1 md:px-0">
+
+    <header class="mb-14 space-y-3">
+      <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600">Founder OS</p>
+      <h1 class="font-serif text-3xl md:text-4xl font-normal leading-tight tracking-tight text-base-content">Changelog</h1>
+      <p class="font-serif text-lg leading-relaxed text-base-content/60">
+        Every change since day one, most recent first. The system is built in small steps, and this
+        is the record of them. New entries land as it evolves. For the story behind it, read the
+        <a href="/blog/my-new-operating-system-for-work" class="text-teal-600 hover:underline">series</a>,
+        or start at the <a href="/founder-os" class="text-teal-600 hover:underline">overview</a>.
+      </p>
+    </header>
+
+    <div class="space-y-12">
+      {changelog.map((entry) => (
+        <div class="border-l-2 border-base-content/10 pl-6">
+          <div class="flex items-baseline gap-3 mb-1 flex-wrap">
+            <span class="font-sans text-sm text-base-content/40">{entry.date}</span>
+            <span class="font-sans text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200">{entry.phase}</span>
+          </div>
+          <h2 class="font-serif text-xl font-normal text-base-content mb-4">{entry.title}</h2>
+          <ul class="space-y-2.5">
+            {entry.items.map((item) => (
+              <li class="font-serif text-base leading-relaxed text-base-content/75 relative pl-5">
+                <span class="absolute left-0 top-1.5 w-1.5 h-1.5 rounded-full bg-teal-500"></span>{item}
+              </li>
+            ))}
+          </ul>
+          {entry.readMore && (
+            <p class="font-sans text-sm text-base-content/45 mt-3 pl-5">
+              In the writing: {entry.readMore.map((post, i) => (
+                <Fragment>{i > 0 ? ", " : ""}<a href={post.href} class="text-teal-600 hover:underline">{post.label}</a></Fragment>
+              ))}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+</BaseLayout>
+</div>
