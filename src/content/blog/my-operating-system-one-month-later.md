@@ -11,9 +11,11 @@ heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&
 2. **My Operating System, One Month Later** (this post)
 3. [The Real Test of a System Is Handing It to Someone Else](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else)
 
+The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
+
 ---
 
-A month ago I [shipped V1 of my operating system](/blog/my-new-operating-system-for-work) and said I would keep writing as it evolved. This is that update.
+A month ago I [shipped V1 of my operating system](/blog/my-new-operating-system-for-work) and said I would keep writing [as it evolved](/founder-os/changelog). This is that update.
 
 V1 was a guess at what I needed. A month of running it every day turned the guess into evidence. Most of the changes traced back to one realisation I could not have reached without living in the thing first: the system was good at my work and blind to my people.
 

@@ -11,6 +11,8 @@ heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&
 2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
 3. **The Real Test of a System Is Handing It to Someone Else** (this post)
 
+The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
+
 ---
 
 A month ago I wrote about [the operating system I built for my work](/blog/my-new-operating-system-for-work/). Plain markdown files, one folder per area of my life, an AI agent that navigates all of it by voice. It changed how I work, and I have run it every day since.
@@ -33,7 +35,7 @@ The first is the skeleton and the method, the part that does not depend on who I
 - A session that opens with an agenda which sorts everything by date into overdue, today, and coming up, so nothing future-dated jumps the queue and nothing overdue hides.
 - A nudge date on every person I owe, and a fortnightly review where the agent asks me the questions I would rather skip.
 
-All of that is reusable. It is the actual design.
+All of that is reusable. It is [the actual design](/founder-os).
 
 The second thing is everything that makes it mine: my contacts, my projects, my email rules, my calendar, the specific shape of how I work, which of my own deadlines I tend to drop, which inbox is the messy one. None of that should go to him. Copy it over and I have not given him an operating system. I have given him mine with the names filed off, and it will fit him about as well as someone else's shoes.
 

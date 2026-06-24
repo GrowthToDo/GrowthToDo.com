@@ -11,6 +11,8 @@ heroImage: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&
 2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
 3. [The Real Test of a System Is Handing It to Someone Else](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else)
 
+The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
+
 ---
 
 Last year I spent real time figuring out exactly which areas of my life I should be focusing on. Not a vague exercise. I came out of it with specific targets I wanted to hit in each area. That work was deliberate and it was worth it.
@@ -21,7 +23,7 @@ However, I struggled with a very fragmented online workspace. My to-dos lived in
 
 Today that changed. Everything is now in one place: plain markdown files, inside a single folder structure on my machine, organized by the life areas I had already identified. One top-level folder per area. Every project nests inside the relevant one. And an AI agent that can navigate all of it on my behalf.
 
-That is the working operating system. Here is how it is built.
+That is the [working operating system](/founder-os). Here is how it is built.
 
 ## Obsidian as the operating system
 
