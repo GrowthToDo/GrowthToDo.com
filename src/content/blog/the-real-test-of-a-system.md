@@ -13,42 +13,55 @@ heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&
 
 ---
 
-A month ago I wrote about [the operating system I built for my work](/blog/my-new-operating-system-for-work/). Plain markdown files, one folder per life area, an AI agent that navigates all of it by voice. It changed how I work, and I have been running it every day since.
+A month ago I wrote about [the operating system I built for my work](/blog/my-new-operating-system-for-work/). Plain markdown files, one folder per area of my life, an AI agent that navigates all of it by voice. It changed how I work, and I have run it every day since.
 
 Today I did something different. I sat down with a friend, someone I build one of my products with, to set the same system up for him.
 
-I assumed this would take an hour. Copy the folders, change the names, hand it over. It is my system, it works, he can have it.
+I assumed it would take an hour. Copy the folders, change the names, hand it over. It is my system, it works, he can have it.
 
 That assumption was wrong, and finding out why was the interesting part.
 
 ## A system is not a template
 
-When I opened my own OS to copy it, I saw two different things sitting in the same folders.
+When I opened my own OS to copy it, I saw two different things living in the same folders.
 
-One is the skeleton and the method. The split between a clean reference layer and a messy operational layer. The per-project context files with the same four sections. The done tracker with a date for every day. The session-start agenda, the nudge dates on every person I owe a reply, the fortnightly review where the agent asks me the uncomfortable questions. That part is reusable. It is the actual design.
+The first is the skeleton and the method, the part that does not depend on who I am:
 
-The other is everything that makes it mine. My contacts. My projects. My email rules. My calendar. The specific shape of how I work, what slips through my cracks, which inbox is the messy one. None of that should go to him. If I copy it over, I am not giving him an operating system. I am giving him my operating system with the names filed off, and it will fit him about as well as someone else's shoes.
+- A reference layer that changes slowly (the context on each project, the people, the durable facts) sitting apart from an operational layer that changes daily (the agenda, the to-dos, the people in motion, the done tracker, the working doc).
+- A context file per project with the same four sections every time, so any project reads the same way.
+- A done tracker with a dated entry for every working day.
+- A session that opens with an agenda which sorts everything by date into overdue, today, and coming up, so nothing future-dated jumps the queue and nothing overdue hides.
+- A nudge date on every person I owe, and a fortnightly review where the agent asks me the questions I would rather skip.
 
-So the work was never going to be copying files. The skeleton takes minutes. The fitting is the whole thing.
+All of that is reusable. It is the actual design.
+
+The second thing is everything that makes it mine: my contacts, my projects, my email rules, my calendar, the specific shape of how I work, which of my own deadlines I tend to drop, which inbox is the messy one. None of that should go to him. Copy it over and I have not given him an operating system. I have given him mine with the names filed off, and it will fit him about as well as someone else's shoes.
+
+So the work was never copying files. The skeleton takes minutes. The fitting is the whole job.
 
 ## The first step was an interview, not a folder
 
-Before I created a single file, I had to understand how he actually works.
+Before I created a single file, I had to learn how he actually works. So I asked, and each answer decided a piece of the build:
 
-Where do his to-dos live right now. Does he think day by day or week by week. What slips: follow-ups with people, his own deep work, deadlines. Who does he work with and through. Where does work reach him, and which channel is the mess. Does he want a prioritised agenda the moment he opens a session, or a lighter touch.
+- Where do your to-dos live right now? Tells me what to migrate and which of his existing habits to keep rather than overwrite.
+- Do you think day by day or week by week? Decides whether his agenda opens on today or on a weekly pull.
+- What slips: follow-ups with people, your own deep work, or deadlines? Decides which layer gets the nudge mechanic pointed at it.
+- Who do you work with and through? Seeds his contacts layer and his delegation checklist.
+- Where does work reach you, and which channel is the mess? Decides what his triage routine reads from.
+- Do you want a full agenda the moment you open a session, or a lighter touch? Sets what the system does first thing.
 
-The same questions I had answered for myself a year ago, except I answered them slowly and painfully, by living the fragmentation first. He gets to answer them on purpose, up front, with someone who has already been through it.
+These are the same questions I had answered for myself, except I answered them slowly and painfully by living the fragmentation first. He gets to answer them on purpose, up front, with someone who has already paid for the lesson.
 
-That is when it clicked. My OS works because it is shaped to me. The reason the first version was worth building was never the folders. It was that the structure reflected what actually mattered to me, and how I actually operate. You cannot shortcut that for someone else. You can only ask the right questions and build from the answers.
+That is when it clicked. My OS works because it is shaped to me, and the shape, not the folders, was always the valuable part. The structure earns its keep only when it mirrors what actually matters to a person and how they actually operate. You cannot shortcut that for someone else. You can only ask the right questions and build from the answers: same skeleton, different contacts, different routines, a nudge default tuned to the thing he drops rather than the thing I drop.
 
 ## Why I am writing this down
 
 A system you can only run yourself is a habit. A system someone else can run is a method.
 
-This is the second install. The first was for me, and I could always tell myself it worked because I built it around my own quirks. Setting it up for someone else is the real test. If it transfers, the design is sound. If it only ever fit me, then I built a personal habit and called it a system.
+This was the second install. The first was for me, and I could always tell myself it worked because I had built it around my own quirks. Setting it up for someone else is the real test. If it transfers, the design is sound. If it only ever fit me, I built a personal habit and gave it a grand name.
 
-I will write the next part once he has run it for a few weeks. Whether it held, what broke, what I had to change for someone who is not me.
+I will write the next part once he has run it for a few weeks: whether it held, what broke, and what I had to change for someone who is not me.
 
-If you run several things at once and your work lives in five disconnected places, start with the same question I gave him. Not "what tool should I use." It is: how do you actually work, and what keeps falling through. Answer that honestly and the structure builds itself.
+If you run several things at once and your work lives in five disconnected places, start with the question I gave him. Not which tool to use. How do you actually work, and what keeps falling through? Answer that honestly and the structure builds itself.
 
-*(Setting this up for someone is something I enjoy doing. If you want to think through your own version, reach out.)*
+*(Setting this up for someone is something I enjoy. If you want to think through your own version, reach out.)*

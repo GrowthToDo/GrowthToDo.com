@@ -15,42 +15,49 @@ heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&
 
 A month ago I [shipped V1 of my operating system](/blog/my-new-operating-system-for-work) and said I would keep writing as it evolved. This is that update.
 
-V1 was a guess at what I needed. A month of running it every day showed me what I actually needed. Most of the changes came from one realisation that I could not have had without living in the thing first.
+V1 was a guess at what I needed. A month of running it every day turned the guess into evidence. Most of the changes traced back to one realisation I could not have reached without living in the thing first: the system was good at my work and blind to my people.
 
 ## The thing V1 got wrong: people are not tasks
 
-V1 had a to-do list, a working doc, and a done tracker. It captured my work well. What it did not capture was people.
+V1 had three files for work: a to-do list, a working doc, and a done tracker. They captured what I produce alone, and they captured it well. They had nowhere to put the work that runs through another person.
 
-A reply I owed someone would go into the to-do list as a line, sit among thirty other lines, and quietly die. The work I produced alone got done. The work that depended on me getting back to a person slipped. That is the most expensive kind of slip, because it costs a relationship, not just a task.
+So a reply I owed someone went into the to-do list as one line, sat among forty others, and quietly died. The pattern was consistent and expensive. Work I produce alone gets done, because it is visible and it is mine to finish. Work that waits on me getting back to a person stays invisible until they chase me or the opportunity closes. That second kind is where the real cost sits, because what you lose is a relationship or a deal, not a checkbox.
 
-So I gave people their own layer. A single file, separate from my to-dos, that holds every person I am in motion with. It has four states: who I am actively reaching out to now, who I owe a reply to, who I am waiting to hear back from, and who I have not contacted yet. Every item I am waiting on carries a nudge date. When that date passes, it surfaces at the top of the next day's agenda, flagged.
+So people got their own layer: a single file, separate from my to-dos, holding everyone I am in motion with. It has four states, ordered by heat:
 
-This one change fixed the biggest leak in how I work. Nothing involving a person sits in a to-do list anymore.
+- Now: who I am actively reaching out to, capped at three to five so it stays a focus list rather than a backlog. One person, one action.
+- To Reply: the ball is in my court. They reached out, or I committed to respond, and I have not yet.
+- In Flight: I have reached out and I am waiting on them.
+- Queue: people I have not contacted yet.
+
+Every item in To Reply and In Flight ends with a nudge date. When that date passes without movement, the item surfaces at the top of the next morning's agenda, flagged as overdue. Nothing involving a person lives in a to-do list anymore, and nothing I am waiting on can slide past its date without the system putting it back in front of me.
+
+This one change closed the biggest leak in how I work.
 
 ## Contacts became a network, not a list
 
-Once people had a home, the next step was obvious. Each person became their own file: who they are, what they touch, the current status, the next action, the history.
+Once people had a home, each one became their own file with the same fields every time: who they are, their company and role, the projects they touch, the current status, the next action, the history, and their phone and email. Every file has a matching row in an index, so the list stays complete and I can find anyone in a second.
 
-Then I added the part that made it powerful. Each file records typed relationships to other people. Who introduced us. Who they work with. Who they can introduce me to. I borrowed the idea from Garry Tan's GBrain, his AI memory system, where the relationships between people matter as much as the people.
+Then I added the part that changed what the system is for. Each file carries a block of typed relationships to other people: who introduced us, who they work with, who they can introduce me to, who shares an organisation or a community with them. I took the idea from Garry Tan's GBrain, his AI memory system, where the edges between people are treated as carefully as the people.
 
-The result is a network I can actually query. I can ask who can get me a warm intro to a particular company, and the answer comes from the graph instead of my memory. For someone who runs on relationships, this changed what the system is for.
+That turns a contact list into a graph I can query. I can ask who can get me a warm introduction to a particular company, and the answer comes from walking the relationships rather than straining my memory. For someone whose work runs almost entirely on relationships, that is the difference between a directory and an actual map.
 
 ## I taught it routines
 
-Some jobs repeat. Triaging my inbox. Reconciling expenses. The weekly review.
+Some jobs repeat on a fixed shape: triaging the inbox, reconciling expenses, the weekly review. Re-explaining them every time was its own tax.
 
-Instead of re-explaining these every time, I wrote each one down once as a routine: the steps, the files it touches, the guardrails. Now I point the agent at the routine and it runs it. My email triage routine sweeps the inbox, updates the right contact and conversation files, drafts the replies I need to send, and marks each message handled. I review, I do not re-explain.
+So each one is written down once as a routine with three parts: the ordered steps, the files it reads and writes, and the guardrails for what it must never do. My email triage routine sweeps every unprocessed message in the inbox, pulls out the actions, updates the right contact and conversation entries, drafts the replies I owe into the top of my working doc, and labels each message handled so it is never processed twice. One hard guardrail: it drafts, it never sends. I read the digest and approve. I review the output, I do not rebuild the procedure.
 
 ## The small disciplines that compounded
 
-A few smaller additions did more than I expected.
+A handful of smaller additions did more than their size suggested.
 
-A daily summary the agent writes at the start of each session, so I begin with a clear picture of what moved yesterday. A triage pass that reads the notes I scribble into files between sessions and files each one where it belongs. A delegation file so I never lose track of what I handed to someone and when it is due back. And a writing guide, a long list of the tics that make text sound like it came from a machine, that everything I publish gets checked against. This post went through it.
+A daily summary the agent writes from the done tracker at the start of each session, so I open the day already knowing what moved yesterday. A triage pass that reads the notes I scribble into files between sessions, the "delegated to him", "done", "parked" scrawls, and files each one where it belongs before building the agenda. A delegation file kept as a flat checklist: what I handed over, to whom, due when, and nothing else. And a rule to log to the done tracker the moment a thing is finished, written as the outcome rather than the file change, "replied to her questions" instead of "edited three files", because context can compact mid-session and wipe out the memory of what I did that morning.
+
+Everything I publish gets checked against a writing guide, a long list of the tells that make text read like a machine wrote it. This post went through it.
 
 ## What the month actually taught me
 
-The pattern is the point. V1 was my best guess. Daily use turned the guess into evidence. The system got better not because I sat down to redesign it, but because using it surfaced the gaps, and fixing a gap took minutes once I could see it clearly.
+The method is the point. V1 was my best guess at the shape. Daily use was the test that told me where the guess was wrong, and once a gap was visible, closing it took minutes rather than a redesign. The system improved not because I scheduled time to improve it, but because living in it surfaced the next fix on its own.
 
-A good system tells you what it is missing, if you actually live in it.
-
-The next test was bigger: could any of this work for someone who is not me. That is [part three](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else).
+A system you actually live in will tell you what it is missing. The harder question was whether any of this held for someone who is not me. That is [part three](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else).
