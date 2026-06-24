@@ -4,6 +4,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const changelog = [
   {
     date: '2026-06-24',
+    version: '1.7.0',
+    title: 'How it works: diagrams on the Founder OS page',
+    changes: [
+      {
+        category: 'Pages',
+        items: [
+          'Added a "How it works" section to /founder-os with two SVG diagrams: an architecture hub (the agent between the Context and Daily layers) and a lifecycle flowchart (how one item travels ToDos/Conversations to Working Doc to Done Tracker to Daily Summary and loops back)',
+          'Replaced the lower-fidelity card sections the diagrams supersede (two-folder cards, session-loop steps, people pipeline)',
+        ],
+      },
+    ],
+  },
+  {
+    date: '2026-06-24',
     version: '1.6.1',
     title: 'Link the blog series to Founder OS',
     changes: [
