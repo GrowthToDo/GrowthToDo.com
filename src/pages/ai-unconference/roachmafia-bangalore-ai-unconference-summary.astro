@@ -62,9 +62,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         <p><strong>Scripts beat MCP for repeatable work.</strong> Aswin (Team 4) asks Claude to turn predictable steps into Python scripts. Team 5 rebuilt Aditi and Soumitra's article workflow as code that only calls AI for the final step.</p>
 
-        <p><strong>Free compute and timing.</strong> AWS Bedrock and AWS Summit credits (Teams 1 and 7), plus "session maxxing", sending a message a few hours before you start, from Ayush (Team 5).</p>
+        <p><strong>Free compute.</strong> Set up Amazon Bedrock (free account, a tiny card auth) and connect Claude Code as a third-party provider, then join the AWS Summit lists for $100 to $200 of credits each, every year (Surya and Saikat, Team 2). As one of us put it on the day: "this is not cheap turpentine, this is free turpentine."</p>
 
-        <p><strong>The contrarian.</strong> Mahesh VR (Team 6): stop worrying about tokens until the losses are actually worth it. Leverage what you have, make more money, then optimise.</p>
+        <p><strong>Session maxxing.</strong> The session window is five hours, but most of us burn the tokens in two. So fire a quick "hi" a few hours before you actually start: the window opens early and resets mid-workday, handing you two fresh sessions across a day's work. Ayush (Team 5) does it by hand; one Roach runs it as a 7am cron.</p>
+
+        <p><strong>Plan, then compress.</strong> In plan mode, dump every thought and answer the model's questions until the plan is solid, then compress the context (from roughly 40-50% down to 10%) before you execute, so it builds from the tight spec, not the whole rambling thread.</p>
+
+        <p><strong>Cheapest layers.</strong> DeepSeek Lite runs well locally for simple coding, and Cursor's Composer is cheap for grunt work (Saikat and John, Team 7), so Claude is only spent on what actually needs it.</p>
+
+        <p><strong>The contrarian.</strong> Mahesh VR (Team 6): stop worrying about tokens until the losses are actually worth it. Leverage what you have, make more money, then optimise. And the cheekiest answer of the round to what saved the most tokens, "going on a holiday without a laptop," promptly rebutted with "doesn't work, the code follows you to your phone now."</p>
       </section>
 
       <!-- Q3 -->
@@ -79,9 +85,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         <p><strong>Set the register yourself.</strong> Shashank (Team 3) starts writing the finished thing, stops midway, and lets the model continue in his voice rather than guess. A system prompt of "act like a coach, answer factually, no fluff, no glazing" (Soumitra, Team 3) keeps it honest.</p>
 
-        <p><strong>Remember the mistakes.</strong> Sathya (Team 3) keeps a mistakes.md (Dan Shipper's Compound Engineering) so the same errors do not recur, and writes detailed PRDs with voice typing so the first prompt is already rich.</p>
+        <p><strong>Remember the mistakes.</strong> A mistakes.md, curated at the end of each session and gated by a checklist before any output (Dan Shipper's compound engineering). Rakesh (Team 9) kicked off the idea and documents why each mistake happened so the spec itself improves; Sathya (Team 3) wires it into his claude.md. Honest footnote from Rakesh: tell it "no fluff" and it will nod, say "no fluff", and hand you the same fluff anyway.</p>
 
-        <p><strong>One lead, many workers.</strong> Mohith (Team 8) makes Claude the team lead that hands .md specs to Cursor and Codex. Vivek (Team 8) gives goals, boundaries and success metrics in every prompt.</p>
+        <p><strong>One lead, many workers.</strong> Mohith (Team 8) makes Claude the team lead that hands .md specs to Cursor and Codex, then has Claude review all of their work. Vivek (Team 8) gives goals, boundaries and success metrics in every prompt.</p>
+
+        <p><strong>One file for every agent.</strong> Pradeep's tip: use a single agents.md instead of separate claude.md and codex.md, so every model reads the same context and nothing gets lost or "discriminated" between them.</p>
+
+        <p><strong>Screenshots as the reset button.</strong> Anyone can spot a vibe-coded landing page on sight. When the output drifts generic, feed reference screenshots and it snaps into line instead of guessing at the layout.</p>
 
         <p><strong>Tone, both ways.</strong> Some scold it for wasting time; one table swears by being polite. Mahesh VR (Team 6) has the sharpest read: yelling pushes the model into "acceptance mode" where it just agrees and gets dumb, so train it like a child and measure the error rate down instead.</p>
       </section>
@@ -98,7 +108,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
         <p><strong>Distribution and money, handled.</strong> Autonomous marketing, sales and distribution running between agents (Teams 1, 6 and 7). Bookkeeping and taxes done for the least legal amount (Sanat, Team 8; Team 5). And plenty of straight-up "just make money" wishes.</p>
 
-        <p><strong>Bigger, cheaper, unlimited.</strong> Bhanu (Team 7) wants a true unlimited plan, even at $1000 a month, and Claude Code usable inside OpenClaw and Hermes.</p>
+        <p><strong>Bigger, cheaper, unlimited.</strong> Bhanu (Team 7) wants a true unlimited plan, even at $1000 a month, and Claude Code usable inside OpenClaw and Hermes. One more route to cheaper plans floated in the room: a de-glazing layer (someone pointed to a tool called Freebuff) so we stop paying tokens for the model's filler.</p>
 
         <p><strong>Into the physical world.</strong> Cameras and microphones for real contextual awareness (Siddarth, Team 1). AI that manufactures personalised hardware, not just software MVPs (Vikra, Team 8).</p>
 
