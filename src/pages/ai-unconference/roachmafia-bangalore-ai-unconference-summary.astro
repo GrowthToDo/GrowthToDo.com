@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout
+  title="What 45 Indie Hackers Actually Do With AI · Roach Mafia Unconference"
+  description="The collective playbook from the AI unconference at the Roach Mafia retreat, Bengaluru (June 2026). 45 founders, 9 tables, four questions on how they really use AI."
+>
+
+  <article class="py-6 md:py-16 max-w-3xl mx-auto px-6 md:px-12">
+
+    <header class="space-y-4 mb-12">
+      <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600">Roach Mafia · Bengaluru · June 2026</p>
+      <h1 class="font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight text-base-content">
+        Real talk on AI adoption: what 45 indie hackers actually do with AI
+      </h1>
+      <p class="font-serif text-lg md:text-xl text-base-content/70 leading-relaxed">
+        At the Roach Mafia retreat, 45 founders split into nine tables and answered four questions about how they really use AI. No theory, no hype, just what is working in their day to day. Here is the room's shared playbook, mostly in their own words.
+      </p>
+    </header>
+
+    <div class="space-y-12 font-serif text-lg text-base-content leading-relaxed">
+
+      <!-- Q1 -->
+      <section class="space-y-4">
+        <h2 class="font-sans text-2xl font-semibold tracking-tight text-base-content">1. The clever uses they can't live without</h2>
+
+        <p><strong>A second brain, not a faster typist.</strong> Falit's table (Team 2) put it best: dump everything in during the week, long voice notes, customer feedback, repo context, half-formed plans, then use AI to find patterns, spot gaps and decide the next action. "Most people use AI to write faster. I use it more like a second brain and chief of staff: what am I missing, what keeps repeating, and what should I do next?"</p>
+
+        <p><strong>Turn anything you repeat into a skill.</strong> Dhiva and Poonam (Team 4) build a skill the moment they catch themselves repeating a prompt. Lovish (Team 7) has a blog skill that researches, writes in his voice, generates and compresses images, and ships. Mahesh VR (Team 6) asks, after doing any task twice, "what needs to happen from my side so you can do this on your own from now, without me triggering it?"</p>
+
+        <p><strong>Two models, one loop.</strong> Bhanu (Team 7) writes code with Claude Code and reviews it with Codex on an automatic loop until it is done. Dhiva's table uses a review-debate-resolve skill where Claude and Codex critique each other before anything lands; Dheeraj's table (Team 5) does the same across models.</p>
+
+        <p><strong>Personal agents that run your day.</strong> Aswin (Team 4) runs a Hermes agent on a VPS that timeboxes his priorities and uses RescueTime to call out where he drifted off revenue work. Ayush (Team 5) has Hermes pick one saved article each night, turn it into an epub and send it to his Kindle.</p>
+
+        <p><strong>Outreach on autopilot.</strong> Mehul (Team 1) built a Base44 agent that finds ICP contacts, WhatsApps them to him, then a second agent writes hyper-personalised emails and pushes them to Saleshandy over MCP. Pradeep (Team 1) hands Claude his ICP plus a Chrome extension to pull hospital stakeholders off LinkedIn into a table with tailored outreach.</p>
+
+        <p><strong>AI for judgment, not just code.</strong> Ayush G (Team 3) runs SEO end to end. Prasanna (Team 5) asks whether an apartment is worth it at a given price and location. Soumitra's table (Team 3) uses a Jyotish MCP to read personality and predict behaviour.</p>
+
+        <p><strong>Straight from the phone.</strong> Hrithik Kaul (Team 6) messages his "AI twin" on Slack to generate articles and branded thumbnails and publish them straight to Typeflo, no laptop. John (Team 7) scribbles a thought and an app turns it into a LinkedIn post with an auto-picked image, scheduled through n8n.</p>
+
+        <p><strong>Checklists and self-built tools.</strong> Shashank (Team 3) keeps an 8-point npm checklist and a multi-screen responsive checklist the AI must clear before anything ships. Rohith Pandit (Team 6) writes tools inside every app he builds so an agent can manipulate it later, like a fitness app that ingests a YouTube workout and adapts your routine.</p>
+      </section>
+
+      <!-- Q2 -->
+      <section class="space-y-4">
+        <h2 class="font-sans text-2xl font-semibold tracking-tight text-base-content">2. How they save tokens</h2>
+
+        <p><strong>Caveman and RTK are the room's default.</strong> Caveman (speak in terse "caveman" style, keep full technical accuracy) cuts 50 to 75%. RTK auto-rewrites shell commands and compresses their output before it hits context, for 60 to 90% fewer tokens. Cited by Pradeep (Team 1), Team 3, Sanat (Team 8) and Arvindh Sundar (Team 9), who adapted Caveman for spoken words on Audiopen.</p>
+
+        <p><strong>Route work to the right, cheaper model.</strong> Vikra (Team 8) uses Sonnet low-effort for code and only raises effort when the logic needs it. Vivek calls Haiku underrated. DeepSeek, GLM and Kimi via OpenRouter or OpenCode show up across Teams 4, 7, 8 and 9 as the discovery and grunt layer before anything hits Claude.</p>
+
+        <p><strong>Fresh session per task, compress hard.</strong> Several tables start a new session for each feature so context never piles up. Lovish (Team 7) runs /summarize or /compress at 40% context; Vivek (Team 8) runs /compact before big tasks; Mohith passes a summary to Cursor past the 50% mark.</p>
+
+        <p><strong>Plan before you spend.</strong> gstack-style spec-driven planning (Siddarth, Team 1; Team 3) means fewer wasted execution tokens. Convert PDF to Markdown before chatting with it (Prasanna, Team 5), and ask for HTML design files instead of docx or png (Mohith, Team 6).</p>
+
+        <p><strong>Scripts beat MCP for repeatable work.</strong> Aswin (Team 4) asks Claude to turn predictable steps into Python scripts. Team 5 rebuilt Aditi and Soumitra's article workflow as code that only calls AI for the final step.</p>
+
+        <p><strong>Free compute and timing.</strong> AWS Bedrock and AWS Summit credits (Teams 1 and 7), plus "session maxxing", sending a message a few hours before you start, from Ayush (Team 5).</p>
+
+        <p><strong>The contrarian.</strong> Mahesh VR (Team 6): stop worrying about tokens until the losses are actually worth it. Leverage what you have, make more money, then optimise.</p>
+      </section>
+
+      <!-- Q3 -->
+      <section class="space-y-4">
+        <h2 class="font-sans text-2xl font-semibold tracking-tight text-base-content">3. Cutting the back-and-forth</h2>
+
+        <p><strong>Make it ask you first.</strong> The most repeated trick in the room: plan mode plus "ask me clarifying questions one at a time, in MCQ format, before you execute." Pradeep (Team 1), Sathya (Team 3) and Teams 5 and 9 all land here. Pradeep also leans on the AskUserQuestion tool.</p>
+
+        <p><strong>Do it once, then skill it.</strong> Bhanu (Team 7): grind through the back-and-forth a single time, then ask Claude to turn it into a skill and just invoke it from then on.</p>
+
+        <p><strong>Stress-test the plan.</strong> Ayush G (Team 3) describes the execution plan, then tells Claude to assume it already failed and explain exactly why. Nadeem's table (Team 9) uses "thinking razors" and stress-tests before any execution.</p>
+
+        <p><strong>Set the register yourself.</strong> Shashank (Team 3) starts writing the finished thing, stops midway, and lets the model continue in his voice rather than guess. A system prompt of "act like a coach, answer factually, no fluff, no glazing" (Soumitra, Team 3) keeps it honest.</p>
+
+        <p><strong>Remember the mistakes.</strong> Sathya (Team 3) keeps a mistakes.md (Dan Shipper's Compound Engineering) so the same errors do not recur, and writes detailed PRDs with voice typing so the first prompt is already rich.</p>
+
+        <p><strong>One lead, many workers.</strong> Mohith (Team 8) makes Claude the team lead that hands .md specs to Cursor and Codex. Vivek (Team 8) gives goals, boundaries and success metrics in every prompt.</p>
+
+        <p><strong>Tone, both ways.</strong> Some scold it for wasting time; one table swears by being polite. Mahesh VR (Team 6) has the sharpest read: yelling pushes the model into "acceptance mode" where it just agrees and gets dumb, so train it like a child and measure the error rate down instead.</p>
+      </section>
+
+      <!-- Q4 -->
+      <section class="space-y-4">
+        <h2 class="font-sans text-2xl font-semibold tracking-tight text-base-content">4. The wishlist: what they wish Claude Code could do</h2>
+
+        <p><strong>Bring back Fable.</strong> Easily the loudest wish in the room, repeated across Teams 4, 5 and 7.</p>
+
+        <p><strong>An always-on operator.</strong> Ayush G (Team 3) wants something that does not wait to be asked: already reading everything, connecting the dots, handing over "this is broken, here is the fix plan." Arvindh Sundar (Team 9) wants it to take his todo list and act on it while he is away.</p>
+
+        <p><strong>A LifeOS.</strong> Soumitra (Team 3) wants it to track his mood, energy and neurotransmitter levels and steer him into flow without burning out.</p>
+
+        <p><strong>Distribution and money, handled.</strong> Autonomous marketing, sales and distribution running between agents (Teams 1, 6 and 7). Bookkeeping and taxes done for the least legal amount (Sanat, Team 8; Team 5). And plenty of straight-up "just make money" wishes.</p>
+
+        <p><strong>Bigger, cheaper, unlimited.</strong> Bhanu (Team 7) wants a true unlimited plan, even at $1000 a month, and Claude Code usable inside OpenClaw and Hermes.</p>
+
+        <p><strong>Into the physical world.</strong> Cameras and microphones for real contextual awareness (Siddarth, Team 1). AI that manufactures personalised hardware, not just software MVPs (Vikra, Team 8).</p>
+
+        <p><strong>And a knowing wink.</strong> Vidhya (Team 1), who helps run these retreats, wants an AI logistics wizard: map a 30-person retreat from aerial imagery, check wifi and mobile coverage, and sort the catering by dietary preference, all without her lifting a finger.</p>
+      </section>
+
+      <!-- Contributors -->
+      <section class="space-y-4 pt-4 border-t border-base-content/10">
+        <h2 class="font-sans text-2xl font-semibold tracking-tight text-base-content">The room</h2>
+        <p class="text-base text-base-content/70">Forty-five builders across nine tables. Insight Collectors are noted in brackets.</p>
+        <ul class="space-y-2 text-base text-base-content/80">
+          <li><strong>Team 1</strong> (Vidhya): Siddarth, Mehul, Vidhya, Pradeep, Nikhil</li>
+          <li><strong>Team 2</strong>: Pranav, Surya, Falit, Aditi</li>
+          <li><strong>Team 3</strong> (Soumitra Sengupta): Ayush G, Soumitra, Shashank, Sathya</li>
+          <li><strong>Team 4</strong> (Dhiva): Aswin, Poonam, Neel, Dhiva, Aryan</li>
+          <li><strong>Team 5</strong> (Dheeraj): Prasanna, Dheeraj, Vikash, Yash, Ayush</li>
+          <li><strong>Team 6</strong> (Hrithik Kaul): Hrithik Kaul, Shadab, Mahesh VR, Manish Rana, Rohith Pandit</li>
+          <li><strong>Team 7</strong> (Lovish Jain): Lovish, Bhanu, Manish, Saikat, Akanksha, John</li>
+          <li><strong>Team 8</strong> (Sanat): Vikra, Srivats, Mohith, Vivek, Sanat</li>
+          <li><strong>Team 9</strong> (Nadeem): Rakesh, Arvindh Sundar, Nadeem</li>
+        </ul>
+      </section>
+
+      <p class="text-base text-base-content/60 pt-4">
+        Run as a peer unconference at the Roach Mafia retreat. See the <a href="/ai-unconference" class="text-teal-600 hover:underline">format and prompts</a>.
+      </p>
+
+    </div>
+  </article>
+
+</BaseLayout>
+</div>
