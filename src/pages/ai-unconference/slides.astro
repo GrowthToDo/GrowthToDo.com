@@ -1,0 +1,721 @@
+---
+// AI Unconference companion deck — Roach Mafia, Bengaluru, June 2026
+// Full-screen standalone presentation (no BaseLayout: needs full viewport).
+// GrowthToDo "linear" dark theme. Keyboard-driven, per-round countdown timers.
+const title = "AI Unconference · Roach Mafia";
+const description = "Companion slides for the AI Unconference at Roach Mafia, Bengaluru — Real Talk on AI Adoption.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Spectral:ital,wght@0,400;0,600;0,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Default = LIGHT (white bg, bold dark text) for dim rooms / weak projectors */
+      :root {
+        --bg: #ffffff;
+        --bg-3: #ededf0;
+        --border: #c8c8d0;
+        --text: #000000;
+        --muted: #161616;
+        --muted-dark: #2a2a2a;
+        --primary: #2a2782;
+        --accent: #4c1d95;
+        --glow-1: rgba(94, 106, 210, 0.06);
+        --glow-2: rgba(124, 58, 237, 0.05);
+      }
+      /* Dark mode (toggle with D) */
+      body.dark {
+        --bg: #0a0a0f;
+        --bg-3: #1a1a24;
+        --border: #2a2a34;
+        --text: #f4f4f6;
+        --muted: #b4b4bd;
+        --muted-dark: #71717a;
+        --primary: #8b95f0;
+        --accent: #a78bfa;
+        --glow-1: rgba(94, 106, 210, 0.16);
+        --glow-2: rgba(124, 58, 237, 0.14);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html, body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Ambient glow */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(60% 50% at 20% 10%, var(--glow-1), transparent 70%),
+          radial-gradient(55% 50% at 85% 90%, var(--glow-2), transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .deck { position: relative; height: 100vh; width: 100vw; z-index: 1; }
+
+      .slide {
+        --col: min(94vw, 1750px);
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: clamp(1.25rem, 3vh, 2.75rem) clamp(1.5rem, 4vw, 4rem);
+        opacity: 0;
+        overflow: hidden;
+        transition: opacity 0.35s ease;
+      }
+      .slide.active { display: flex; opacity: 1; }
+      .slide.center { text-align: center; }
+      /* every block is a centered, full-width column so the screen is used
+         edge to edge and left edges stay aligned */
+      .slide > .kicker,
+      .slide > h1,
+      .slide > h2,
+      .slide > .body,
+      .slide > .round-label,
+      .slide > .prompt,
+      .slide > .prompt-sub,
+      .slide > ul.points {
+        width: 100%;
+        max-width: var(--col);
+      }
+
+      .kicker {
+        font-size: clamp(1rem, 1.8vw, 1.6rem);
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: clamp(1rem, 2.5vh, 2rem);
+      }
+
+      h1 {
+        font-size: clamp(3.5rem, 10vw, 10rem);
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+      .subtitle {
+        font-family: "Spectral", Georgia, serif;
+        font-size: clamp(1.8rem, 4vw, 3.6rem);
+        font-weight: 400;
+        color: var(--muted);
+        margin-top: clamp(1rem, 3vh, 2rem);
+        font-style: italic;
+      }
+
+      h2 {
+        font-size: clamp(3.2rem, 7vw, 7rem);
+        font-weight: 800;
+        line-height: 1.03;
+        letter-spacing: -0.025em;
+      }
+
+      .body {
+        font-size: clamp(1.85rem, 3.6vw, 3.4rem);
+        line-height: 1.45;
+        color: var(--muted);
+        max-width: 26ch;
+        margin-top: clamp(1.2rem, 3vh, 2.2rem);
+      }
+
+      ul.points {
+        list-style: none;
+        margin-top: clamp(1.4rem, 4vh, 3rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: clamp(2rem, 5vw, 5rem);
+        row-gap: clamp(0.9rem, 2.6vh, 2rem);
+      }
+      @media (max-width: 820px) {
+        ul.points { grid-template-columns: 1fr; }
+      }
+      ul.points li {
+        font-size: clamp(1.7rem, 3.1vw, 2.9rem);
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--text);
+        padding-left: 1.5em;
+        position: relative;
+      }
+      ul.points li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.62em;
+        width: 0.6em;
+        height: 0.6em;
+        border-radius: 2px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+      }
+      ul.points li span { color: var(--muted); }
+
+      /* Closing quote */
+      .quote {
+        font-family: "Spectral", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(2.2rem, 4.8vw, 4.6rem);
+        line-height: 1.28;
+        color: var(--text);
+        max-width: min(92vw, 1500px);
+        margin-top: clamp(1.5rem, 4vh, 2.5rem);
+      }
+      .quote-by {
+        font-size: clamp(1.1rem, 2vw, 1.9rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        margin-top: clamp(1rem, 2.5vh, 1.6rem);
+      }
+
+      /* Step list under a round prompt — single column, a touch smaller */
+      ul.points.round-steps {
+        grid-template-columns: 1fr;
+        margin-top: clamp(1rem, 2.5vh, 1.8rem);
+        row-gap: clamp(0.5rem, 1.5vh, 1rem);
+      }
+      ul.points.round-steps li {
+        font-size: clamp(1.55rem, 2.7vw, 2.5rem);
+      }
+
+      /* Prompt / round slides */
+      .round-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: clamp(1rem, 1.8vw, 1.6rem);
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: clamp(1rem, 2.5vh, 1.8rem);
+      }
+      .round-label .dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--accent);
+      }
+      .prompt {
+        font-size: clamp(3.6rem, 7.8vw, 8rem);
+        font-weight: 800;
+        line-height: 1.03;
+        letter-spacing: -0.03em;
+      }
+      .prompt-sub {
+        font-family: "Spectral", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.85rem, 3.5vw, 3.1rem);
+        color: var(--muted);
+        margin-top: clamp(1rem, 2.5vh, 1.8rem);
+        max-width: 40ch;
+        line-height: 1.45;
+      }
+
+      /* Timer */
+      .timer-wrap {
+        position: fixed;
+        top: clamp(0.75rem, 2.5vh, 1.75rem);
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 6;
+      }
+      .timer-wrap.show { display: flex; }
+      .timer {
+        font-variant-numeric: tabular-nums;
+        font-weight: 800;
+        font-size: clamp(3.5rem, 9vw, 8rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        transition: color 0.3s ease;
+      }
+      .timer.running { color: var(--primary); }
+      .timer.done {
+        color: #ef4444;
+        animation: pulse 0.9s ease-in-out infinite;
+      }
+      @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+      .timer-controls { display: flex; gap: 0.6rem; }
+      .timer-controls button {
+        font-family: inherit;
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.55em 1.2em;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .timer-controls button:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .timer-done-msg {
+        display: none;
+        font-weight: 700;
+        font-size: clamp(0.9rem, 1.6vw, 1.4rem);
+        color: #ef4444;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .timer.done ~ .timer-done-msg,
+      .timer-wrap.is-done .timer-done-msg { display: block; }
+
+      /* Chrome: counter + hint */
+      .counter {
+        position: fixed;
+        left: clamp(1.5rem, 3vw, 3rem);
+        bottom: clamp(1.5rem, 4vh, 3rem);
+        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-weight: 600;
+        color: var(--muted-dark);
+        letter-spacing: 0.1em;
+        z-index: 5;
+      }
+      .counter b { color: var(--text); }
+      .brand {
+        position: fixed;
+        left: clamp(1.5rem, 3vw, 3rem);
+        top: clamp(1.5rem, 4vh, 3rem);
+        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--muted-dark);
+        z-index: 5;
+      }
+      .brand b { color: var(--text); }
+      .hint {
+        position: fixed;
+        right: clamp(1.5rem, 3vw, 3rem);
+        top: clamp(1.5rem, 4vh, 3rem);
+        font-size: clamp(0.7rem, 1vw, 0.92rem);
+        color: var(--muted-dark);
+        letter-spacing: 0.03em;
+        z-index: 5;
+        text-align: right;
+      }
+      .hint kbd {
+        font-family: ui-monospace, Menlo, monospace;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.1em 0.45em;
+        font-size: 0.85em;
+        color: var(--text);
+      }
+
+      /* Progress bar */
+      .progress {
+        position: fixed;
+        top: 0; left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        z-index: 10;
+        transition: width 0.35s ease;
+      }
+
+      .nav-zone {
+        position: fixed;
+        top: 0; bottom: 0;
+        width: 18%;
+        z-index: 4;
+        cursor: pointer;
+      }
+      .nav-zone.left { left: 0; }
+      .nav-zone.right { right: 0; }
+
+      @media (max-width: 640px) {
+        .hint { display: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="progress" id="progress"></div>
+    <div class="brand"><b>GrowthToDo</b> · AI Unconference</div>
+    <div class="hint">
+      <kbd>→</kbd> next · <kbd>T</kbd> timer · <kbd>D</kbd> dark · <kbd>F</kbd> fullscreen
+    </div>
+
+    <div class="nav-zone left" data-nav="prev"></div>
+    <div class="nav-zone right" data-nav="next"></div>
+
+    <div class="deck" id="deck">
+
+      <!-- 0 · Title -->
+      <section class="slide center">
+        <div class="kicker">Roach Mafia · Bengaluru · June 2026</div>
+        <h1>AI Unconference</h1>
+        <div class="subtitle">Real talk on AI adoption</div>
+      </section>
+
+      <!-- 2 · Why -->
+      <section class="slide">
+        <div class="kicker">Why we're doing this</div>
+        <h2>There's a ton of latent AI knowledge in this room.</h2>
+        <p class="body">
+          Everyone here has figured out something the rest haven't. Today we
+          pull it into the open.
+        </p>
+      </section>
+
+      <!-- 3 · How it works -->
+      <section class="slide">
+        <h2>How it works</h2>
+        <ul class="points">
+          <li>9 tables, about 5 people each.</li>
+          <li>4 prompts, <span>10 minutes each.</span></li>
+          <li>Talk it out, <span>and write your own points in your table's doc.</span></li>
+          <li>After each round, <span>a few Insight Collectors share the best, timeboxed.</span></li>
+        </ul>
+      </section>
+
+      <!-- 4 · The Insight Collector (dedicated role slide) -->
+      <section class="slide">
+        <div class="kicker">Every group picks one</div>
+        <h2>The Insight Collector</h2>
+        <ul class="points">
+          <li>One person per group. <span>Volunteer now.</span></li>
+          <li>As the group talks, <span>notice what's worth passing on.</span></li>
+          <li>Everyone writes their own points; <span>you curate a short summary for the room.</span></li>
+          <li>At share-back, <span>share what your table found worth sharing.</span></li>
+        </ul>
+      </section>
+
+      <!-- The ideal Insight Collector -->
+      <section class="slide">
+        <div class="kicker">Who should it be</div>
+        <h2>Who makes a good Insight Collector?</h2>
+        <ul class="points">
+          <li>Writes their own answer, <span>and still captures everyone else's.</span></li>
+          <li>Thinks fast. <span>Summarises on the fly.</span></li>
+          <li>Keeps the team to time <span>and keeps the pace up.</span></li>
+        </ul>
+      </section>
+
+      <!-- Pick your Insight Collector (1 min) -->
+      <section class="slide center" data-timer="60">
+        <div class="kicker">One minute</div>
+        <h1 style="font-size: clamp(2.6rem, 7vw, 6.5rem); max-width: 18ch;">Pick your Insight Collector.</h1>
+        <div class="subtitle">One per group. Decide and move on.</div>
+      </section>
+
+      <!-- 5 · House rules -->
+      <section class="slide">
+        <div class="kicker">House rules</div>
+        <h2>Keep it real, keep it moving.</h2>
+        <ul class="points">
+          <li>Everyone speaks. <span>If someone's been quiet, pull them in.</span></li>
+          <li>Be specific. <span>Real examples and numbers beat hot takes.</span></li>
+          <li>Short contributions are fine. <span>Keep it moving.</span></li>
+        </ul>
+      </section>
+
+      <!-- Session hygiene -->
+      <section class="slide">
+        <div class="kicker">Hygiene</div>
+        <h2>Heads down, in your team.</h2>
+        <ul class="points">
+          <li>Talk to your team and your IC. <span>Not other tables.</span></li>
+          <li>Keep your eyes on your own team doc.</li>
+          <li>Everything goes in the doc <span>as you talk.</span></li>
+        </ul>
+      </section>
+
+      <!-- Every team's doc is open -->
+      <section class="slide">
+        <div class="kicker">Before we start</div>
+        <h2>Every team's doc is open.</h2>
+        <ul class="points">
+          <li>All 9 docs are already shared in the group.</li>
+          <li>Nothing's locked. <span>You can read every table's answers.</span></li>
+          <li>Point your AI at the lot: <span>summarise, query, pull the patterns.</span></li>
+        </ul>
+      </section>
+
+      <!-- How each round works (10 min mechanics) -->
+      <section class="slide">
+        <div class="kicker">How each round works</div>
+        <h2>Every round is 10 minutes.</h2>
+        <ul class="points round-steps">
+          <li>The question goes up on screen.</li>
+          <li>Go round the table: <span>everyone answers it in turn.</span></li>
+          <li>Write your own answer <span>in your team doc as you talk.</span></li>
+          <li>Insight Collector tracks <span>what's worth sharing.</span></li>
+          <li>Timer ends: <span>a few tables share, then we move on.</span></li>
+        </ul>
+      </section>
+
+      <!-- 6 · Round 1 -->
+      <section class="slide" data-timer="600">
+        <div class="round-label"><span class="dot"></span>Round 1 of 4 · 10 minutes</div>
+        <div class="prompt">What AI workflow is actually working for you right now?</div>
+        <div class="prompt-sub">
+          The real tools and setup. And where does it still break and eat your
+          day? Trade the stack, not the hype.
+        </div>
+      </section>
+
+      <!-- Share · after Round 1 -->
+      <section class="slide" data-timer="300">
+        <div class="round-label"><span class="dot"></span>Share · Round 1</div>
+        <h2>Insight Collectors: share your summary.</h2>
+        <p class="body">A few tables, time-boxed. We keep moving.</p>
+      </section>
+
+      <!-- 7 · Round 2 -->
+      <section class="slide" data-timer="600">
+        <div class="round-label"><span class="dot"></span>Round 2 of 4 · 10 minutes</div>
+        <div class="prompt">What's one channel actually bringing you users?</div>
+        <div class="prompt-sub">
+          Building got cheap; getting users didn't. SEO, AI search, content,
+          communities. What worked, what was slop? Bring numbers.
+        </div>
+      </section>
+
+      <!-- Share · after Round 2 -->
+      <section class="slide" data-timer="300">
+        <div class="round-label"><span class="dot"></span>Share · Round 2</div>
+        <h2>Insight Collectors: share your summary.</h2>
+        <p class="body">A few tables, time-boxed. We keep moving.</p>
+      </section>
+
+      <!-- 8 · Round 3 -->
+      <section class="slide" data-timer="600">
+        <div class="round-label"><span class="dot"></span>Round 3 of 4 · 10 minutes</div>
+        <div class="prompt">Anyone here could clone your product in a weekend. So what makes yours last?</div>
+        <div class="prompt-sub">
+          Distribution, brand, speed, data? Or are you just betting on
+          out-shipping the copies?
+        </div>
+      </section>
+
+      <!-- Share · after Round 3 -->
+      <section class="slide" data-timer="300">
+        <div class="round-label"><span class="dot"></span>Share · Round 3</div>
+        <h2>Insight Collectors: share your summary.</h2>
+        <p class="body">A few tables, time-boxed. We keep moving.</p>
+      </section>
+
+      <!-- 9 · Round 4 -->
+      <section class="slide" data-timer="600">
+        <div class="round-label"><span class="dot"></span>Round 4 of 4 · 10 minutes</div>
+        <div class="prompt">Running three products at once? Which one would you bet on to hit $2.5K MRR first?</div>
+        <div class="prompt-sub">
+          What's stopping it from getting there, and what would you kill to
+          focus?
+        </div>
+      </section>
+
+      <!-- Share · after Round 4 -->
+      <section class="slide" data-timer="300">
+        <div class="round-label"><span class="dot"></span>Share · Round 4</div>
+        <h2>Insight Collectors: share your summary.</h2>
+        <p class="body">A few tables, time-boxed. We keep moving.</p>
+      </section>
+
+      <!-- 12 · Close -->
+      <section class="slide center">
+        <div class="kicker">Roach Mafia · Bengaluru</div>
+        <h1 style="font-size: clamp(2.4rem, 6vw, 5rem);">Finis</h1>
+        <div class="quote">"When art critics get together they talk about Form and Structure and Meaning. When artists get together they talk about where you can buy cheap turpentine."</div>
+        <div class="quote-by">Pablo Picasso</div>
+      </section>
+
+    </div>
+
+    <!-- Timer (shared, repositions per round slide) -->
+    <div class="timer-wrap" id="timerWrap">
+      <div class="timer" id="timer">10:00</div>
+      <div class="timer-done-msg">Time — switch prompts</div>
+      <div class="timer-controls">
+        <button id="btnStart">Start</button>
+        <button id="btnReset">Reset</button>
+      </div>
+    </div>
+
+    <div class="counter" id="counter"></div>
+
+    <script is:inline>
+      (function () {
+        const slides = Array.from(document.querySelectorAll(".slide"));
+        const total = slides.length;
+        let current = 0;
+
+        const counter = document.getElementById("counter");
+        const progress = document.getElementById("progress");
+        const timerWrap = document.getElementById("timerWrap");
+        const timerEl = document.getElementById("timer");
+        const btnStart = document.getElementById("btnStart");
+        const btnReset = document.getElementById("btnReset");
+
+        // Per-slide timer state, keyed by slide index.
+        const timers = {};
+        slides.forEach((s, i) => {
+          const secs = parseInt(s.dataset.timer || "0", 10);
+          if (secs > 0) timers[i] = { total: secs, remaining: secs, running: false, handle: null };
+        });
+
+        function fmt(s) {
+          const m = Math.floor(s / 60);
+          const ss = s % 60;
+          return m + ":" + String(ss).padStart(2, "0");
+        }
+
+        function beep() {
+          try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.type = "sine"; o.frequency.value = 880;
+            g.gain.setValueAtTime(0.001, ctx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + 0.02);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+            o.start(); o.stop(ctx.currentTime + 0.62);
+          } catch (e) {}
+        }
+
+        function renderTimer() {
+          const t = timers[current];
+          if (!t) { timerWrap.classList.remove("show"); return; }
+          timerWrap.classList.add("show");
+          timerEl.textContent = fmt(t.remaining);
+          timerEl.classList.toggle("running", t.running && t.remaining > 0);
+          const done = t.remaining <= 0;
+          timerEl.classList.toggle("done", done);
+          timerWrap.classList.toggle("is-done", done);
+          btnStart.textContent = t.running ? "Pause" : (done ? "Restart" : "Start");
+        }
+
+        function tick() {
+          const t = timers[current];
+          if (!t || !t.running) return;
+          t.remaining -= 1;
+          if (t.remaining <= 0) {
+            t.remaining = 0;
+            t.running = false;
+            clearInterval(t.handle); t.handle = null;
+            beep();
+          }
+          renderTimer();
+        }
+
+        function startTimer() {
+          const t = timers[current];
+          if (!t) return;
+          if (t.remaining <= 0) { t.remaining = t.total; } // restart
+          if (t.running) return;
+          t.running = true;
+          t.handle = setInterval(tick, 1000);
+          renderTimer();
+        }
+        function pauseTimer() {
+          const t = timers[current];
+          if (!t || !t.running) return;
+          t.running = false;
+          clearInterval(t.handle); t.handle = null;
+          renderTimer();
+        }
+        function toggleTimer() {
+          const t = timers[current];
+          if (!t) return;
+          t.running ? pauseTimer() : startTimer();
+        }
+        function resetTimer() {
+          const t = timers[current];
+          if (!t) return;
+          t.running = false;
+          clearInterval(t.handle); t.handle = null;
+          t.remaining = t.total;
+          renderTimer();
+        }
+
+        function show(i) {
+          // pause the timer we're leaving so it doesn't keep ticking unseen
+          const leaving = timers[current];
+          if (leaving && leaving.running) {
+            leaving.running = false;
+            clearInterval(leaving.handle); leaving.handle = null;
+          }
+          current = Math.max(0, Math.min(total - 1, i));
+          slides.forEach((s, idx) => s.classList.toggle("active", idx === current));
+          counter.innerHTML = "<b>" + (current + 1) + "</b> / " + total;
+          progress.style.width = ((current + 1) / total) * 100 + "%";
+          renderTimer();
+        }
+
+        function next() { if (current < total - 1) show(current + 1); }
+        function prev() { if (current > 0) show(current - 1); }
+
+        document.addEventListener("keydown", function (e) {
+          switch (e.key) {
+            case "ArrowRight":
+            case "PageDown":
+            case " ":
+              e.preventDefault(); next(); break;
+            case "ArrowLeft":
+            case "PageUp":
+              e.preventDefault(); prev(); break;
+            case "Home": e.preventDefault(); show(0); break;
+            case "End": e.preventDefault(); show(total - 1); break;
+            case "t": case "T": e.preventDefault(); toggleTimer(); break;
+            case "r": case "R": e.preventDefault(); resetTimer(); break;
+            case "d": case "D": e.preventDefault(); toggleTheme(); break;
+            case "f": case "F":
+              e.preventDefault();
+              if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+              else document.exitFullscreen();
+              break;
+          }
+        });
+
+        function toggleTheme() {
+          const dark = document.body.classList.toggle("dark");
+          try { localStorage.setItem("uc-theme", dark ? "dark" : "light"); } catch (e) {}
+        }
+        try {
+          if (localStorage.getItem("uc-theme") === "dark") document.body.classList.add("dark");
+        } catch (e) {}
+
+        document.querySelectorAll(".nav-zone").forEach((z) => {
+          z.addEventListener("click", () => z.dataset.nav === "next" ? next() : prev());
+        });
+
+        btnStart.addEventListener("click", toggleTimer);
+        btnReset.addEventListener("click", resetTimer);
+
+        show(0);
+      })();
+    </script>
+  </body>
+</html>
