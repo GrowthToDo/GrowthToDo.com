@@ -24,38 +24,44 @@ const displayDate = dayjs(updatedDate).format("ll");
 import { Image } from "astro:assets";
 ---
 
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
 <BaseLayout title={title} description={description} image={heroImage}>
-  <main class="md:flex md:justify-center">
-    <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
+  <main class="py-10 md:py-14 px-6 md:px-0 flex justify-center">
+    <article class="prose prose-lg max-w-[750px] prose-headings:font-serif prose-p:font-serif prose-img:mx-auto prose-a:text-teal-600">
       {
         heroImage && (
-          <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6" />
+          <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="w-full mb-6 rounded-lg border border-base-content/10" />
         )
       }
-      <div class="">
-        <h1 class="title my-2 text-4xl font-bold">
+      <div>
+        <h1 class="font-serif my-2 text-3xl md:text-4xl font-bold text-base-content">
           {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {badge && (
+            <span class="ml-2 inline-block font-sans text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 align-middle relative -top-1">
+              {badge}
+            </span>
+          )}
         </h1>
-        <div class="flex place-content-between items-center">
-          <div class="grow md:grow-0">
-            <span class="text-xl mr-1"> {pricing}</span>
-            <span class="text-md opacity-50 line-through">{oldPricing}</span>
+        <div class="flex flex-wrap gap-3 place-content-between items-center">
+          <div class="grow md:grow-0 font-sans">
+            <span class="text-xl mr-1 text-base-content">{pricing}</span>
+            <span class="text-md text-base-content/40 line-through">{oldPricing}</span>
           </div>
-          <div>
+          <div class="flex gap-3">
             {
               custom_link && (
-                <a class="btn btn-outline grow md:grow-0 ml-4" href={custom_link} target="_blank">
+                <a class="font-sans text-sm font-semibold px-4 py-2 rounded-md border border-teal-600 !text-teal-700 hover:bg-teal-50 transition-colors no-underline" href={custom_link} target="_blank">
                   {custom_link_label}
                 </a>
               )
             }
-            <a class="btn btn-primary grow md:grow-0 ml-4" href={checkoutUrl} target="_blank">Buy Now</a>
+            <a class="font-sans text-sm font-semibold px-4 py-2 rounded-md bg-teal-600 !text-white hover:bg-teal-700 transition-colors no-underline" href={checkoutUrl} target="_blank">Buy Now</a>
           </div>
         </div>
       </div>
-      <div class="divider my-2"></div>
+      <hr class="my-6 border-base-content/10" />
       <slot />
     </article>
   </main>
 </BaseLayout>
+</div>
