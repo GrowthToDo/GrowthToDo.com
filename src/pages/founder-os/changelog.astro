@@ -5,13 +5,25 @@ const title = "Founder OS — Changelog";
 const description =
   "Every change to Founder OS since day one. A living log of how a plain-text operating system for running several businesses got built, one small change at a time.";
 
-// The three-part series, for linking entries to where they are written about.
+// The four-part series, for linking entries to where they are written about.
 const PART1 = { label: "My New Operating System for Work", href: "/blog/my-new-operating-system-for-work" };
 const PART2 = { label: "My Operating System, One Month Later", href: "/blog/my-operating-system-one-month-later" };
 const PART3 = { label: "The Real Test of a System", href: "/blog/the-real-test-of-a-system-is-handing-it-to-someone-else" };
+const PART4 = { label: "The System Is Not Its Tools", href: "/blog/the-system-is-not-its-tools" };
 
 // Newest first. A living log; dates are when the change went in.
 const changelog = [
+  {
+    date: "2026-07-02",
+    phase: "Design",
+    title: "Named the layers, not the tools",
+    items: [
+      "Reframed the whole system from three named tools into four swappable layers: memory (the shared read-write surface, split into long-term context and working RAM), the model, the interface, and dictation. The tool in each slot is just the current pick; the architecture is indifferent to which.",
+      "Named dictation as its own layer at last. Voice was called out everywhere as 'by voice' but the thing that makes it true, the dictation tool that turns speech into text the model acts on, was never named. It is now.",
+      "Relabelled the two memory tiers on the overview diagram (long-term memory and working memory) so the shape matches the language.",
+    ],
+    readMore: [PART4],
+  },
   {
     date: "2026-06-24",
     phase: "Discipline",

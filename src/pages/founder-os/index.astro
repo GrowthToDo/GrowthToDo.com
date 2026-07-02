@@ -75,40 +75,54 @@ const fixed = [
         </p>
       </div>
 
-      <!-- Runs on three tools -->
+      <!-- Four swappable layers -->
       <div class="mb-12">
-        <h3 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-2">Runs on three ordinary tools</h3>
+        <h3 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-2">Four layers, not a locked stack</h3>
         <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-5 max-w-2xl">
-          No custom software. Nothing to lock into. The whole thing is built on three tools a lot of
-          people already have open.
+          This isn't a product stack, it's an architecture. Each layer does one job, and the tool
+          named below it is just my current pick for that job. Swap any one out without breaking
+          the shape.
         </p>
-        <div class="grid md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
             <div class="flex items-center gap-2.5 mb-2">
               <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
-                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.5 4.5 9l7.5 12.5L19.5 9 12 2.5zM4.5 9h15M9 9l3 12.5M15 9l-3 12.5" /></svg>
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5" /></svg>
               </div>
-              <p class="font-serif text-lg text-base-content">Obsidian</p>
+              <p class="font-serif text-lg text-base-content">Memory</p>
             </div>
-            <p class="font-sans text-sm text-base-content/55 leading-snug">A vault of plain markdown files. The whole system is just text on disk.</p>
+            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: Obsidian</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">The surface we both read and write. Long-term context that barely changes, plus working memory that gets processed daily and cleared into the log.</p>
           </div>
           <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
             <div class="flex items-center gap-2.5 mb-2">
               <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
                 <svg class="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.5l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" /></svg>
               </div>
-              <p class="font-serif text-lg text-base-content">Claude Code</p>
+              <p class="font-serif text-lg text-base-content">The model</p>
             </div>
-            <p class="font-sans text-sm text-base-content/55 leading-snug">The AI agent that reads and writes the vault, by voice. It does the reasoning and the typing.</p>
+            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: Claude Code</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">The reasoning and writing engine. Whichever LLM earns the trust right now — the architecture doesn't care which.</p>
           </div>
           <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
             <div class="flex items-center gap-2.5 mb-2">
               <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
                 <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75a1.5 1.5 0 0 1 1.5-1.5h13.5a1.5 1.5 0 0 1 1.5 1.5v10.5a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V6.75zM7 10l2.5 2.5L7 15M12.5 15h4" /></svg>
               </div>
-              <p class="font-serif text-lg text-base-content">The terminal</p>
+              <p class="font-serif text-lg text-base-content">The interface</p>
             </div>
-            <p class="font-sans text-sm text-base-content/55 leading-snug">Where it all runs. No app, no dashboard, no tab to keep open.</p>
+            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: the terminal</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">Where I actually talk to the model. No app, no dashboard, no tab to keep open.</p>
+          </div>
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <div class="flex items-center gap-2.5 mb-2">
+              <div class="w-8 h-8 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zM6 11a6 6 0 0 0 12 0M12 18v3" /></svg>
+              </div>
+              <p class="font-serif text-lg text-base-content">Dictation</p>
+            </div>
+            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: Voicenotes</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">Turns speech into text the model can act on. The layer that makes "by voice" actually true.</p>
           </div>
         </div>
       </div>
@@ -148,7 +162,7 @@ const fixed = [
             <ellipse cx="450" cy="300" rx="280" ry="220" fill="url(#glow)"/>
 
             <rect x="248" y="36" width="404" height="110" rx="16" fill="#f7f7f6" stroke="#ececea" stroke-width="1.5" filter="url(#sh)"/>
-            <text x="270" y="62" font-family={F} font-size="11" font-weight="700" letter-spacing="1.2" fill="#78716c">CONTEXT &#183; WHAT IS TRUE</text>
+            <text x="270" y="62" font-family={F} font-size="11" font-weight="700" letter-spacing="1.2" fill="#78716c">LONG-TERM MEMORY &#183; WHAT IS TRUE</text>
             <rect x="268" y="72" width="116" height="56" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="278" y="84" width="13" height="13" style="color:#0d9488"/><text x="326" y="100" text-anchor="middle" font-family={F} font-size="11" font-weight="600" fill="#292524">Projects</text><text x="326" y="116" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">4 sections each</text>
             <rect x="392" y="72" width="116" height="56" rx="10" fill="#fff" stroke="#ececea"/><use href="#icLayers" x="402" y="84" width="13" height="13" style="color:#0d9488"/><text x="450" y="100" text-anchor="middle" font-family={F} font-size="11" font-weight="600" fill="#292524">People</text><text x="450" y="116" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">+ relationship graph</text>
             <rect x="516" y="72" width="116" height="56" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="526" y="84" width="13" height="13" style="color:#0d9488"/><text x="574" y="100" text-anchor="middle" font-family={F} font-size="11" font-weight="600" fill="#292524">Index</text><text x="574" y="116" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">quick scan</text>
@@ -181,7 +195,7 @@ const fixed = [
             <rect x="462" y="382" width="150" height="22" rx="11" fill="#fff" stroke="#e7e5e4"/><text x="537" y="397" text-anchor="middle" font-family={F} font-size="10" fill="#0f766e">drives &amp; records</text>
 
             <rect x="168" y="430" width="564" height="138" rx="16" fill="#f7f7f6" stroke="#ececea" stroke-width="1.5" filter="url(#sh)"/>
-            <text x="190" y="456" font-family={F} font-size="11" font-weight="700" letter-spacing="1.2" fill="#78716c">DAILY &#183; WHAT IS HAPPENING NOW</text>
+            <text x="190" y="456" font-family={F} font-size="11" font-weight="700" letter-spacing="1.2" fill="#78716c">WORKING MEMORY &#183; WHAT IS HAPPENING NOW</text>
             <rect x="188" y="468" width="122" height="46" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="198" y="480" width="12" height="12" style="color:#0d9488"/><text x="249" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#292524">ToDos</text><text x="249" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">your work</text>
             <rect x="318" y="468" width="122" height="46" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="328" y="480" width="12" height="12" style="color:#0d9488"/><text x="379" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#292524">Conversations</text><text x="379" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">people + nudges</text>
             <rect x="448" y="468" width="122" height="46" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="458" y="480" width="12" height="12" style="color:#0d9488"/><text x="509" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#292524">Working Doc</text><text x="509" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">drafts</text>
@@ -312,7 +326,7 @@ const fixed = [
       <a href="/blog/my-new-operating-system-for-work"
          class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
         <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-1">Read the story</p>
-        <p class="font-serif text-lg text-base-content">A three-part series <span class="text-base-content/40">&rarr;</span></p>
+        <p class="font-serif text-lg text-base-content">A four-part series <span class="text-base-content/40">&rarr;</span></p>
       </a>
       <a href="/founder-os/changelog"
          class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">

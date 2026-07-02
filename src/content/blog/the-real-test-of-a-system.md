@@ -5,11 +5,12 @@ pubDate: "Jun 23 2026"
 heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=630&fit=crop"
 ---
 
-**A three-part series on building a personal operating system:**
+**A four-part series on building a personal operating system:**
 
 1. [My New Operating System for Work](/blog/my-new-operating-system-for-work)
 2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
 3. **The Real Test of a System Is Handing It to Someone Else** (this post)
+4. [The System Is Not Its Tools](/blog/the-system-is-not-its-tools)
 
 The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
 
