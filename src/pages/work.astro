@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
 
 // Themed images for active/upcoming projects (Unsplash)
 const images = {
@@ -175,5 +176,11 @@ const allSections = [
       </div>
     </section>
   ))}
+
+  <section class="py-6 md:py-8 max-w-7xl mx-auto px-6 md:px-12 border-x border-solid border-base-content/10">
+    <div class="max-w-2xl">
+      <UpdatesSignup source="work" />
+    </div>
+  </section>
 </BaseLayout>
 </div>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
 
 const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 
@@ -288,6 +289,10 @@ const skills = [
         Book a call
         <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
       </a>
+
+      <div class="mt-10 max-w-2xl">
+        <UpdatesSignup source="cv" />
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
 
 const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
 ---
@@ -14,14 +15,33 @@ const BOOK_CALL_LINK = "https://growthtodo.neetocal.com/30mins";
         Hi, I'm Gautham and here's what I'm <span class="text-teal-600 font-normal">upto now.</span>
       </h1>
 
-      <div class="space-y-3">
-        <ul class="space-y-2 list-disc list-inside marker:text-teal-500 marker:text-lg">
-          <li class="font-serif text-xl text-base-content">Helping businesses <a href="https://sellontube.com" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">win customers on YouTube</a></li>
-          <li class="font-serif text-xl text-base-content">Preparing students for <a href="https://theseconddesign.com/real-world-ready" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">elite careers and entrepreneurship</a></li>
-          <li class="font-serif text-xl text-base-content">Showcasing <a href="https://shippingwith.ai/" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">transformational AI workflows</a> <span class="inline-block font-sans text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 align-middle relative -top-0.5">New</span></li>
-          <li class="font-serif text-xl text-base-content">Building <a href="https://simplescheduleai.com" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">smarter scheduling systems for US hospitals</a> <span class="inline-block font-sans text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-200 align-middle relative -top-0.5">New</span></li>
-        </ul>
+      <div class="space-y-5">
+
+        <div class="rounded-2xl border border-base-content/10 px-5 py-4 space-y-2 transition-transform duration-200 hover:-translate-y-0.5">
+          <p class="font-sans text-xs font-semibold uppercase tracking-widest text-base-content/40">💼 The work</p>
+          <ul class="space-y-2 list-disc list-inside marker:text-teal-500 marker:text-lg">
+            <li class="font-serif text-xl text-base-content">Helping <a href="https://sellontube.com/shopify-app" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">Shopify apps grow</a> and businesses win customers on <a href="https://sellontube.com" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">YouTube</a></li>
+            <li class="font-serif text-xl text-base-content">Building <a href="https://simplescheduleai.com" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">smarter scheduling systems for US hospitals</a></li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-base-content/10 px-5 py-4 space-y-2 transition-transform duration-200 hover:-translate-y-0.5">
+          <p class="font-sans text-xs font-semibold uppercase tracking-widest text-base-content/40">🌱 The passion project</p>
+          <ul class="space-y-2 list-disc list-inside marker:text-teal-500 marker:text-lg">
+            <li class="font-serif text-xl text-base-content">Preparing students for <a href="https://theseconddesign.com/real-world-ready" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">elite careers and entrepreneurship</a></li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-base-content/10 px-5 py-4 space-y-2 transition-transform duration-200 hover:-translate-y-0.5">
+          <p class="font-sans text-xs font-semibold uppercase tracking-widest text-base-content/40">🔬 The tinkering</p>
+          <ul class="space-y-2 list-disc list-inside marker:text-teal-500 marker:text-lg">
+            <li class="font-serif text-xl text-base-content">Learning AI by building with it, and talking about it on <a href="https://shippingwith.ai/" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">Shipping with AI</a></li>
+          </ul>
+        </div>
+
         <a href="/work" class="inline-block font-sans text-sm text-base-content/50 hover:text-base-content transition-colors pt-1">See all →</a>
+
+        <UpdatesSignup source="now" />
       </div>
 
 

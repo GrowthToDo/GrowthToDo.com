@@ -1,0 +1,43 @@
+---
+// Reusable email-signup block. Drop into any page with a `source` prop
+// so the sheet records where the signup came from.
+// Submissions append to the "Site Signups" tab of the tracking sheet
+// via a Google Apps Script web app.
+const { source = "site" } = Astro.props;
+const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwbN5Tzkp4n6c5P38CaVHE3rg2ORTPqkeBQ7VuKCQ_U9XEkYVRc0ooi1nTHcOn-no2RNA/exec";
+---
+
+<div class="rounded-2xl border border-base-content/10 px-5 py-4 space-y-2">
+  <p class="font-serif text-xl text-base-content">✉️ Occasional updates</p>
+  <p class="font-sans text-sm text-base-content/60">Sent when there's something worth saying.</p>
+  <form class="updates-signup-form flex flex-col sm:flex-row gap-2 pt-1" data-endpoint={SIGNUP_ENDPOINT} data-source={source}>
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="you@example.com"
+      class="font-sans text-sm px-4 py-2.5 rounded-lg border border-base-content/20 bg-base-100 text-base-content placeholder:text-base-content/40 focus:outline-none focus:border-teal-500 flex-1 min-w-0"
+    />
+    <button
+      type="submit"
+      class="font-sans text-sm font-semibold px-5 py-2.5 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-colors whitespace-nowrap"
+    >
+      Keep me posted
+    </button>
+  </form>
+  <p class="updates-signup-done hidden font-sans text-sm text-teal-700">You're in. Talk soon. 👋</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>(".updates-signup-form").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+      if (!email) return;
+      const body = new URLSearchParams({ email, source: form.dataset.source || "site" });
+      fetch(form.dataset.endpoint || "", { method: "POST", mode: "no-cors", body });
+      form.classList.add("hidden");
+      form.parentElement?.querySelector(".updates-signup-done")?.classList.remove("hidden");
+    });
+  });
+</script>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug";
 import dayjs from "dayjs";
@@ -32,6 +33,10 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       <a href="/blog/right-to-dos-right-order-right-speed" class="font-serif text-sm text-base-content/60 hover:text-base-content/80 transition-colors">
         About the name <span class="italic font-bold">Growth To Do</span> →
       </a>
+    </div>
+
+    <div class="mt-10">
+      <UpdatesSignup source="home" />
     </div>
 
   </section>
