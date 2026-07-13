@@ -7,20 +7,20 @@ const { source = "site" } = Astro.props;
 const SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwbN5Tzkp4n6c5P38CaVHE3rg2ORTPqkeBQ7VuKCQ_U9XEkYVRc0ooi1nTHcOn-no2RNA/exec";
 ---
 
-<div class="rounded-2xl border border-base-content/10 px-5 py-4 space-y-2">
-  <p class="font-serif text-xl text-base-content">✉️ Occasional updates</p>
-  <p class="font-sans text-sm text-base-content/60">Sent when there's something worth saying.</p>
+<div class="rounded-2xl border border-base-content/10 px-4 py-2.5 md:px-5 md:py-4 space-y-1 md:space-y-2">
+  <p class="font-serif text-base md:text-xl text-base-content">✉️ Occasional updates</p>
+  <p class="font-sans text-xs md:text-sm text-base-content/60">Sent when there's something worth saying.</p>
   <form class="updates-signup-form flex flex-col sm:flex-row gap-2 pt-1" data-endpoint={SIGNUP_ENDPOINT} data-source={source}>
     <input
       type="email"
       name="email"
       required
       placeholder="you@example.com"
-      class="font-sans text-sm px-4 py-2.5 rounded-lg border border-base-content/20 bg-base-100 text-base-content placeholder:text-base-content/40 focus:outline-none focus:border-teal-500 flex-1 min-w-0"
+      class="font-sans text-sm px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-base-content/20 bg-base-100 text-base-content placeholder:text-base-content/40 focus:outline-none focus:border-teal-500 flex-1 min-w-0"
     />
     <button
       type="submit"
-      class="font-sans text-sm font-semibold px-5 py-2.5 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-colors whitespace-nowrap"
+      class="font-sans text-sm font-semibold px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-colors whitespace-nowrap"
     >
       Keep me posted
     </button>
