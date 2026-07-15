@@ -3,6 +3,7 @@ title: "The System Is Not Its Tools"
 description: "For months I described my operating system by naming the apps it runs on. That was the wrong description. The system is four layers, and the tool sitting in each one is just my current pick."
 pubDate: "Jul 2 2026"
 heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=630&fit=crop"
+hidden: true
 ---
 
 **A five-part series on building a personal operating system:**
@@ -11,7 +12,7 @@ heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&
 2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
 3. [The Real Test of a System Is Handing It to Someone Else](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else)
 4. **The System Is Not Its Tools** (this post)
-5. [The System Was Lying to Me](/blog/the-system-was-lying-to-me)
+5. [An Audit of My Follow-Up Pipeline Found 55% Was Overdue](/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue)
 
 The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
 

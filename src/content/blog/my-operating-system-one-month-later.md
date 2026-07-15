@@ -11,7 +11,7 @@ heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&
 2. **My Operating System, One Month Later** (this post)
 3. [The Real Test of a System Is Handing It to Someone Else](/blog/the-real-test-of-a-system-is-handing-it-to-someone-else)
 4. [The System Is Not Its Tools](/blog/the-system-is-not-its-tools)
-5. [The System Was Lying to Me](/blog/the-system-was-lying-to-me)
+5. [An Audit of My Follow-Up Pipeline Found 55% Was Overdue](/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue)
 
 The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
 

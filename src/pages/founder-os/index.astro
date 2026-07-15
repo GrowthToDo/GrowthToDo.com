@@ -321,13 +321,27 @@ const fixed = [
       </div>
     </section>
 
-    <!-- Links -->
-    <div class="grid md:grid-cols-2 gap-4 mb-12">
-      <a href="/blog/my-new-operating-system-for-work"
-         class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
-        <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-1">Read the story</p>
-        <p class="font-serif text-lg text-base-content">A four-part series <span class="text-base-content/40">&rarr;</span></p>
-      </a>
+    <!-- Series -->
+    <section class="mb-12">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">Read the story: a five-part series</h2>
+      <div class="flex flex-col gap-3">
+        {[
+          { href: "/blog/my-new-operating-system-for-work", title: "1. My New Operating System for Work" },
+          { href: "/blog/my-operating-system-one-month-later", title: "2. My Operating System, One Month Later" },
+          { href: "/blog/the-real-test-of-a-system", title: "3. The Real Test of a System Is Handing It to Someone Else" },
+          { href: "/blog/the-system-is-not-its-tools", title: "4. The System Is Not Its Tools" },
+          { href: "/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue", title: "5. An Audit of My Follow-Up Pipeline Found 55% Was Overdue" },
+        ].map((post) => (
+          <a href={post.href}
+             class="flex items-center justify-between border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
+            <p class="font-serif text-lg text-base-content">{post.title}</p>
+            <span class="text-base-content/40">&rarr;</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <div class="grid md:grid-cols-1 gap-4 mb-12">
       <a href="/founder-os/changelog"
          class="block border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
         <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-1">Follow the evolution</p>

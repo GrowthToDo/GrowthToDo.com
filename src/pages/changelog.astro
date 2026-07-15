@@ -3,6 +3,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const changelog = [
   {
+    date: '2026-07-15',
+    version: '1.14.0',
+    title: 'Curated Founder OS series + rent calculator listed',
+    changes: [
+      {
+        category: 'Content',
+        items: [
+          'Founder OS series parts 3-5 ("The Real Test of a System...", "The System Is Not Its Tools", and the renamed part 5) removed from the homepage, /blog index, tag pages, and RSS feed — now discoverable only from the /founder-os page, which links out to all 5 parts individually',
+          'Renamed part 5 from "The System Was Lying to Me" to "An Audit of My Follow-Up Pipeline Found 55% Was Overdue" — added a 301 redirect from the old URL',
+          'Added Rent Calculator to /unlisted',
+        ],
+      },
+      {
+        category: 'Feature',
+        items: [
+          'Blog posts can now be marked `hidden: true` in frontmatter to exclude them from all listings while keeping them reachable by direct URL',
+        ],
+      },
+    ],
+  },
+  {
     date: '2026-07-13',
     version: '1.13.0',
     title: 'Email signups + /now regrouped',

@@ -3,6 +3,7 @@ title: "The Real Test of a System Is Handing It to Someone Else"
 description: "A month ago I built an operating system for my own work. Today I sat down to set it up for someone else, and learned it isn't a template you copy. It's a fitting."
 pubDate: "Jun 23 2026"
 heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=630&fit=crop"
+hidden: true
 ---
 
 **A five-part series on building a personal operating system:**
@@ -11,7 +12,7 @@ heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&
 2. [My Operating System, One Month Later](/blog/my-operating-system-one-month-later)
 3. **The Real Test of a System Is Handing It to Someone Else** (this post)
 4. [The System Is Not Its Tools](/blog/the-system-is-not-its-tools)
-5. [The System Was Lying to Me](/blog/the-system-was-lying-to-me)
+5. [An Audit of My Follow-Up Pipeline Found 55% Was Overdue](/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue)
 
 The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
 

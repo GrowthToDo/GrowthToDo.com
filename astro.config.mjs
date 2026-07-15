@@ -12,5 +12,8 @@ export default defineConfig({
       [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
     ],
   },
+  redirects: {
+    '/blog/the-system-was-lying-to-me': '/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue',
+  },
   integrations: [mdx(), sitemap(), tailwind()]
 });
