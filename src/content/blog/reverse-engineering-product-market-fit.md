@@ -2,7 +2,7 @@
 title: "Reverse Engineering Product Market Fit"
 description: "A data driven, demand first approach to building internet native businesses that actually make money, without relying on vibes, opinions, or false certainty."
 pubDate: "Dec 15 2024"
-heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop"
+heroImage: "/images/blog/roachmafia-pmf-who-is-this-not-for.jpg"
 tags: ["product-market-fit", "startups", "demand", "ideation", "validation"]
 ---
 
@@ -11,6 +11,8 @@ Product market fit is not dead. But the version most people have been taught is 
 This post is a written distillation of a live session titled “Reverse Engineering Product Market Fit: A Data Driven Approach”, delivered at the Roach Mafia meetup in December 2024. The goal of the session was simple. Cut through startup mythology, remove opinion driven product building, and replace it with a framework that improves your odds of building something people actually want and are willing to pay for.
 
 This is not a formula. It is an error minimisation framework.
+
+*(I also run this as a workshop for teams. If you want to run it with yours, [reach out](https://growthtodo.neetocal.com/30mins).)*
 
 ## Why this exists
 
@@ -38,13 +40,15 @@ A clearer model is what I call AODM Fit:
 - Distribution
 - Money
 
+I have written about this framework in more depth in [What Is AODM Fit and Why PMF Alone Is Not Enough](/blog/what-is-aodm-fit-and-why-pmf-alone-is-not-enough).
+
 A product without distribution is dead on arrival.
 Distribution without a real painkiller product leads to slow death.
 Money is not an afterthought. It is a constraint that shapes everything upstream.
 
 This fit is part art and part science. Ignore either and you pay for it later.
 
-## You are not 50 Cent
+## Your real advantage is data, not reach
 
 Most advice assumes you have money, reach, or leverage. You probably do not.
 
@@ -60,9 +64,13 @@ The data already exists. The question is whether you are willing to listen.
 
 ## Ideation should start with listening, not guessing
 
+![Four ways to find a problem: data driven methods, hanging out in the internet's watering holes, and letting other people curate ideas for you](/images/blog/roachmafia-pmf-four-ways-to-find-a-problem.jpg)
+
 Survey data is weak.
 Search data is strong.
 Sales data is unbeatable.
+
+![Pay attention to what people do, not just what they say: survey data is not good, search data is good, sales data is the best](/images/blog/roachmafia-pmf-pay-attention-to-what-people-do.jpg)
 
 Instead of asking people what they want, observe what they already do.
 
@@ -72,6 +80,8 @@ Some reliable places to listen:
 - Alternatives people are actively looking for.
 - Reviews, complaints, and migration stories.
 - Communities where people discuss work, tools, and pain honestly.
+
+![A table showing you can track what people search for over time on Google, YouTube, Reddit, Wikipedia, and TikTok using tools like Ahrefs, Social Blade, Anvaka, XTools, and Creative Center](/images/blog/roachmafia-pmf-search-analytics-tools.jpg)
 
 Good ideation often comes from asking better questions, not having better ideas.
 
@@ -178,5 +188,7 @@ That is the work.
 If, at some point, you need a structured way to reason about demand, distribution, and money together, remember this framework.
 
 Until then, just do.
+
+If you want to run this as a workshop for your team, [reach out](https://growthtodo.neetocal.com/30mins) and we'll set it up.
 
 Fin.
