@@ -26,11 +26,14 @@ const academyPrograms = [
   },
 ];
 
+const HOURLY_RATE = "$200/hr";
+
 const engagements = [
   {
     title: "Clarity Sprint",
     badge: "START HERE",
     duration: "60-90 min",
+    price: "$250",
     desc: "One working session. We diagnose what is actually stuck, cut through the noise, and build a sequenced action plan for the next 2-4 weeks.",
     outcome: "You leave with a prioritized to-do list you can execute immediately.",
   },
@@ -38,6 +41,7 @@ const engagements = [
     title: "PMF Deep Dive",
     badge: "WORKSHOP",
     duration: "90-120 min",
+    price: "$350",
     desc: "For founders with unclear demand signals. We pressure test your ICP, offer, and distribution. You walk away with testable hypotheses and your next 3 experiments.",
     outcome: "A PMF scorecard and a clear path to validate or pivot.",
   },
@@ -45,6 +49,7 @@ const engagements = [
     title: "4-Week Execution",
     badge: "FOLLOW-UP",
     duration: "4 weeks",
+    price: "$1,600",
     desc: "Weekly cadence to ship the plan with momentum. Planning, review, decision support, and accountability without theatre.",
     outcome: "The plan actually gets done. Momentum compounds.",
   },
@@ -201,6 +206,26 @@ const principles = [
           <span>Fast turnaround, no retainer lock-in</span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="py-12 md:py-12 max-w-7xl mx-auto px-6 md:px-12 border-x border-solid border-base-content/10">
+    <div class="text-xs font-sans font-semibold text-teal-600 uppercase tracking-widest mb-4">PRICING</div>
+    <h2 class="font-serif text-4xl md:text-5xl font-bold text-base-content leading-tight mb-3">Pick a starting point</h2>
+    <p class="font-serif text-lg text-base-content/60 max-w-xl mb-10">Base rate is {HOURLY_RATE}. Packages below are flat fees, no surprise invoices.</p>
+
+    <div class="grid md:grid-cols-3 gap-0 border border-base-content/10">
+      {engagements.map((e) => (
+        <div class="group border-r last:border-r-0 border-b md:border-b-0 border-base-content/10 p-8 md:p-10 bg-white hover:bg-base-200 transition-colors duration-200 flex flex-col">
+          <span class="self-start text-xs font-sans font-semibold px-2.5 py-1 rounded-full border border-base-content/30 text-base-content/60 mb-6">{e.badge}</span>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold mb-2 text-base-content leading-tight">{e.title}</h3>
+          <div class="font-mono text-xs uppercase tracking-[0.15em] text-base-content/50 mb-5">{e.duration}</div>
+          <p class="font-serif text-base text-base-content/70 leading-relaxed mb-6 flex-1">{e.desc}</p>
+          <p class="font-serif text-sm text-base-content/50 italic mb-6">{e.outcome}</p>
+          <div class="font-serif text-3xl font-bold text-teal-600 pt-4 border-t border-base-content/10">{e.price}</div>
+        </div>
+      ))}
     </div>
   </section>
 
