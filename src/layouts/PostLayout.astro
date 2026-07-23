@@ -1,6 +1,7 @@
 ---
 import { type BlogSchema } from "../content/config";
 import BaseLayout from "./BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
@@ -58,8 +59,13 @@ const isExternalImage = typeof heroImage === 'string' && heroImage.startsWith('h
       <!-- Content -->
       <slot />
 
+      <!-- Newsletter signup -->
+      <div class="!mt-16 not-prose">
+        <UpdatesSignup source="blog-post" />
+      </div>
+
       <!-- Back link -->
-      <div class="border-t border-base-content/10 !mt-16 !pt-10 not-prose">
+      <div class="border-t border-base-content/10 !mt-10 !pt-10 not-prose">
         <a
           href="/blog"
           class="inline-flex items-center gap-2 text-sm font-sans font-medium text-base-content/50 hover:text-base-content transition-colors duration-200"

@@ -6,6 +6,8 @@ heroImage: "/images/blog/aiboomi-volunteers-stage.jpg"
 tags: ["community", "startups", "growth"]
 ---
 
+*This post was also republished by the [AIBoomi team on their own blog](https://aiboomi.org/blogs/vip-access-a-volunteers-memoir-building-aiboomi-annual-26-from-the-inside/).*
+
 I owe the Indian tech ecosystem more than I can measure.
 
 In January 2019, I attended the [very first SaaSBoomi Annual](https://photos.app.goo.gl/SYw4ycB6zmhPaWuE9). I'd been a founder for six years by then, building an ed-tech company for the Indian market, but I was new to the SaaS world that built products from India and served the global market. I walked into a room full of people who were further ahead and willing to share everything they knew. No gatekeeping, no hierarchy, just builders helping builders. That event changed how I thought about community, about generosity, and about what's possible when people show up for each other.
