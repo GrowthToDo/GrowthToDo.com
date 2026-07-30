@@ -4,6 +4,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const changelog = [
   {
     date: '2026-07-30',
+    version: '1.18.1',
+    title: 'Homepage: fix oversized gap below the hero thesis',
+    changes: [
+      {
+        category: 'Fix',
+        items: [
+          'homepage: removed the forced 85vh min-height/vertical-centering on the hero section, which left a large empty gap between the thesis links and "Notes from a founder-operator." on tall screens',
+        ],
+      },
+    ],
+  },
+  {
+    date: '2026-07-30',
     version: '1.18.0',
     title: 'Homepage thesis: Distribution decides winners',
     changes: [
