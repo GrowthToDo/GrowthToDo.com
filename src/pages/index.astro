@@ -11,9 +11,32 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 <div data-theme="cogniswitch" class="min-h-screen bg-base-100">
 <BaseLayout title="Writing" sideBarActiveItemID="blog">
-  <section class="py-10 md:py-14 max-w-2xl mx-auto px-6 md:px-0">
+  <section class="py-10 md:py-16 max-w-2xl mx-auto px-6 md:px-0 md:min-h-[85vh] md:flex md:flex-col md:justify-center">
 
-    <h1 class="font-serif text-2xl md:text-3xl font-bold text-base-content mb-10">Notes from a founder-operator.</h1>
+    <h1 class="font-serif text-3xl md:text-5xl font-bold leading-tight tracking-tight text-base-content">
+      Distribution decides <span class="text-teal-600">winners.</span>
+    </h1>
+
+    <div class="mt-6 md:mt-8 space-y-4 font-serif text-base md:text-lg leading-relaxed text-base-content/80">
+      <p>
+        I'm Gautham. I spent 2013 to 2025 as a founder-operator in edtech, running everything outside engineering. The company never passed a $13M valuation. That number is why everything I do now starts with distribution.
+      </p>
+      <p>
+        Today I head a marketing-first product studio built on that one belief. We grow other people's products, and we build our own, and no bet gets our time until two things are proven: real demand, and a channel that reaches it.
+      </p>
+    </div>
+
+    <div class="mt-8 md:mt-10 flex flex-wrap gap-x-6 gap-y-2 font-sans text-sm md:text-base">
+      <a href="/work" class="text-teal-600 hover:underline">The work →</a>
+      <a href="https://shippingwith.ai/" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:underline">The podcast →</a>
+      <a href="#writing" class="text-teal-600 hover:underline">The writing ↓</a>
+    </div>
+
+  </section>
+
+  <section id="writing" class="py-10 md:py-14 max-w-2xl mx-auto px-6 md:px-0">
+
+    <h2 class="font-serif text-2xl md:text-3xl font-bold text-base-content mb-10">Notes from a founder-operator.</h2>
 
     <div class="space-y-3">
       {posts.map((post) => (
