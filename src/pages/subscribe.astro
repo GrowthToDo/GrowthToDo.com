@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import UpdatesSignup from "../components/UpdatesSignup.astro";
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout sideBarActiveItemID="subscribe" title="Subscribe">
+
+  <section class="py-4 md:py-20 max-w-7xl mx-auto px-6 md:px-12 border-x border-solid border-base-content/10 md:min-h-screen md:flex md:flex-col md:justify-center">
+    <div class="space-y-3 md:space-y-8 max-w-2xl">
+
+      <h1 class="font-serif text-xl md:text-3xl font-normal leading-snug tracking-tight text-base-content/80">
+        I write down what actually <span class="text-teal-600 font-normal">worked, and what broke.</span>
+      </h1>
+
+      <p class="font-serif text-base md:text-xl leading-snug text-base-content/70">
+        Running a product studio means a lot of experiments. The ones worth sharing land in your inbox. No schedule, no funnel, no noise.
+      </p>
+
+      <div class="space-y-2.5 md:space-y-5">
+        <UpdatesSignup source="subscribe-page" showWhatsapp={true} />
+
+        <p class="font-sans text-sm text-base-content/50">
+          Want a taste first? Start with <a href="/" class="text-teal-600 hover:underline">the writing</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+</div>
