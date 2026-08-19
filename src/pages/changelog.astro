@@ -3,6 +3,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const changelog = [
   {
+    date: '2026-08-19',
+    version: '1.21.0',
+    title: 'New /contact page replaces mailto link',
+    changes: [
+      {
+        category: 'Feature',
+        items: [
+          'sidebar "Contact" no longer opens the email client directly — it now links to a new /contact page showing the email address with an explicit "Copy" button that copies it to the clipboard and confirms with "Copied!"',
+        ],
+      },
+    ],
+  },
+  {
     date: '2026-08-01',
     version: '1.20.0',
     title: 'Homepage signup placement + clearer mobile menu',
