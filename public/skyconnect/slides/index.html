@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkyConnect — POC Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Fira+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* One deliberate look: the prototype's blue-hour cockpit language.
+   Magenta = the path. Cyan = live. Green = engaged. Amber = caution. */
+:root{
+  --ground:#080E1A; --ground-2:#0C1424; --surface:#151F31; --surface-hi:#1B2739;
+  --ink:#EEF3F9; --ink-dim:#9DABBF; --ink-faint:#7B8CA6;
+  --hair:rgba(255,255,255,.09); --hair-soft:rgba(255,255,255,.055); --gloss:rgba(255,255,255,.07);
+  --course:#F074B0; --course-wash:rgba(240,116,176,.10); --course-glow:rgba(240,116,176,.42);
+  --track:#6FDCEF; --engaged:#63D3A2; --caution:#F0AC4B; --warning:#F0806D;
+  --sky-1:#050A14; --sky-2:#0B1730; --sky-3:#1B2545; --sky-warm:#4A2F42; --sky-ember:#8A5140;
+  --lift:0 1px 0 var(--gloss) inset, 0 20px 44px -30px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);overflow:hidden;
+  font-family:"Fira Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--track);text-decoration:none}
+:focus-visible{outline:2px solid var(--course);outline-offset:3px;border-radius:3px}
+
+.grain::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+.micro{font-size:clamp(10px,1.1vw,12.5px);font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink-faint)}
+.mono,.data{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.data{font-size:clamp(10px,1vw,12px);letter-spacing:.1em;text-transform:uppercase}
+.d1{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:clamp(34px,5.6vw,74px);line-height:1.04;letter-spacing:-.034em;margin:0;text-wrap:balance}
+.d2{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,3.8vw,50px);line-height:1.08;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.lede{font-size:clamp(15px,1.5vw,19px);line-height:1.55;color:var(--ink-dim);margin:0}
+.lede b{color:var(--ink);font-weight:500}
+.sm{font-size:clamp(12.5px,1.2vw,15px);line-height:1.5;color:var(--ink-dim);margin:0}
+.sm b{color:var(--ink);font-weight:500}
+
+/* stage */
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+  padding:clamp(28px,6vw,96px) clamp(24px,7vw,120px) clamp(70px,9vh,110px);
+}
+.slide.on{display:flex;animation:in .5s cubic-bezier(.22,.75,.28,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sky{position:fixed;inset:0;z-index:-1;display:none}
+.sky.on{display:block}
+.sky canvas{width:100%;height:100%;display:block}
+.sky::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,26,.5),rgba(8,14,26,.15) 34%,rgba(8,14,26,.6) 72%,var(--ground))}
+
+.courserule{width:52px;height:3px;border-radius:2px;background:var(--course);box-shadow:0 0 22px 0 var(--course-glow);margin:clamp(16px,2.6vh,28px) 0}
+
+/* cards */
+.card{
+  background:var(--surface);border:1px solid var(--hair);border-radius:12px;
+  padding:clamp(14px,2vw,24px);box-shadow:0 1px 0 var(--gloss) inset;
+}
+.card .micro{margin-bottom:10px}
+.grid{display:grid;gap:clamp(10px,1.4vw,18px)}
+
+/* stat tiles */
+.stat{align-items:baseline}
+.stat .n{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:clamp(30px,3.4vw,46px);line-height:1;letter-spacing:-.01em}
+.stat .u{font-size:clamp(11px,1.05vw,13px);color:var(--ink-dim);margin-top:6px}
+.stat .c{font-size:clamp(11px,1vw,12.5px);color:var(--ink-faint);margin-top:8px;line-height:1.45}
+
+/* board line */
+.bd-t{display:flex;align-items:baseline;gap:16px}
+.bd-time{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:clamp(24px,2.6vw,36px);letter-spacing:.04em}
+.bd-time i{font-style:normal;font-size:clamp(10px,1vw,12px);color:var(--ink-faint);margin-left:6px;letter-spacing:.08em}
+.bd-ln{flex:1;height:1px;position:relative;background:linear-gradient(90deg,transparent,var(--ink-faint) 18%,var(--ink-faint) 82%,transparent);opacity:.7;top:-7px}
+.bd-ln u{position:absolute;right:-1px;top:-3px;width:7px;height:7px;border-right:1.4px solid var(--ink-faint);border-top:1.4px solid var(--ink-faint);transform:rotate(45deg)}
+.bd-sub{display:flex;flex-wrap:wrap;gap:10px;row-gap:5px;margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:clamp(10px,1vw,12px);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.bd-sub i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5;font-style:normal;align-self:center}
+.bd-sub b{font-weight:500;color:var(--ink-dim);white-space:nowrap}
+.bd-sub span{white-space:nowrap}
+
+.pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(8px,1.3vh,13px)}
+.pts li{position:relative;padding-left:18px;font-size:clamp(13px,1.3vw,16.5px);line-height:1.5;color:var(--ink-dim)}
+.pts li::before{content:"";position:absolute;left:2px;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--ink-faint)}
+.pts li b{color:var(--ink);font-weight:500}
+.pts li.bad::before{background:var(--warning);box-shadow:0 0 7px 0 var(--warning)}
+.pts li.ok::before{background:var(--engaged);box-shadow:0 0 7px 0 var(--engaged)}
+.pts li.warn::before{background:var(--caution);box-shadow:0 0 7px 0 var(--caution)}
+
+/* chrome */
+.chrome{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;padding:14px clamp(24px,4vw,48px);
+}
+.chrome .brand{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:13.5px;letter-spacing:-.01em}
+.chrome .brand span{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-left:10px}
+.chrome nav{display:flex;align-items:center;gap:14px}
+.chrome .ct{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;color:var(--ink-faint)}
+.chrome button{width:34px;height:34px;border:1px solid var(--hair);border-radius:50%;color:var(--ink-dim);display:flex;align-items:center;justify-content:center;font-size:15px;transition:color .15s,border-color .15s}
+.chrome button:hover{color:var(--ink);border-color:var(--course)}
+.dots{position:fixed;right:clamp(14px,2vw,26px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;z-index:40}
+.dots button{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);opacity:.4;padding:0;transition:.2s}
+.dots button[aria-current="true"]{background:var(--course);opacity:1;box-shadow:0 0 10px 0 var(--course-glow)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px)}
+
+/* illustration treatment: rounded, vignetted into the ground */
+.illus{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--hair);box-shadow:var(--lift)}
+.illus img{display:block;width:100%;height:100%;object-fit:cover}
+.illus::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(8,14,26,0) 55%,rgba(8,14,26,.5))}
+
+/* mini phone: the prototype's dashboard, drawn, not screenshotted */
+.mini{
+  width:clamp(200px,17vw,248px);background:var(--ground-2);border:1px solid var(--hair);
+  border-radius:26px;padding:16px 16px 0;box-shadow:var(--lift);overflow:hidden;flex:none;
+  background-image:linear-gradient(180deg,#0B1730 0%,#1B2545 22%,rgba(74,47,66,.45) 34%,var(--ground-2) 52%);
+}
+.mini .mbar{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-dim);margin-bottom:14px}
+.mini .mmicro{font-size:8px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin:0}
+.mini .mhead{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:13px;line-height:1.3;letter-spacing:-.01em;margin:6px 0 0}
+.mini .mbd{display:flex;align-items:center;gap:8px;margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600}
+.mini .mbd i{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--ink-faint),transparent);opacity:.7}
+.mini .msub{font-family:"IBM Plex Mono",monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:6px}
+.mini .msub b{color:var(--warning);font-weight:500}
+.mini .mdec{
+  position:relative;margin-top:13px;border:1px solid var(--hair);border-left:2px solid var(--course);
+  border-radius:8px;padding:10px 12px;background:linear-gradient(104deg,var(--course-wash),transparent 60%),var(--surface-hi);
+  box-shadow:0 0 34px -14px var(--course-glow);
+}
+.mini .mdec .mlbl{display:block;font-size:7.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--course);font-weight:500}
+.mini .mdec b{font-family:"Schibsted Grotesk",sans-serif;font-size:15px;letter-spacing:-.01em;display:block;margin-top:3px}
+.mini .mdec .go{position:absolute;right:10px;bottom:9px;width:18px;height:18px;border-radius:50%;border:1px solid var(--course);color:var(--course);display:flex;align-items:center;justify-content:center;font-size:9px}
+.mini .mrow{border-top:1px solid var(--hair-soft);padding:8px 0;font-size:9.5px;color:var(--ink-dim)}
+.mini .mrow:first-of-type{border-top:0}
+.mini .mnav{display:flex;border-top:1px solid var(--hair);margin:12px -16px 0;padding:8px 0 10px;background:var(--ground)}
+.mini .mnav span{flex:1;text-align:center;font-family:"IBM Plex Mono",monospace;font-size:6.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.mini .mnav span:first-child{color:var(--ink);position:relative}
+.mini .mnav span:first-child::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;width:16px;height:2px;background:var(--course);border-radius:1px}
+
+@media (max-width:760px){.two{grid-template-columns:1fr}.dots{display:none}.illus{max-height:34vh}.mini{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body class="grain">
+
+<div class="sky on" id="skywrap"><canvas id="sky" width="1600" height="900" aria-hidden="true"></canvas></div>
+
+<!-- 1 · TITLE -->
+<section class="slide on">
+  <div class="two" style="grid-template-columns:1.2fr .8fr;align-items:center">
+    <div>
+      <p class="micro">IndoAir · Passenger disruption management · Proof of concept</p>
+      <div class="courserule"></div>
+      <h1 class="d1" style="max-width:14ch">When a flight falls apart, the experience shouldn't.</h1>
+      <p class="lede" style="margin-top:clamp(18px,3vh,30px);max-width:44ch">A mobile-first recovery platform that helps passengers understand what happened, decide with confidence, and recover in minutes.</p>
+      <p class="data" style="margin-top:clamp(24px,5vh,44px);color:var(--ink-faint)">Surya Haridasan · SkyConnect POC pitch</p>
+    </div>
+    <div class="illus" style="max-height:66vh;aspect-ratio:825/797"><img src="img/priya-title.jpg" alt="A traveller at a night-time gate window, checking her phone"></div>
+  </div>
+</section>
+
+<!-- 2 · THE PROBLEM -->
+<section class="slide">
+  <p class="micro">The disruption problem</p>
+  <h2 class="d2" style="margin-top:14px;max-width:18ch">Flight disruptions are not rare. They are inevitable.</h2>
+  <div class="two" style="margin-top:clamp(20px,3.5vh,36px);grid-template-columns:1.25fr 1fr">
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);align-content:start">
+      <div class="card stat"><span class="n" style="color:var(--warning)">6–9%</span><p class="u">of flights</p><p class="c">face significant disruption on any given day</p></div>
+      <div class="card stat"><span class="n" style="color:var(--caution)">40+</span><p class="u">minutes</p><p class="c">average airport queue during major disruptions</p></div>
+      <div class="card stat"><span class="n" style="color:var(--track)">73%</span><p class="u">of passengers</p><p class="c">prefer self-service rebooking when comparable options are offered</p></div>
+      <p class="data" style="grid-column:1/-1;color:var(--ink-faint);font-size:10px">Sources · IATA Global Passenger Survey · 73%: Q3 competitor benchmark</p>
+    </div>
+    <div class="card">
+      <p class="micro" style="color:var(--warning)">What passengers face today</p>
+      <ul class="pts">
+        <li class="bad">No proactive notification</li>
+        <li class="bad">A 40+ minute queue, or an unknown hold time</li>
+        <li class="bad">Zero visibility into their options</li>
+        <li class="bad">Compensation: ask, and hope</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · PRIYA -->
+<section class="slide">
+  <div class="two" style="grid-template-columns:.62fr 1.38fr;align-items:center">
+    <div class="illus" style="max-height:74vh;aspect-ratio:723/1100"><img src="img/priya-tall.jpg" alt="Priya seated at the gate, reading the cancellation on her phone" style="object-position:50% 30%"></div>
+    <div>
+      <p class="micro">Primary user</p>
+      <h2 class="d2" style="margin-top:14px">09:35. IA 247 is cancelled.</h2>
+      <div class="card" style="margin-top:clamp(18px,3vh,30px)">
+        <div class="bd-t">
+          <span class="bd-time">BLR</span>
+          <span class="bd-ln"><u></u></span>
+          <span class="bd-time">SIN</span>
+        </div>
+        <div class="bd-sub"><span>Today</span><i></i><b>IA 247</b><i></i><b style="color:var(--warning)">Cancelled 09:35</b></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <p class="micro" style="color:var(--track)">Priya Sharma · IndoAir Miles Gold</p>
+        <ul class="pts">
+          <li>Frequent business traveller, at the airport now</li>
+          <li class="warn">Opening a workshop in Singapore, <b>09:00 tomorrow morning</b></li>
+          <li>One notification takes her straight in. <b>No login, no queue.</b></li>
+          <li>She has to decide, alone, and quickly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · THE THESIS -->
+<section class="slide">
+  <p class="micro">What the POC is really about</p>
+  <h2 class="d1" style="margin-top:14px;max-width:16ch">Rebooking was never the hard part. <em style="font-style:normal;color:var(--course)">Deciding is.</em></h2>
+  <div class="courserule"></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);max-width:1000px">
+    <div class="card"><p class="micro" style="color:var(--track)">The transaction</p><p class="sm">takes about <b>90 seconds</b></p></div>
+    <div class="card"><p class="micro" style="color:var(--caution)">The queue</p><p class="sm">averages <b>40 minutes</b>, because the counter is where a human helps you decide</p></div>
+    <div class="card" style="border-left:2px solid var(--course)"><p class="micro" style="color:var(--course)">SkyConnect</p><p class="sm">makes a stressed person <b>confident enough to commit, alone</b></p></div>
+  </div>
+</section>
+
+<!-- 5 · DEMO -->
+<section class="slide">
+  <div style="display:flex;gap:clamp(24px,4vw,64px);align-items:center">
+    <div style="flex:1;min-width:0">
+      <p class="micro">Live prototype</p>
+      <h2 class="d2" style="margin-top:14px">Let me show you Priya's four minutes.</h2>
+      <div class="courserule"></div>
+      <a class="mono" href="https://growthtodo.com/skyconnect/" target="_blank" rel="noopener" style="font-size:clamp(18px,2.2vw,30px);font-weight:600;letter-spacing:.02em">growthtodo.com/skyconnect</a>
+      <div class="bd-sub" style="margin-top:14px"><span>21 screens</span><i></i><span>clickable end to end</span><i></i><span>no login</span></div>
+      <div class="grid" style="grid-template-columns:1fr 1fr;max-width:620px;margin-top:clamp(18px,3vh,30px)">
+        <div class="card"><p class="data" style="color:var(--course)">Decide</p><p class="sm" style="margin-top:8px">One recommended step, four paths in reach</p></div>
+        <div class="card"><p class="data" style="color:var(--caution)">Hold</p><p class="sm" style="margin-top:8px">Ten minutes to commit without losing the seat</p></div>
+        <div class="card"><p class="data" style="color:var(--engaged)">Confirm</p><p class="sm" style="margin-top:8px">No fare difference, no card, ever</p></div>
+        <div class="card"><p class="data" style="color:var(--track)">Tell</p><p class="sm" style="margin-top:8px">Recovery ends with the person expecting her</p></div>
+      </div>
+    </div>
+    <div class="mini" aria-hidden="true">
+      <div class="mbar"><span class="mono">09:41</span><span class="mono">4G</span></div>
+      <p class="mmicro" style="color:var(--track)">● Live · checked 09:41</p>
+      <p class="mmicro" style="color:var(--warning);margin-top:10px">Flight cancelled</p>
+      <p class="mhead">We're sorry, Priya. Your flight to Singapore has been cancelled.</p>
+      <div class="mbd"><span>BLR</span><i></i><span>SIN</span></div>
+      <p class="msub">Today · IA 247 · <b>Cancelled 09:35</b></p>
+      <div class="mdec"><span class="mlbl">Your decision</span><b>Fly today</b><span class="go">→</span></div>
+      <div style="margin-top:10px">
+        <div class="mrow">Take tomorrow's 08:00</div>
+        <div class="mrow">Take the money back</div>
+        <div class="mrow">Hand it to a person</div>
+      </div>
+      <div class="mnav"><span>Recovery</span><span>Benefits</span><span>Updates</span><span>You</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · TWO STATES -->
+<section class="slide">
+  <p class="micro">Before vs after</p>
+  <h2 class="d2" style="margin-top:14px;max-width:20ch">From the current to the SkyConnect experience</h2>
+  <div class="two" style="margin-top:clamp(20px,3.5vh,36px);max-width:1050px">
+    <div class="card" style="border-left:2px solid var(--warning)">
+      <p class="micro" style="color:var(--warning)">Today</p>
+      <ul class="pts">
+        <li class="bad">Fragmented updates across channels</li>
+        <li class="bad">No single source of truth</li>
+        <li class="bad">Passengers unsure what to do next</li>
+        <li class="bad">Compensation inconsistent at best</li>
+      </ul>
+      <p class="sm" style="margin-top:14px;color:var(--warning)">Feels like being left in a waiting room</p>
+    </div>
+    <div class="card" style="border-left:2px solid var(--engaged)">
+      <p class="micro" style="color:var(--engaged)">With SkyConnect</p>
+      <ul class="pts">
+        <li class="ok">One recovery dashboard</li>
+        <li class="ok">One guided next action</li>
+        <li class="ok">Honest availability and entitlements</li>
+        <li class="ok">In control from the first tap</li>
+      </ul>
+      <p class="sm" style="margin-top:14px;color:var(--engaged)">Feels like someone's already handling it</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · OUTCOMES -->
+<section class="slide">
+  <p class="micro">Expected outcomes</p>
+  <h2 class="d2" style="margin-top:14px">Four targets the POC is built to hit</h2>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:clamp(20px,3.5vh,36px)">
+    <div class="card stat"><span class="n" style="color:var(--engaged)">&lt;4</span><p class="u">minutes of passenger time to recover</p><p class="c">where today the queue alone averages 40</p></div>
+    <div class="card stat"><span class="n" style="color:var(--track)">73%</span><p class="u">self-service intent</p><p class="c">the adoption this design is built to convert</p></div>
+    <div class="card stat"><span class="n" style="color:var(--course)">1</span><p class="u">recovery dashboard</p><p class="c">replacing 3–5 disconnected touchpoints</p></div>
+    <div class="card stat"><span class="n" style="color:var(--caution)">↓</span><p class="u">counter &amp; call-centre load</p><p class="c">at peak disruption, where the cost sits</p></div>
+  </div>
+  <p class="data" style="margin-top:18px;color:var(--ink-faint)">Design targets. The POC exists to earn the pilot that measures them.</p>
+</section>
+
+<!-- 8 · BEYOND + CLOSE -->
+<section class="slide">
+  <p class="micro">Beyond the prototype</p>
+  <div class="two" style="margin-top:clamp(16px,3vh,28px);max-width:1050px">
+    <div class="card" style="align-self:start">
+      <p class="micro" style="color:var(--track)">Built to scale</p>
+      <ul class="pts">
+        <li>Reusable design system, modular screens</li>
+        <li>Every rebooking through Amadeus Altéa APIs</li>
+        <li>Entitlements calculated from DGCA rules, never negotiated</li>
+      </ul>
+    </div>
+    <div class="card" style="align-self:start">
+      <p class="micro" style="color:var(--course)">Next: agentic recovery</p>
+      <ul class="pts">
+        <li>Monitor disruptions, secure better alternatives</li>
+        <li>Apply eligible benefits automatically</li>
+        <li>Escalate only the complex cases to staff</li>
+      </ul>
+    </div>
+  </div>
+  <h2 class="d2" style="margin-top:clamp(24px,4.5vh,44px);max-width:24ch">SkyConnect turns the most stressful moment of a journey into a guided, transparent, self-service recovery.</h2>
+  <p class="mono" style="margin-top:16px;color:var(--track);font-size:clamp(13px,1.3vw,16px)">growthtodo.com/skyconnect</p>
+</section>
+
+<div class="dots" id="dots" aria-label="Slides"></div>
+
+<div class="chrome">
+  <span class="brand">SkyConnect<span>IndoAir · POC pitch</span></span>
+  <nav>
+    <span class="ct" id="ct">1 / 8</span>
+    <button id="prev" aria-label="Previous slide">←</button>
+    <button id="next" aria-label="Next slide">→</button>
+  </nav>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll(".slide")];
+const dots=document.getElementById("dots");
+slides.forEach((_,i)=>{
+  const b=document.createElement("button");
+  b.setAttribute("aria-label","Slide "+(i+1));
+  b.onclick=()=>show(i);
+  dots.appendChild(b);
+});
+let cur=0;
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,j)=>s.classList.toggle("on",j===cur));
+  dots.querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-current",String(j===cur)));
+  document.getElementById("ct").textContent=(cur+1)+" / "+slides.length;
+  document.getElementById("skywrap").classList.toggle("on",cur===0);
+  if(history.replaceState) history.replaceState(null,"","#"+(cur+1));
+}
+document.getElementById("prev").onclick=()=>show(cur-1);
+document.getElementById("next").onclick=()=>show(cur+1);
+addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();show(cur+1)}
+  if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(cur-1)}
+  if(e.key==="Home")show(0);
+  if(e.key==="End")show(slides.length-1);
+});
+/* blue hour, painted */
+(function(){
+  const c=document.getElementById("sky"),x=c.getContext("2d"),W=c.width,H=c.height;
+  const g=x.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,"#050A14");g.addColorStop(.34,"#0B1730");g.addColorStop(.6,"#1B2545");
+  g.addColorStop(.79,"#4A2F42");g.addColorStop(.9,"#8A5140");g.addColorStop(1,"#080E1A");
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  const b=x.createRadialGradient(W*.74,H*.86,0,W*.74,H*.86,W*.6);
+  b.addColorStop(0,"#8A5140");b.addColorStop(1,"transparent");
+  x.globalAlpha=.4;x.fillStyle=b;x.fillRect(0,0,W,H);x.globalAlpha=1;
+  const h=Math.round(H*.845),l=x.createLinearGradient(0,0,W,0);
+  l.addColorStop(0,"transparent");l.addColorStop(.5,"#8A5140");l.addColorStop(1,"transparent");
+  x.globalAlpha=.34;x.fillStyle=l;x.fillRect(0,h,W,1);x.globalAlpha=1;
+})();
+const h=parseInt(location.hash.slice(1),10);
+if(h>=1&&h<=slides.length)show(h-1);else show(0);
+</script>
+</body>
+</html>
