@@ -24,36 +24,8 @@
   --lift:0 1px 0 var(--gloss) inset, 0 20px 44px -30px rgba(0,0,0,.9);
   --shadow-phone:0 2px 8px rgba(0,0,0,.3), 0 60px 110px -40px rgba(0,0,0,.7);
 }
-@media (prefers-color-scheme:light){
-  :root:not([data-theme="dark"]){
-    --ground:#EEF2F8; --ground-2:#F6F8FB;
-    --surface:#FFFFFF; --surface-hi:#FFFFFF;
-    --ink:#0A1220; --ink-dim:#4B5B72; --ink-faint:#5F7290;
-    --hair:rgba(12,28,52,.12); --hair-soft:rgba(12,28,52,.07);
-    --gloss:rgba(255,255,255,.9);
-    --course:#B01E70; --course-wash:rgba(176,30,112,.055); --course-glow:rgba(176,30,112,.20);
-    --track:#0B6E88; --engaged:#1B7A55; --caution:#8A5406; --warning:#A3301F;
-    --engaged-glow:rgba(27,122,85,.18);
-    --page:#DDE4EC;
-    --sky-1:#B9C9E4; --sky-2:#9FB4D8; --sky-3:#C4C4DC; --sky-warm:#E0BCB4; --sky-ember:#F0C9A8;
-    --lift:0 1px 0 var(--gloss) inset, 0 18px 40px -30px rgba(16,32,56,.45);
-    --shadow-phone:0 2px 8px rgba(16,32,56,.07), 0 54px 100px -44px rgba(16,32,56,.36);
-  }
-}
-:root[data-theme="light"]{
-  --ground:#EEF2F8; --ground-2:#F6F8FB;
-  --surface:#FFFFFF; --surface-hi:#FFFFFF;
-  --ink:#0A1220; --ink-dim:#4B5B72; --ink-faint:#5F7290;
-  --hair:rgba(12,28,52,.12); --hair-soft:rgba(12,28,52,.07);
-  --gloss:rgba(255,255,255,.9);
-  --course:#B01E70; --course-wash:rgba(176,30,112,.055); --course-glow:rgba(176,30,112,.20);
-  --track:#0B6E88; --engaged:#1B7A55; --caution:#8A5406; --warning:#A3301F;
-  --engaged-glow:rgba(27,122,85,.18);
-  --page:#DDE4EC;
-  --sky-1:#B9C9E4; --sky-2:#9FB4D8; --sky-3:#C4C4DC; --sky-warm:#E0BCB4; --sky-ember:#F0C9A8;
-  --lift:0 1px 0 var(--gloss) inset, 0 18px 40px -30px rgba(16,32,56,.45);
-  --shadow-phone:0 2px 8px rgba(16,32,56,.07), 0 54px 100px -44px rgba(16,32,56,.36);
-}
+/* Single-theme by design: the phone is always the dark blue-hour build,
+   whatever theme the viewer's OS or the artifact page is in. */
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -171,16 +143,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
   background:linear-gradient(180deg,
     var(--ground) 0%, rgba(8,14,26,0) 12%,
     rgba(8,14,26,.32) 55%, var(--ground) 100%);
-}
-@media (prefers-color-scheme:light){
-  :root:not([data-theme="dark"]) .sky::after{
-    background:linear-gradient(180deg, var(--ground) 0%, rgba(238,242,248,0) 14%,
-      rgba(238,242,248,.5) 60%, var(--ground) 100%);
-  }
-}
-:root[data-theme="light"] .sky::after{
-  background:linear-gradient(180deg, var(--ground) 0%, rgba(238,242,248,0) 14%,
-    rgba(238,242,248,.5) 60%, var(--ground) 100%);
 }
 .sky.full::after{
   background:linear-gradient(180deg, rgba(8,14,26,.24) 0%, rgba(8,14,26,0) 26%,
@@ -348,12 +310,8 @@ button.need.rec:hover{box-shadow:var(--lift),0 0 74px -24px var(--course-glow)}
 .lock .lt{text-align:center;padding:84px 0 0}
 .lock .lt b{display:block;font-family:"IBM Plex Mono",monospace;font-size:66px;font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--ink)}
 .lock .lt span{font-size:13.5px;color:var(--ink-dim)}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .lock .lt b{color:#EEF3F9}
-  :root:not([data-theme="light"]) .lock .lt span{color:rgba(238,243,249,.72)}
-}
-:root[data-theme="dark"] .lock .lt b{color:#EEF3F9}
-:root[data-theme="dark"] .lock .lt span{color:rgba(238,243,249,.72)}
+.lock .lt b{color:#EEF3F9}
+.lock .lt span{color:rgba(238,243,249,.72)}
 .pushcard{
   margin:auto 16px 40px;background:rgba(14,22,38,.5);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 17px;
@@ -1624,10 +1582,6 @@ function paintSkies(){
   });
 }
 paintSkies();
-if (window.matchMedia){
-  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", paintSkies);
-}
-new MutationObserver(paintSkies).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
 
 const NAV = [
   ["push","Notification"],["status","Recovery Dashboard"],["commit","Trip purpose"],
