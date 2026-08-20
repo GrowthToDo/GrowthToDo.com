@@ -1,0 +1,1657 @@
+<title>SkyConnect Pass 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Fira+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ================================================================
+   SkyConnect — Pass 3. The Pass 2 visual language, propagated to
+   all 21 screens. Magenta = the path being flown. Cyan = a tracked
+   value. Green = engaged. Amber = caution. A lifted surface means
+   "this needs you" — nothing else gets one.
+   ================================================================ */
+:root{
+  --ground:#080E1A; --ground-2:#0C1424;
+  --surface:#151F31; --surface-hi:#1B2739;
+  --ink:#EEF3F9; --ink-dim:#9DABBF; --ink-faint:#7B8CA6;
+  --hair:rgba(255,255,255,.09); --hair-soft:rgba(255,255,255,.055);
+  --gloss:rgba(255,255,255,.07);
+  --course:#F074B0; --course-wash:rgba(240,116,176,.10); --course-glow:rgba(240,116,176,.42);
+  --track:#6FDCEF; --engaged:#63D3A2; --caution:#F0AC4B; --warning:#F0806D;
+  --engaged-glow:rgba(99,211,162,.35);
+  --page:#04070D;
+  --sky-1:#050A14; --sky-2:#0B1730; --sky-3:#1B2545; --sky-warm:#4A2F42; --sky-ember:#8A5140;
+  --lift:0 1px 0 var(--gloss) inset, 0 20px 44px -30px rgba(0,0,0,.9);
+  --shadow-phone:0 2px 8px rgba(0,0,0,.3), 0 60px 110px -40px rgba(0,0,0,.7);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --ground:#EEF2F8; --ground-2:#F6F8FB;
+    --surface:#FFFFFF; --surface-hi:#FFFFFF;
+    --ink:#0A1220; --ink-dim:#4B5B72; --ink-faint:#5F7290;
+    --hair:rgba(12,28,52,.12); --hair-soft:rgba(12,28,52,.07);
+    --gloss:rgba(255,255,255,.9);
+    --course:#B01E70; --course-wash:rgba(176,30,112,.055); --course-glow:rgba(176,30,112,.20);
+    --track:#0B6E88; --engaged:#1B7A55; --caution:#8A5406; --warning:#A3301F;
+    --engaged-glow:rgba(27,122,85,.18);
+    --page:#DDE4EC;
+    --sky-1:#B9C9E4; --sky-2:#9FB4D8; --sky-3:#C4C4DC; --sky-warm:#E0BCB4; --sky-ember:#F0C9A8;
+    --lift:0 1px 0 var(--gloss) inset, 0 18px 40px -30px rgba(16,32,56,.45);
+    --shadow-phone:0 2px 8px rgba(16,32,56,.07), 0 54px 100px -44px rgba(16,32,56,.36);
+  }
+}
+:root[data-theme="light"]{
+  --ground:#EEF2F8; --ground-2:#F6F8FB;
+  --surface:#FFFFFF; --surface-hi:#FFFFFF;
+  --ink:#0A1220; --ink-dim:#4B5B72; --ink-faint:#5F7290;
+  --hair:rgba(12,28,52,.12); --hair-soft:rgba(12,28,52,.07);
+  --gloss:rgba(255,255,255,.9);
+  --course:#B01E70; --course-wash:rgba(176,30,112,.055); --course-glow:rgba(176,30,112,.20);
+  --track:#0B6E88; --engaged:#1B7A55; --caution:#8A5406; --warning:#A3301F;
+  --engaged-glow:rgba(27,122,85,.18);
+  --page:#DDE4EC;
+  --sky-1:#B9C9E4; --sky-2:#9FB4D8; --sky-3:#C4C4DC; --sky-warm:#E0BCB4; --sky-ember:#F0C9A8;
+  --lift:0 1px 0 var(--gloss) inset, 0 18px 40px -30px rgba(16,32,56,.45);
+  --shadow-phone:0 2px 8px rgba(16,32,56,.07), 0 54px 100px -44px rgba(16,32,56,.36);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:"Fira Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left;padding:0}
+:focus-visible{outline:2px solid var(--course);outline-offset:3px;border-radius:3px}
+
+/* grain — turns a flat hex into a material */
+.grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:35;opacity:.055;border-radius:inherit;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+/* ---- type roles ---- */
+.d-xl{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:34px;line-height:1.04;letter-spacing:-.033em;margin:0;text-wrap:balance}
+.d-l{font-family:"Schibsted Grotesk",sans-serif;font-weight:700;font-size:25px;line-height:1.1;letter-spacing:-.028em;margin:0;text-wrap:balance}
+.ttl{font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:17.5px;line-height:1.24;letter-spacing:-.015em;margin:0}
+.body{font-size:15px;line-height:1.55;margin:0;color:var(--ink-dim)}
+.body b{color:var(--ink);font-weight:500}
+.sm{font-size:13.5px;line-height:1.5;margin:0;color:var(--ink-dim)}
+.sm b{color:var(--ink);font-weight:500}
+.fnt{font-size:12px;line-height:1.5;margin:0;color:var(--ink-faint)}
+.micro{font-size:10.5px;line-height:1.4;font-weight:500;letter-spacing:.13em;text-transform:uppercase;margin:0;color:var(--ink-faint)}
+.mono,.data-s{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.data-s{font-size:11px;font-weight:500;letter-spacing:.11em;text-transform:uppercase}
+
+/* certainty, as specified: light and rules, never pills or fills */
+.fresh{display:inline-flex;align-items:center;gap:9px;color:var(--track)}
+.pip{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none;box-shadow:0 0 10px 1px currentColor;animation:pip 2.6s ease-in-out infinite}
+@keyframes pip{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.34;transform:scale(.78)}}
+.scarce{display:inline-flex;align-items:center;gap:8px;color:var(--caution)}
+.scarce::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.conf{color:var(--ink);font-weight:500;border-bottom:2px solid var(--engaged);padding-bottom:1px}
+.gone{color:var(--warning)}
+.okv{color:var(--engaged)}
+
+/* ---- stage ---- */
+.stage{
+  min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;
+  gap:44px;align-items:start;padding:36px 24px 64px;
+}
+.rail{position:sticky;top:36px;max-width:270px;display:flex;flex-direction:column;gap:26px}
+.rail.left{justify-self:end}
+.rail.right{justify-self:start}
+.rail h2{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 11px;font-weight:500;font-family:"IBM Plex Mono",monospace}
+.brand{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+.brand b{font-family:"Schibsted Grotesk",sans-serif;font-size:17px;font-weight:700;letter-spacing:-.015em}
+.brand span{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase}
+.rail p{margin:0;font-size:12.5px;line-height:1.55;color:var(--ink-dim)}
+.rail p+p{margin-top:9px}
+.rail p b{color:var(--ink);font-weight:500}
+
+.jump{display:flex;flex-direction:column}
+.jump button{
+  display:flex;align-items:center;gap:10px;padding:5.5px 0 5.5px 10px;font-size:12.5px;
+  color:var(--ink-faint);border-left:2px solid transparent;transition:color .15s,border-color .15s;
+}
+.jump button:hover{color:var(--ink)}
+.jump button[aria-current="true"]{color:var(--ink);border-left-color:var(--course)}
+.jump i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--ink-faint);min-width:17px}
+.jump button[aria-current="true"] i{color:var(--course)}
+
+.evt{display:flex;flex-direction:column}
+.evt button{
+  border-top:1px solid var(--hair-soft);padding:11px 2px;font-size:12.5px;font-weight:500;
+  color:var(--caution);line-height:1.4;transition:color .15s;
+}
+.evt button:hover{filter:brightness(1.12)}
+.evt button small{display:block;font-weight:400;color:var(--ink-faint);font-size:11.5px;margin-top:2px;line-height:1.45}
+.evt button.ghost{color:var(--ink-dim);border-bottom:1px solid var(--hair-soft)}
+
+/* ---- phone ---- */
+.device{display:flex;flex-direction:column;align-items:center;gap:16px}
+.phone{
+  width:392px;height:844px;background:var(--ground);border-radius:38px;
+  border:1px solid var(--hair);box-shadow:var(--shadow-phone);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;isolation:isolate;
+}
+.bar{
+  flex:none;display:flex;justify-content:space-between;align-items:center;
+  padding:17px 27px 6px;font-size:12.5px;font-weight:500;z-index:30;position:relative;
+}
+.bar .sig{display:flex;align-items:center;gap:6px;color:var(--ink-dim)}
+.bars{display:flex;gap:2px;align-items:flex-end;height:9px}
+.bars i{width:2.5px;background:currentColor;border-radius:.5px}
+.bars i:nth-child(1){height:3px}.bars i:nth-child(2){height:5px}
+.bars i:nth-child(3){height:7px}.bars i:nth-child(4){height:9px}
+.batt{width:19px;height:10px;border:1.3px solid currentColor;border-radius:2.5px;padding:1.3px;position:relative}
+.batt::after{content:"";position:absolute;right:-3px;top:3px;width:1.6px;height:4px;background:currentColor;border-radius:0 1px 1px 0}
+.batt u{display:block;height:100%;width:74%;background:currentColor;border-radius:.5px}
+
+.viewport{flex:1;position:relative;overflow:hidden;z-index:1}
+.screen{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  display:none;flex-direction:column;
+}
+.screen.is-active{display:flex;animation:slide .28s cubic-bezier(.2,.7,.3,1)}
+@keyframes slide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.pad{padding:0 26px}
+.screen footer{margin-top:auto;padding:26px 26px 96px;display:flex;flex-direction:column;gap:11px;position:relative;z-index:2}
+.rule{height:1px;background:var(--hair-soft);border:0;margin:0}
+.horizon{height:1px;background:var(--hair);border:0;margin:22px 0 0}
+
+/* the sky — entry-point screens only, painted not loaded */
+.sky{position:absolute;top:0;left:0;right:0;height:250px;z-index:0;pointer-events:none}
+.sky.full{height:100%}
+.sky canvas{width:100%;height:100%;display:block}
+.sky::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    var(--ground) 0%, rgba(8,14,26,0) 12%,
+    rgba(8,14,26,.32) 55%, var(--ground) 100%);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .sky::after{
+    background:linear-gradient(180deg, var(--ground) 0%, rgba(238,242,248,0) 14%,
+      rgba(238,242,248,.5) 60%, var(--ground) 100%);
+  }
+}
+:root[data-theme="light"] .sky::after{
+  background:linear-gradient(180deg, var(--ground) 0%, rgba(238,242,248,0) 14%,
+    rgba(238,242,248,.5) 60%, var(--ground) 100%);
+}
+.sky.full::after{
+  background:linear-gradient(180deg, rgba(8,14,26,.24) 0%, rgba(8,14,26,0) 26%,
+    rgba(8,14,26,.3) 74%, rgba(8,14,26,.62) 100%);
+}
+.screen .pad,.screen .appbar{position:relative;z-index:2}
+
+/* ---- app bar: identity as a readout, not chrome ---- */
+.appbar{
+  position:sticky;top:0;z-index:20;flex:none;
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding:10px 26px 9px;border-bottom:1px solid var(--hair-soft);
+  background:color-mix(in srgb, var(--ground) 84%, transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.appbar .who{display:flex;align-items:baseline;gap:9px}
+.appbar .who b{font-family:"Schibsted Grotesk",sans-serif;font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.appbar .who span{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+.appbar>span{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---- board line: the one repeating typographic object ---- */
+.bd{margin:0}
+.bd-t{display:flex;align-items:baseline;gap:13px}
+.bd-time{font-family:"IBM Plex Mono",monospace;font-size:25px;font-weight:600;letter-spacing:.02em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.bd-time i{font-style:normal;font-size:10.5px;font-weight:500;letter-spacing:.09em;color:var(--ink-faint);margin-left:5px}
+.bd-ln{flex:1;display:flex;align-items:center;gap:8px;min-width:24px;position:relative;top:-4px}
+.bd-ln::before,.bd-ln::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,var(--ink-faint) 30%,var(--ink-faint) 100%);opacity:.65}
+.bd-ln::after{background:linear-gradient(90deg,var(--ink-faint) 0%,var(--ink-faint) 70%,transparent 100%)}
+.bd-ln b{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--caution)}
+.bd-ln.direct{gap:0}
+.bd-ln.direct::before{background:linear-gradient(90deg,transparent,var(--ink-faint) 18%,var(--ink-faint) 82%,transparent);}
+.bd-ln.direct::after{display:none}
+.bd-ln u{position:absolute;right:-1px;top:-2.5px;width:6px;height:6px;border-right:1.4px solid var(--ink-faint);border-top:1.4px solid var(--ink-faint);transform:rotate(45deg);text-decoration:none}
+.bd-sub{display:flex;align-items:center;flex-wrap:wrap;gap:9px;row-gap:6px;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.bd-sub i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5;font-style:normal;flex:none}
+.bd-sub>span,.bd-sub>b{white-space:nowrap}
+.bd-sub b{font-weight:500;color:var(--ink-dim)}
+.bd.xl .bd-time{font-size:26px}
+
+/* ---- course line (status only) ---- */
+.course{position:relative;margin:0;padding:6px 0 0 28px;list-style:none}
+.course::before{
+  content:"";position:absolute;left:0;top:11px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--course),var(--course) 84%,transparent);
+  height:var(--h,0);transition:height 1.15s cubic-bezier(.3,.7,.25,1);
+  box-shadow:0 0 26px -2px var(--course-glow);
+}
+.course li{position:relative;padding-bottom:18px}
+.course li::before{content:"";position:absolute;left:-28px;top:9px;width:13px;height:1px;background:var(--ink-faint);opacity:.5}
+.course li.now::before{
+  width:8px;height:8px;left:-31px;top:5px;border-radius:50%;opacity:1;
+  background:var(--ground);border:1.5px solid var(--caution);
+  box-shadow:0 0 12px -1px var(--caution);
+}
+.course .stamp{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--ink-faint);display:block;margin-bottom:3px}
+.course p{margin:0;font-size:14.5px;line-height:1.46;color:var(--ink-dim)}
+.course p b{color:var(--ink);font-weight:500}
+.course li.now p,.course li.now p b{color:var(--caution)}
+.terminus{display:flex;gap:15px;padding-top:3px}
+.terminus .arrow{width:28px;margin-left:-28px;flex:none;display:flex;justify-content:center;color:var(--course);font-size:15px}
+.terminus p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-faint)}
+
+/* ---- the lifted surface: only where something needs her ---- */
+.need{
+  display:block;width:100%;position:relative;overflow:hidden;
+  background:linear-gradient(158deg,rgba(255,255,255,.06),rgba(255,255,255,.012) 46%),var(--surface-hi);
+  border:1px solid var(--hair);border-radius:10px;
+  box-shadow:var(--lift);
+}
+.need.rec{
+  background:linear-gradient(158deg,rgba(255,255,255,.06),rgba(255,255,255,.012) 46%),
+             linear-gradient(104deg,var(--course-wash),transparent 60%),var(--surface-hi);
+  border-left:2px solid var(--course);
+  box-shadow:var(--lift), 0 0 66px -30px var(--course-glow);
+}
+button.need{transition:transform .18s cubic-bezier(.3,.7,.25,1),box-shadow .18s}
+button.need:hover{transform:translateY(-2px)}
+button.need.rec:hover{box-shadow:var(--lift),0 0 74px -24px var(--course-glow)}
+.need .lbl{color:var(--course);display:block;margin-bottom:12px}
+.need .go{
+  position:absolute;right:20px;bottom:18px;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--course);color:var(--course);display:flex;align-items:center;
+  justify-content:center;font-size:14px;
+}
+
+/* primary CTA — a course-ruled panel, never a filled magenta slab */
+.cta{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+  padding:15px 18px;position:relative;overflow:hidden;
+  background:linear-gradient(158deg,rgba(255,255,255,.06),rgba(255,255,255,.012) 46%),
+             linear-gradient(104deg,var(--course-wash),transparent 60%),var(--surface-hi);
+  border:1px solid var(--hair);border-left:2px solid var(--course);border-radius:10px;
+  box-shadow:var(--lift), 0 0 52px -26px var(--course-glow);
+  font-family:"Schibsted Grotesk",sans-serif;font-weight:600;font-size:15.5px;letter-spacing:-.01em;
+  transition:transform .16s cubic-bezier(.3,.7,.25,1),box-shadow .16s;
+}
+.cta:hover{transform:translateY(-1px);box-shadow:var(--lift),0 0 60px -22px var(--course-glow)}
+.cta i{font-style:normal;color:var(--course);flex:none}
+.btn2{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+  padding:13px 18px;border:1px solid var(--hair);border-radius:10px;color:var(--ink-dim);
+  font-weight:500;font-size:14.5px;transition:color .16s,border-color .16s;
+}
+.btn2:hover{color:var(--ink);border-color:var(--hair)}
+.qbtn{display:inline-flex;align-items:center;gap:9px;color:var(--ink-dim);padding:5px 0;font-size:14px;transition:color .15s}
+.qbtn:hover{color:var(--ink)}
+.back{display:inline-flex;gap:8px;color:var(--ink-faint);font-size:13px;padding:0 0 14px;transition:color .15s}
+.back:hover{color:var(--ink)}
+
+/* ---- paths: no box ---- */
+.path{display:block;width:100%;padding:17px 28px 17px 0;position:relative;border-top:1px solid var(--hair-soft)}
+.path:first-child{border-top:0}
+.path .hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+.path .chev{position:absolute;right:3px;top:20px;color:var(--ink-faint);font-size:16px;transition:color .16s,transform .16s}
+.path:hover .chev{color:var(--ink);transform:translateX(3px)}
+.path .own{color:var(--engaged);flex:none}
+
+/* ---- flight cards on options: header row, then times, then consequence ---- */
+.flt{
+  display:block;width:100%;text-align:left;padding:16px 17px 15px;margin-top:12px;position:relative;
+  border:1px solid var(--hair);border-radius:10px;background:var(--surface);
+  box-shadow:0 1px 0 var(--gloss) inset;
+  transition:transform .18s cubic-bezier(.3,.7,.25,1),border-color .18s;
+}
+.flt:hover{transform:translateY(-2px)}
+.flt:hover .bd-time{color:var(--ink)}
+.flt .csq{margin:12px 0 0;font-size:13.5px;line-height:1.48;color:var(--ink-dim)}
+.flt .csq.bad{color:var(--warning)}
+.flt-hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.flt.reco{border-left:2px solid var(--course);
+  background:linear-gradient(158deg,rgba(255,255,255,.05),rgba(255,255,255,.01) 46%),
+             linear-gradient(104deg,var(--course-wash),transparent 60%),var(--surface-hi);
+  box-shadow:var(--lift), 0 0 56px -28px var(--course-glow);
+}
+
+/* ---- kv: hairline ledger rows, contained in a card ---- */
+.kv{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid var(--hair-soft);font-size:13.5px}
+.kv:first-of-type{border-top:0}
+.kv dt{color:var(--ink-dim);margin:0;font-weight:400}
+.kv dd{margin:0;text-align:right;font-weight:500;color:var(--ink)}
+.kv dd small{display:block;font-weight:400;color:var(--ink-faint);font-size:11px;letter-spacing:.02em}
+.kgroup{
+  margin-top:14px;border:1px solid var(--hair);border-radius:10px;background:var(--surface);
+  padding:15px 17px 12px;box-shadow:0 1px 0 var(--gloss) inset;
+}
+.kgroup>.micro{margin-bottom:8px}
+
+/* ---- countdown ---- */
+.count{font-family:"IBM Plex Mono",monospace;font-size:58px;font-weight:600;letter-spacing:-.01em;line-height:1;font-variant-numeric:tabular-nums}
+
+/* ---- message ---- */
+.msg{
+  width:100%;background:linear-gradient(158deg,rgba(255,255,255,.05),rgba(255,255,255,.01) 46%),var(--surface-hi);
+  border:1px solid var(--hair);border-radius:10px;box-shadow:var(--lift);
+  padding:15px;font:inherit;font-size:13.5px;line-height:1.55;color:var(--ink);resize:none;
+  min-height:126px;
+}
+.checklist{list-style:none;padding:0;margin:0}
+.checklist li{display:flex;gap:11px;padding:10px 0;border-top:1px solid var(--hair-soft);font-size:13px;color:var(--ink-dim);line-height:1.45}
+.checklist li:first-child{border-top:0}
+.checklist span{color:var(--ink-faint);flex:none}
+
+/* ---- lock screen ---- */
+.lock{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;min-height:100%}
+.lock .lt{text-align:center;padding:84px 0 0}
+.lock .lt b{display:block;font-family:"IBM Plex Mono",monospace;font-size:66px;font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.lock .lt span{font-size:13.5px;color:var(--ink-dim)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .lock .lt b{color:#EEF3F9}
+  :root:not([data-theme="light"]) .lock .lt span{color:rgba(238,243,249,.72)}
+}
+:root[data-theme="dark"] .lock .lt b{color:#EEF3F9}
+:root[data-theme="dark"] .lock .lt span{color:rgba(238,243,249,.72)}
+.pushcard{
+  margin:auto 16px 40px;background:rgba(14,22,38,.5);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 17px;
+  text-align:left;width:calc(100% - 32px);color:#EEF3F9;
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 22px 48px -22px rgba(0,0,0,.7);
+  transition:transform .18s;
+}
+.pushcard:hover{transform:translateY(-2px)}
+.pushcard .ph{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.72;margin-bottom:8px}
+.pushcard .ph u{width:14px;height:14px;border-radius:4px;background:#6FDCEF;text-decoration:none;flex:none}
+.pushcard b{display:block;font-family:"Schibsted Grotesk",sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:3px}
+.pushcard p{margin:0;font-size:13px;line-height:1.45;opacity:.85}
+.pushcard .tap{display:block;margin-top:10px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#6FDCEF;opacity:.95}
+
+/* ---- notes: rule-led, never filled ---- */
+.note{border-left:2px solid var(--hair);padding:2px 0 2px 14px;font-size:12.5px;line-height:1.52;color:var(--ink-dim);margin:0}
+.note b{display:block;color:var(--ink);font-weight:500;margin-bottom:2px;font-size:13px}
+.note.warn{border-left-color:var(--caution)}
+.note.warn b{color:var(--caution)}
+.note.bad{border-left-color:var(--warning)}
+.note.bad b{color:var(--warning)}
+.note.ok{border-left-color:var(--engaged)}
+.note.ok b{color:var(--engaged)}
+
+/* ---- the engaged seal: pops in, then the tick draws itself ---- */
+.seal{
+  width:54px;height:54px;border-radius:50%;border:1.5px solid var(--engaged);color:var(--engaged);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 34px -8px var(--engaged-glow);
+}
+.seal svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.screen.is-active .seal{animation:sealpop .5s cubic-bezier(.3,1.5,.4,1) both}
+.screen.is-active .seal path{stroke-dasharray:30;stroke-dashoffset:30;animation:sealdraw .5s .3s ease forwards}
+@keyframes sealpop{from{transform:scale(.55);opacity:0}}
+@keyframes sealdraw{to{stroke-dashoffset:0}}
+
+/* ---- micro-delights ---- */
+.cta i,.qbtn span{transition:transform .18s cubic-bezier(.3,.7,.25,1)}
+.cta:hover i,.qbtn:hover span{transform:translateX(3px)}
+.count{transition:color .4s}
+.count.ending{color:var(--caution);text-shadow:0 0 34px rgba(240,172,75,.3)}
+.screen.is-active .bd-ln::before{transform-origin:left;animation:lndraw .55s .1s cubic-bezier(.25,.7,.3,1) backwards}
+.screen.is-active .bd-ln::after{transform-origin:right;animation:lndraw .55s .1s cubic-bezier(.25,.7,.3,1) backwards}
+@keyframes lndraw{from{transform:scaleX(0)}}
+.screen.is-active .course li{opacity:0;transform:translateY(8px);animation:itemin .5s cubic-bezier(.22,.75,.28,1) forwards}
+.screen.is-active .course li:nth-child(1){animation-delay:.08s}
+.screen.is-active .course li:nth-child(2){animation-delay:.2s}
+.screen.is-active .course li:nth-child(3){animation-delay:.32s}
+.screen.is-active .course li:nth-child(4){animation-delay:.44s}
+.screen.is-active .course li:nth-child(5){animation-delay:.56s}
+.screen.is-active .course li:nth-child(6){animation-delay:.68s}
+@keyframes itemin{to{opacity:1;transform:none}}
+
+/* ---- feed ---- */
+.feeditem{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--hair-soft);text-align:left;width:100%;align-items:flex-start}
+.feeditem:first-child{border-top:0}
+.feeditem time{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:10.5px;letter-spacing:.06em;color:var(--ink-faint);flex:none;width:40px;padding-top:3px}
+.feeditem b{display:block;font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:2px;line-height:1.35}
+.feeditem p{margin:0;font-size:12.5px;color:var(--ink-dim);line-height:1.45}
+.feeditem.hot b{color:var(--caution)}
+.feeditem .nd{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--caution);margin-left:7px;vertical-align:middle;box-shadow:0 0 8px 0 var(--caution)}
+
+/* ---- benefits: contained, status-coloured, receivable ---- */
+.ben{
+  border:1px solid var(--hair);border-left:2px solid var(--ink-faint);border-radius:10px;
+  background:var(--surface);padding:15px 17px 14px;margin-top:11px;
+  box-shadow:0 1px 0 var(--gloss) inset;
+}
+.ben.ok{border-left-color:var(--engaged);background:linear-gradient(104deg,rgba(99,211,162,.08),transparent 58%),var(--surface)}
+.ben.wait{border-left-color:var(--caution);background:linear-gradient(104deg,rgba(240,172,75,.08),transparent 58%),var(--surface)}
+.ben.na{border-left-color:var(--hair);opacity:.72}
+.ben .hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.ben .fnt{margin-top:7px}
+.ben .qbtn{color:var(--track);font-weight:500;margin-top:8px}
+.st{font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;flex:none}
+.st.done{color:var(--engaged)}
+.st.wait{color:var(--caution)}
+.st.na{color:var(--ink-faint)}
+.tally{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+
+/* scannable points: for the anxious reader, never paragraphs */
+.pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.pts li{position:relative;padding-left:17px;font-size:14.5px;line-height:1.5;color:var(--ink-dim)}
+.pts li::before{content:"";position:absolute;left:2px;top:8.5px;width:5px;height:5px;border-radius:50%;background:var(--ink-faint)}
+.pts li b{color:var(--ink);font-weight:500}
+.pts li.warn::before{background:var(--caution);box-shadow:0 0 7px 0 var(--caution)}
+.pts li.bad::before{background:var(--warning);box-shadow:0 0 7px 0 var(--warning)}
+.pts li.ok::before{background:var(--engaged);box-shadow:0 0 7px 0 var(--engaged)}
+
+.did{list-style:none;margin:0;padding:0}
+.did li{display:flex;gap:10px;padding:7px 0;font-size:13px;line-height:1.45;color:var(--ink-dim);align-items:flex-start}
+.did li b{color:var(--ink);font-weight:500}
+.did li i{font-style:normal;color:var(--engaged);flex:none;font-weight:600;line-height:1.4}
+
+/* ---- livestrip + pushbanner ---- */
+.livestrip{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  border:1px solid rgba(240,172,75,.4);border-left:2px solid var(--caution);border-radius:10px;
+  color:var(--caution);padding:12px 15px;margin-top:18px;
+  background:linear-gradient(104deg,rgba(240,172,75,.13),transparent 62%),var(--surface-hi);
+  box-shadow:0 1px 0 var(--gloss) inset, 0 0 44px -14px rgba(240,172,75,.45);
+  animation:drop .38s cubic-bezier(.2,.8,.3,1);
+}
+.livestrip:hover{filter:brightness(1.06)}
+.livestrip b{display:block;font-size:13px;line-height:1.35;font-weight:500}
+.livestrip small{font-size:11.5px;color:var(--ink-dim);display:block;margin-top:1px;font-weight:400}
+.livestrip i{font-style:normal;margin-left:auto;font-weight:600;flex:none}
+@keyframes drop{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+/* A notification must never blend into the interface beneath it:
+   light card on the dark theme, elevated white on the light theme. */
+.pushbanner{
+  position:absolute;top:54px;left:12px;right:12px;z-index:60;text-align:left;
+  background:rgba(246,249,253,.97);color:#0A1220;
+  border:1px solid rgba(10,18,32,.1);border-radius:14px;padding:13px 15px;
+  box-shadow:0 1px 0 rgba(255,255,255,.85) inset, 0 20px 48px -12px rgba(0,0,0,.65);
+  animation:drop .38s cubic-bezier(.2,.8,.3,1);
+}
+.pushbanner .ph{display:flex;align-items:center;gap:7px;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#4B5B72;margin-bottom:6px}
+.pushbanner .ph u{width:12px;height:12px;border-radius:3.5px;background:#0B6E88;text-decoration:none}
+.pushbanner b{display:block;font-family:"Schibsted Grotesk",sans-serif;font-size:13.5px;font-weight:600;margin-bottom:2px}
+.pushbanner p{margin:0;font-size:12.5px;line-height:1.42;color:#33415A}
+.pushbanner .tap{display:block;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#0B6E88;font-weight:500}
+
+/* ---- floating navigation: a detached glass bar, icon over label, AA contrast ---- */
+.instr{
+  position:absolute;left:16px;right:16px;bottom:16px;z-index:45;display:flex;
+  border:1px solid var(--hair);border-radius:18px;padding:7px 6px 4px;
+  background:color-mix(in srgb, var(--ground-2) 80%, transparent);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 1px 0 var(--gloss) inset, 0 18px 40px -18px rgba(0,0,0,.55);
+}
+.instr[hidden]{display:none}
+.instr button{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  position:relative;min-height:48px;padding:3px 0 7px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);transition:color .16s;
+}
+.instr svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.instr button:hover{color:var(--ink)}
+.instr button[aria-current="true"]{color:var(--ink)}
+.instr button[aria-current="true"]::after{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:1px;
+  width:30px;height:2px;background:var(--course);border-radius:1px;
+  box-shadow:0 0 12px 0 var(--course-glow);
+}
+.instr em{
+  position:absolute;top:2px;right:calc(50% - 16px);width:7px;height:7px;border-radius:50%;
+  background:var(--caution);font-style:normal;box-shadow:0 0 8px 0 var(--caution);
+}
+
+/* ---- voucher ---- */
+.qr{
+  width:150px;height:150px;border-radius:10px;margin:0 auto;
+  background:
+    repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 12px),
+    repeating-linear-gradient(0deg,var(--ink) 0 6px,transparent 6px 12px);
+  opacity:.85;
+}
+
+/* ---- caption under phone ---- */
+.caption{
+  width:392px;display:flex;gap:13px;align-items:flex-start;
+  border-top:1px solid var(--hair);padding:13px 4px 0;
+}
+.caption .tag{
+  flex:none;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;
+  letter-spacing:.08em;color:var(--track);border:1px solid currentColor;border-radius:4px;
+  padding:2.5px 7px;margin-top:1px;
+}
+.caption .tag.design{color:var(--caution)}
+.caption p{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-dim)}
+.caption p b{color:var(--ink);font-weight:500}
+
+.toast{
+  position:fixed;left:50%;bottom:30px;transform:translate(-50%,14px);
+  background:var(--ink);color:var(--ground);padding:10px 18px;border-radius:10px;
+  font-size:13px;font-weight:500;opacity:0;pointer-events:none;transition:.22s;z-index:80;
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1180px){
+  .stage{grid-template-columns:1fr;gap:28px;padding:24px 16px 48px;justify-items:center}
+  .rail{position:static;max-width:392px;width:100%}
+  .rail.left{justify-self:center}.rail.right{justify-self:center}
+}
+@media (max-width:430px){
+  .phone{width:100%;max-width:392px;height:min(844px,86vh);border-radius:26px}
+  .caption{width:100%;max-width:392px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .course::before{height:100% !important}
+}
+
+/* ================================================================
+   The stage is always light, whatever the OS theme: the phone's
+   dark UI needs a white ground to read as a screen.
+   ================================================================ */
+body{background:#FFFFFF}
+.rail h2{color:#8494AA}
+.jump button{color:#1A2433}
+.jump button:hover{color:#000000}
+.jump button[aria-current="true"]{color:#0A1220;border-left-color:#B01E70}
+.jump i{color:#8494AA}
+.jump button[aria-current="true"] i{color:#B01E70}
+.phone{border-color:rgba(12,28,52,.16);box-shadow:0 2px 8px rgba(16,32,56,.08), 0 48px 90px -42px rgba(16,32,56,.42)}
+.caption{border-top-color:rgba(12,28,52,.14)}
+.caption p{color:#4B5B72}
+.caption p b{color:#0A1220}
+.caption .tag{color:#0B6E88}
+.caption .tag.design{color:#8A5406}
+.toast{background:#0A1220;color:#FFFFFF}
+</style>
+
+<div class="stage">
+
+  <!-- ============ LEFT RAIL ============ -->
+  <aside class="rail left">
+    <div>
+      <h2>Screens</h2>
+      <nav class="jump" id="jump"></nav>
+    </div>
+  </aside>
+
+  <!-- ============ DEVICE ============ -->
+  <div class="device">
+    <div class="phone grain">
+      <div class="bar">
+        <span class="mono" id="clock">09:35</span>
+        <span class="sig">
+          <span class="bars"><i></i><i></i><i></i><i></i></span>
+          <span class="mono" style="font-size:10px;letter-spacing:.08em">4G</span>
+          <span class="batt"><u></u></span>
+        </span>
+      </div>
+      <div class="viewport" id="viewport">
+
+        <!-- 0 · NOTIFICATION -->
+        <section class="screen is-active" data-s="push">
+          <div class="sky full"><canvas class="skyc" width="392" height="780" aria-hidden="true"></canvas></div>
+          <div class="lock">
+            <div class="lt"><b>09:35</b><span>Tuesday, 19 August</span></div>
+            <button class="pushcard" onclick="go('status')">
+              <span class="ph"><u></u> IndoAir · now</span>
+              <b>IA 247 to Singapore is cancelled</b>
+              <p>Priya — we've held your options open and worked out what you're owed. Tap to sort it out yourself. No login, no queue.</p>
+              <span class="tap">Tap to open →</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- 1 · RECOVERY DASHBOARD -->
+        <section class="screen" data-s="status">
+          <div class="sky"><canvas class="skyc" width="392" height="340" aria-hidden="true"></canvas></div>
+          <div id="st-open" style="display:contents">
+          <div class="pad" style="padding-top:16px">
+            <div class="fresh">
+              <span class="pip"></span>
+              <span class="data-s" id="fresh">Live · checked 09:41 · 12s ago</span>
+            </div>
+            <p class="micro" style="color:var(--warning);margin-top:13px">Flight cancelled</p>
+            <h1 class="ttl" style="margin-top:8px;font-size:22px;line-height:1.26;font-weight:600;max-width:23ch">We're sorry, Priya. Your flight to Singapore has been cancelled.</h1>
+            <div class="bd" style="margin-top:15px">
+              <div class="bd-t">
+                <span class="bd-time" style="font-size:23px">BLR</span>
+                <span class="bd-ln direct"><u></u></span>
+                <span class="bd-time" style="font-size:23px">SIN</span>
+              </div>
+              <div class="bd-sub" style="margin-top:9px">
+                <span>Today</span><i></i><span>IA 247</span><i></i><b style="color:var(--warning)">Cancelled 09:35</b>
+              </div>
+            </div>
+            <button class="need rec" style="margin-top:20px;padding:19px 21px 18px" onclick="go('commit')">
+              <span class="micro lbl" style="margin-bottom:10px">Your decision</span>
+              <span class="d-l" style="display:block;font-size:23px">Fly today</span>
+              <p class="sm" style="margin-top:8px;max-width:25ch">Three options. One of them gets you in the night before your opening.</p>
+              <span class="go">→</span>
+            </button>
+          </div>
+
+          <div class="pad" style="padding-top:22px">
+            <p class="micro" style="margin-bottom:4px">Or</p>
+            <div class="kgroup" style="padding:2px 17px;margin-top:10px">
+              <button class="path" onclick="go('detail3')">
+                <span class="hd"><span class="ttl">Take tomorrow's 08:00</span><span class="micro own">Already yours</span></span>
+                <p class="sm">Do nothing at all and this is what happens. It lands after your opening starts.</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('refund')">
+                <span class="hd"><span class="ttl">Take the money back</span></span>
+                <p class="sm">Full refund to your original card. You're not obliged to fly with us today.</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('support')">
+                <span class="hd"><span class="ttl">Hand it to a person</span></span>
+                <p class="sm">An agent picks it up with everything already filled in.</p>
+                <span class="chev">›</span>
+              </button>
+            </div>
+            <hr class="rule" style="margin:8px 0 14px">
+            <button class="qbtn" onclick="go('track')">Watch IA 247 without deciding anything <span>→</span></button>
+          </div>
+
+          <div class="pad" style="padding-top:26px">
+            <p class="micro" style="margin-bottom:14px">Already taken care of for you</p>
+            <ol class="course" id="course">
+              <li><span class="stamp">09:35</span><p>The cancellation was <b>confirmed</b>, two minutes after operations filed it.</p></li>
+              <li><span class="stamp">09:35</span><p>Your booking was found and your <b>recovery started</b>.</p></li>
+              <li><span class="stamp">09:36</span><p>Your <b>meal voucher</b> and <b>travel credit</b> have both been issued.</p></li>
+              <li><span class="stamp">09:36</span><p>You're confirmed on <span class="conf">tomorrow's 08:00</span> as a backup, so you always have a seat.</p></li>
+              <li><span class="stamp">09:39</span><p>We checked every IndoAir alternative and found <b>three</b> that can work for you.</p></li>
+              <li class="now"><span class="stamp">09:41</span><p>We're keeping availability current. <b>Two seats have been booked</b> by other passengers since 09:35.</p></li>
+            </ol>
+          </div>
+          <footer>
+            <p class="fnt" style="text-align:center">Nothing here expires except the seats. Your link is good for 72 hours.</p>
+          </footer>
+          </div>
+
+          <!-- resolved state: shown once a flight is confirmed -->
+          <div id="st-done" style="display:none">
+          <div class="pad" style="padding-top:22px">
+            <div class="fresh">
+              <span class="pip"></span>
+              <span class="data-s">Live · you're all set</span>
+            </div>
+            <p class="micro okv" style="margin-top:16px">Booking confirmed</p>
+            <h1 class="ttl" id="rs-head" style="margin-top:9px;font-size:23px;line-height:1.28;font-weight:600;max-width:21ch">You're booked on tonight's 16:30.</h1>
+            <div class="bd" style="margin-top:22px">
+              <div class="bd-t">
+                <span class="bd-time" id="rs-t1">16:30<i>IST</i></span>
+                <span class="bd-ln direct"><u></u></span>
+                <span class="bd-time" id="rs-t2">23:20<i>SGT</i></span>
+              </div>
+              <div class="bd-sub" id="rs-sub"><b>IA 288</b><i></i><span>Direct</span><i></i><span class="okv" style="letter-spacing:.1em">Confirmed</span></div>
+            </div>
+            <p class="body" style="margin-top:26px" id="rs-lede">Your recovery is complete. Here's what's already in motion for you.</p>
+          </div>
+
+          <div class="pad" style="padding-top:22px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">What happens next</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Boarding pass</dt><dd>On its way<small>Sent by email and SMS before departure</small></dd></div>
+                <div class="kv"><dt>Meal voucher</dt><dd>Ready to use<small>Valid in the terminal until tomorrow 09:35</small></dd></div>
+                <div class="kv"><dt>Return · IA 248, 22 Aug</dt><dd class="okv">Unchanged</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="pad" style="padding-top:6px">
+            <div class="kgroup" style="padding:2px 17px">
+              <button class="path" id="rs-itin">
+                <span class="hd"><span class="ttl">View your new itinerary</span></span>
+                <p class="sm">Every detail of the booking, and what moved across with it.</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('tell')">
+                <span class="hd"><span class="ttl">Tell someone your arrival time</span></span>
+                <p class="sm">A message is drafted with your updated times.</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('entitlements')">
+                <span class="hd"><span class="ttl">Your benefits</span></span>
+                <p class="sm">Meal voucher, travel credit, and everything else issued to you.</p>
+                <span class="chev">›</span>
+              </button>
+            </div>
+          </div>
+          <footer>
+            <p class="fnt" style="text-align:center">Need to change something? <b style="color:var(--ink-dim);font-weight:500">An agent can pick this up</b> with your full context attached.</p>
+            <button class="qbtn" style="align-self:center" onclick="go('support')">Talk to a person <span>→</span></button>
+          </footer>
+          </div>
+        </section>
+
+        <!-- 2 · COMMITMENT -->
+        <section class="screen" data-s="commit">
+          <div class="pad" style="padding-top:26px">
+            <p class="micro" style="margin-bottom:11px">Before we show you flights</p>
+            <h1 class="d-l" style="font-size:28px">What matters most for this trip?</h1>
+            <p class="body" style="margin-top:12px">Your booking tells us where you're going. Your answer here changes which flight we recommend.</p>
+          </div>
+          <div class="pad" style="margin-top:26px">
+            <div class="need" style="padding:4px 20px">
+              <button class="path" onclick="go('options')">
+                <span class="hd"><span class="ttl">Reaching an event on time</span></span>
+                <p class="sm">Your 09:00 workshop opening, tomorrow morning</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('options')">
+                <span class="hd"><span class="ttl">Making an onward connection</span></span>
+                <p class="sm">A booking that departs from Singapore</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="go('options')">
+                <span class="hd"><span class="ttl">No fixed plans</span></span>
+                <p class="sm">Arriving as conveniently as possible</p>
+                <span class="chev">›</span>
+              </button>
+            </div>
+          </div>
+          <footer>
+            <button class="qbtn" style="align-self:center" onclick="go('options')">Skip and view all flights</button>
+            <p class="fnt" style="text-align:center">If you skip, flights are shown in IndoAir's standard order without guidance.</p>
+          </footer>
+        </section>
+
+        <!-- 3 · OPTIONS -->
+        <section class="screen" data-s="options">
+          <div class="pad" style="padding-top:24px">
+            <h1 class="d-l" style="font-size:27px">Three ways to Singapore</h1>
+            <p class="fnt" style="margin-top:9px">Ranked by earliest arrival, then fewest connections — IndoAir's standard order. Read against your <b style="color:var(--ink-dim);font-weight:500">09:00 opening</b>.</p>
+          </div>
+          <div class="pad" style="margin-top:18px">
+
+            <button class="flt" onclick="go('detail1')" style="margin-top:0">
+              <div class="flt-hd">
+                <span class="bd-sub" style="margin:0"><b>IA 512 → IA 806</b><i></i><span>1 stop</span></span>
+                <span class="data-s scarce">1 seat left</span>
+              </div>
+              <div class="bd">
+                <div class="bd-t">
+                  <span class="bd-time">11:50</span>
+                  <span class="bd-ln"><b>HYD</b><u></u></span>
+                  <span class="bd-time">20:05<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><span>7h 45m total</span><i></i><b style="color:var(--caution)">40 min connection</b></div>
+              </div>
+              <p class="csq bad">Earliest arrival. If the 40-minute connection is missed, the next flight to Singapore is tomorrow at 14:00, after your opening.</p>
+            </button>
+
+            <button class="flt reco" onclick="go('detail2')">
+              <div class="flt-hd">
+                <span class="micro" style="color:var(--course)">Recommended</span>
+                <span class="data-s scarce">3 seats left</span>
+              </div>
+              <div class="bd">
+                <div class="bd-t">
+                  <span class="bd-time">16:30</span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time">23:20<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 288</b><i></i><span>Direct</span><i></i><span>4h 20m</span></div>
+              </div>
+              <p class="csq" style="color:var(--ink)">Arrives late tonight, with no connection risk. At the hotel by 00:30, nine hours before your opening.</p>
+            </button>
+
+            <button class="flt" onclick="go('detail3')">
+              <div class="flt-hd">
+                <span class="bd-sub" style="margin:0"><b>IA 246</b><i></i><span>Tomorrow</span><i></i><span>Direct</span></span>
+                <span class="data-s okv">Confirmed</span>
+              </div>
+              <div class="bd">
+                <div class="bd-t">
+                  <span class="bd-time">08:00</span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time">14:50<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><span>4h 20m</span><i></i><span class="okv" style="letter-spacing:.1em">Your seat is held at no cost</span></div>
+              </div>
+              <p class="csq bad">Arrives after your opening begins. No action needed to keep this seat.</p>
+            </button>
+
+          </div>
+          <footer>
+            <button class="qbtn" style="align-self:center" onclick="go('refund')">None of these work — refund my ticket</button>
+            <p class="fnt" style="text-align:center">Availability refreshes each time this list loads. Subject to change until booking is confirmed.</p>
+          </footer>
+        </section>
+
+        <!-- 3a · DETAIL, recommended -->
+        <section class="screen" data-s="detail2">
+          <div class="pad" style="padding-top:20px">
+            <button class="back" onclick="go('options')">← All options</button>
+            <p class="micro" style="color:var(--course);margin-bottom:12px">Recommended</p>
+            <h1 class="d-l" style="font-size:30px">Arrives late tonight, reliably.</h1>
+            <div class="kgroup" style="margin-top:18px;padding-bottom:15px">
+              <div class="bd xl">
+                <div class="bd-t">
+                  <span class="bd-time">16:30<i>IST</i></span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time">23:20<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 288</b><i></i><span>Direct</span><i></i><span>4h 20m</span></div>
+              </div>
+              <p class="data-s scarce" style="margin-top:13px">3 seats left · checked 09:39</p>
+            </div>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="micro" style="margin-bottom:13px">Why this one</p>
+            <ul class="pts">
+              <li>The 20:05 arrives earlier, but needs a <b>40-minute connection</b> in Hyderabad.</li>
+              <li class="bad">If that connection slips, the next flight is tomorrow afternoon, after your opening.</li>
+              <li>The 23:20 is <b>direct</b>. There is no connection to miss.</li>
+              <li class="ok">Hotel by 00:30, in the room <b>a full night before your opening</b>.</li>
+            </ul>
+            <p class="note" style="margin-top:19px">We're not predicting a delay — IndoAir's platform doesn't forecast them. We're telling you what the schedule already says about 40 minutes in a hub at 3pm.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('hold')">Hold this seat for 10 minutes <i>→</i></button>
+            <button class="btn2" onclick="go('options')">Look at the others again</button>
+            <p class="fnt" style="text-align:center">Holding costs nothing and books nothing. Go make a call.</p>
+          </footer>
+        </section>
+
+        <!-- 3b · DETAIL, the risky one -->
+        <section class="screen" data-s="detail1">
+          <div class="pad" style="padding-top:20px">
+            <button class="back" onclick="go('options')">← All options</button>
+            <p class="micro" style="color:var(--caution);margin-bottom:12px">Fastest option · tight connection</p>
+            <h1 class="d-l" style="font-size:30px">Arrives earliest, if the connection holds.</h1>
+            <div class="kgroup" style="margin-top:18px;padding-bottom:15px">
+              <div class="bd xl">
+                <div class="bd-t">
+                  <span class="bd-time">11:50<i>IST</i></span>
+                  <span class="bd-ln"><b>HYD</b><u></u></span>
+                  <span class="bd-time">20:05<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 512 → IA 806</b><i></i><span>1 stop</span><i></i><b style="color:var(--caution)">40 min connection</b></div>
+              </div>
+              <p class="data-s scarce" style="margin-top:13px">1 seat left · checked 09:39</p>
+            </div>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="micro" style="margin-bottom:13px">What to weigh</p>
+            <ul class="pts">
+              <li>The fastest way there, and the one we'd steer you away from.</li>
+              <li class="warn">Forty minutes is a <b>legal connection, not a comfortable one</b>.</li>
+              <li class="bad">Miss it and you land tomorrow at 14:00, <b>five hours after your opening starts</b>.</li>
+            </ul>
+            <p class="note bad" style="margin-top:19px"><b>What happens if the connection goes</b>You'd be rebooked onto IA 806 tomorrow. The opening is gone. There is no later flight that recovers it.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('detail2')">Show me the safe one <i>→</i></button>
+            <button class="btn2" onclick="go('hold')">Hold it anyway</button>
+          </footer>
+        </section>
+
+        <!-- 3c · DETAIL, tomorrow -->
+        <section class="screen" data-s="detail3">
+          <div class="pad" style="padding-top:20px">
+            <button class="back" onclick="go('options')">← All options</button>
+            <p class="micro okv" style="margin-bottom:12px">Your confirmed backup</p>
+            <h1 class="d-l" style="font-size:30px">Already yours, arriving after your opening.</h1>
+            <div class="kgroup" style="margin-top:18px;padding-bottom:16px">
+              <div class="bd xl">
+                <div class="bd-t">
+                  <span class="bd-time">08:00<i>IST</i></span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time">14:50<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 246</b><i></i><span>Tomorrow</span><i></i><span>Direct</span><i></i><span class="okv" style="letter-spacing:.1em">Seat confirmed</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="micro" style="margin-bottom:13px">What to know</p>
+            <ul class="pts">
+              <li class="ok">Every IA 247 passenger was moved here automatically. <b>It's already yours.</b></li>
+              <li>Nothing to do, and nothing to pay, to keep it.</li>
+              <li class="bad">It lands <b>six hours after your opening begins</b>.</li>
+            </ul>
+            <p class="note" style="margin-top:19px">If the opening has stopped mattering, this is the comfortable choice and it costs you nothing.</p>
+          </div>
+          <footer>
+            <button class="btn2" onclick="go('options')">Back to options</button>
+            <button class="qbtn" style="align-self:center" onclick="go('refund')">Refund my ticket instead</button>
+          </footer>
+        </section>
+
+        <!-- 4 · HOLD -->
+        <section class="screen" data-s="hold">
+          <div class="pad" style="padding-top:26px;text-align:center">
+            <p class="micro" style="margin-bottom:15px">Seat held for you</p>
+            <div class="count" id="cd">10:00</div>
+            <p class="data-s" style="color:var(--caution);margin-top:12px">Yours until 10:12</p>
+            <button class="livestrip" id="livestrip" hidden onclick="go('backontrack')">
+              <span>
+                <b>IA 247's status just changed.</b>
+                <small>Your hold is untouched — the clock keeps running.</small>
+              </span>
+              <i>→</i>
+            </button>
+          </div>
+          <div class="pad" style="margin-top:24px">
+            <div class="kgroup" style="margin-top:0;padding-bottom:16px">
+              <p class="micro">Your held seat</p>
+              <div class="bd" style="margin-top:4px">
+                <div class="bd-t">
+                  <span class="bd-time" style="font-size:21px">16:30</span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time" style="font-size:21px">23:20<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 288</b><i></i><span>Direct</span><i></i><span class="okv" style="letter-spacing:.1em">Held, not booked</span></div>
+              </div>
+            </div>
+            <p class="note warn" style="margin-top:20px"><b>3 seats were available when you opened this.</b>All 180 passengers from IA 247 were sent the same options at 09:35. Your seat is set aside while you decide.</p>
+            <p class="note" style="margin-top:13px">One hold per link. Release it and the seat goes back instantly — no penalty, and you can pick again.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('review')">Confirm this flight <i>→</i></button>
+            <button class="btn2" onclick="release()">Release the seat</button>
+          </footer>
+        </section>
+
+        <!-- 4a · EVENT: back on track -->
+        <section class="screen" data-s="backontrack">
+          <div class="pad" style="padding-top:24px">
+            <div class="fresh">
+              <span class="pip"></span>
+              <span class="data-s">Status changed · just now</span>
+            </div>
+            <h1 class="d-l" style="font-size:29px;margin-top:15px">IA 247 is flying after all.</h1>
+            <p class="body" style="margin-top:12px">Your original flight has been reinstated. It leaves thirty minutes late, and lands half an hour behind the original 17:35.</p>
+            <div class="kgroup" style="padding-bottom:16px;margin-top:18px">
+              <p class="micro">Your original flight</p>
+              <div class="bd" style="margin-top:4px">
+                <div class="bd-t">
+                  <span class="bd-time">11:15<i>IST</i></span>
+                  <span class="bd-ln direct"><u></u></span>
+                  <span class="bd-time">18:05<i>SGT</i></span>
+                </div>
+                <div class="bd-sub"><b>IA 247</b><i></i><span>Reinstated</span><i></i><span>30 min late</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="note ok"><b>That's more than five hours earlier than the seat you're holding.</b>Same aircraft, same seat 14A, same bag. Nothing to rebook.</p>
+            <p class="note warn" style="margin-top:13px"><b>But your compensation changes, and you should hear it from us.</b>A 30-minute delay isn't a cancellation. The travel credit you were owed no longer applies. You keep your meal voucher.</p>
+            <p class="note" style="margin-top:13px">Your hold on IA 288 is still live until 10:12. We'd normally hide rebooking the moment a flight recovers — you're mid-decision with a seat held, so we're asking instead of deciding for you.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="outcome='stayed';go('stayed')">Stay on IA 247, release my hold <i>→</i></button>
+            <button class="btn2" onclick="go('hold')">Back to my hold — I'll think</button>
+            <p class="fnt" style="text-align:center">Your ten minutes kept running while you read this.</p>
+          </footer>
+        </section>
+
+        <!-- 4b · EVENT: hold expired -->
+        <section class="screen" data-s="expired">
+          <div class="pad" style="padding-top:26px">
+            <p class="data-s" style="color:var(--ink-faint)">Hold ended 10:12</p>
+            <h1 class="d-l" style="font-size:29px;margin-top:14px">Your hold has ended.</h1>
+            <p class="body" style="margin-top:12px">The ten minutes were up, so the seat was released for other passengers, as happens with every hold.</p>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="note bad"><b>IA 288 now shows 1 seat.</b>Two were booked while you were deciding, and this one may also go before you confirm. We'd rather tell you now than at the last screen.</p>
+            <p class="note" style="margin-top:13px">Nothing was booked and nothing was charged. You can take another hold on any option.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('options')">Back to options <i>→</i></button>
+          </footer>
+        </section>
+
+        <!-- 5 · REVIEW -->
+        <section class="screen" data-s="review">
+          <div class="pad" style="padding-top:26px">
+            <p class="micro" style="margin-bottom:11px">Review your new flight</p>
+            <h1 class="d-l" style="font-size:29px">Confirm IA 288.</h1>
+          </div>
+          <div class="pad" style="margin-top:20px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">Your new flight</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Flight</dt><dd class="mono">IA 288<small>Direct · 4h 20m</small></dd></div>
+                <div class="kv"><dt>Departs</dt><dd class="mono">16:30 IST<small>Bengaluru</small></dd></div>
+                <div class="kv"><dt>Arrives</dt><dd class="mono">23:20 SGT<small>Singapore Changi</small></dd></div>
+                <div class="kv"><dt>Original flight</dt><dd>Cancelled for you<small>IA 247 · nothing to do</small></dd></div>
+              </dl>
+            </div>
+            <p class="note ok" style="margin-top:19px"><b>Nothing to pay.</b>Your fare class is confirmed on this flight, so there's no difference to settle and no card to enter.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="outcome='rebooked';go('done')">Confirm rebooking <i>→</i></button>
+            <button class="qbtn" style="align-self:center" onclick="go('hold')">Back — my hold runs to 10:12</button>
+          </footer>
+        </section>
+
+        <!-- 6 · CONFIRMED -->
+        <section class="screen" data-s="done">
+          <div class="sky"><canvas class="skyc" width="392" height="340" aria-hidden="true"></canvas></div>
+          <div class="pad" style="padding-top:30px;text-align:center">
+            <div class="seal" style="margin:0 auto 17px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h1 class="d-l" style="font-size:28px">You're on the 16:30, Priya.</h1>
+            <p class="body" style="margin-top:10px">Your new itinerary is on its way to you by email.</p>
+          </div>
+          <div class="pad" style="margin-top:26px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">What moved across</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Meal · vegetarian</dt><dd class="okv">Re-applied</dd></div>
+                <div class="kv"><dt>Lounge access</dt><dd class="okv">Re-applied</dd></div>
+                <div class="kv"><dt>Prepaid bag · 10kg</dt><dd class="okv">Re-applied</dd></div>
+                <div class="kv"><dt>Seat 14A</dt><dd class="gone">Doesn't exist<small>Different aircraft · refund started</small></dd></div>
+                <div class="kv"><dt>Return, 22 Aug</dt><dd class="okv">Untouched</dd></div>
+              </dl>
+            </div>
+            <div class="kgroup">
+              <p class="micro">What you're owed</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Meal voucher</dt><dd>QR sent<small>Valid today + 24h</small></dd></div>
+                <div class="kv"><dt>Travel credit</dt><dd>Issued<small>DGCA CAR · cancellation inside 24h</small></dd></div>
+                <div class="kv"><dt>Hotel tonight</dt><dd>Not needed<small>You fly today</small></dd></div>
+              </dl>
+            </div>
+            <p class="note" style="margin-top:19px">Close this and come back later and you'll land right here. Nothing gets booked twice.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('tell')">Tell people you'll be late <i>→</i></button>
+          </footer>
+        </section>
+
+        <!-- 6a · CONFIRMED, stayed -->
+        <section class="screen" data-s="stayed">
+          <div class="sky"><canvas class="skyc" width="392" height="340" aria-hidden="true"></canvas></div>
+          <div class="pad" style="padding-top:30px;text-align:center">
+            <div class="seal" style="margin:0 auto 17px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h1 class="d-l" style="font-size:28px">You're still on IA 247.</h1>
+            <p class="body" style="margin-top:10px">Your hold on the 23:20 was released at 10:04. Nothing was booked and nothing was charged.</p>
+          </div>
+          <div class="pad" style="margin-top:26px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">Your flight, unchanged</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Departs</dt><dd class="mono">11:15 IST<small>30 minutes late</small></dd></div>
+                <div class="kv"><dt>Arrives</dt><dd class="mono">18:05 SGT<small>30 min late · night before your opening</small></dd></div>
+                <div class="kv"><dt>Seat 14A, meal, bag</dt><dd class="okv">All unchanged</dd></div>
+                <div class="kv"><dt>Meal voucher</dt><dd>Still yours<small>The delay qualifies</small></dd></div>
+                <div class="kv"><dt>Travel credit</dt><dd class="gone">Withdrawn<small>No longer a cancellation</small></dd></div>
+              </dl>
+            </div>
+            <p class="note" style="margin-top:19px">Any change to your entitlements is shown here as soon as it happens, with the reason.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('tell')">Tell people about the new time <i>→</i></button>
+          </footer>
+        </section>
+
+        <!-- 7 · TELL PEOPLE -->
+        <section class="screen" data-s="tell">
+          <div class="pad" style="padding-top:26px">
+            <p class="micro" style="margin-bottom:11px">Share your new arrival time</p>
+            <h1 class="d-l" style="font-size:29px">Someone's expecting you.</h1>
+            <p class="body" style="margin-top:11px">A message is drafted below with your updated times. Edit anything before you send it.</p>
+          </div>
+          <div class="pad" style="margin-top:20px">
+            <textarea class="msg" id="msg" aria-label="Message to send"></textarea>
+            <button class="btn2" id="copybtn" style="margin-top:10px" onclick="copyMsg()">Copy message</button>
+            <div class="kgroup">
+              <p class="micro">Worth checking before you fly</p>
+              <ul class="checklist" id="checklist"></ul>
+              <p class="fnt" style="margin-top:10px">We can't see these bookings and we won't pretend to. Two minutes now saves a phone call at midnight.</p>
+            </div>
+          </div>
+          <footer>
+            <p class="sm" style="text-align:center"><b>Done in <span class="mono" id="elapsed">—</span>.</b> IndoAir's target is under four minutes. The queue at the counter averages forty.</p>
+            <button class="btn2" onclick="restart()">Start again</button>
+          </footer>
+        </section>
+
+        <!-- 8 · REFUND -->
+        <section class="screen" data-s="refund">
+          <div class="pad" style="padding-top:26px">
+            <p class="micro" style="margin-bottom:11px">Full refund available</p>
+            <h1 class="d-l" style="font-size:29px">Refund your ticket in full.</h1>
+            <p class="body" style="margin-top:12px">Cancellations qualify for a full refund to your original payment method. You don't have to take a flight you don't want.</p>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <p class="note ok"><b>Your ticket is refundable in full.</b>We'd send you a reference number and hand it to Revenue Accounting. Your entitlements stay yours either way.</p>
+            <p class="note" style="margin-top:13px">Choosing a refund doesn't affect the meal voucher or travel credit you've already been issued.</p>
+          </div>
+          <footer>
+            <button class="btn2" onclick="go('options')">Back to flights</button>
+          </footer>
+        </section>
+
+        <!-- 9 · LIVE TRACKING -->
+        <section class="screen" data-s="track">
+          <div class="pad" style="padding-top:24px">
+            <div class="fresh">
+              <span class="pip"></span>
+              <span class="data-s">Live · refreshes every 60s</span>
+            </div>
+            <h1 class="d-l" style="font-size:28px;margin-top:15px">Flight status: IA 247</h1>
+            <p class="body" style="margin-top:11px">Stay informed without making any decision. This page keeps itself current.</p>
+          </div>
+          <div class="pad" style="margin-top:18px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">IA 247 · today</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Status</dt><dd class="gone">Cancelled<small>Confirmed 09:35</small></dd></div>
+                <div class="kv"><dt>Scheduled departure</dt><dd class="mono">10:45 IST</dd></div>
+                <div class="kv"><dt>Your rebooking</dt><dd>Not started<small>Options are open to you</small></dd></div>
+                <div class="kv"><dt>Your compensation</dt><dd class="okv">Calculated<small>Nothing to claim</small></dd></div>
+              </dl>
+            </div>
+            <p class="note" style="margin-top:19px">No gate is shown because there isn't one — the flight is cancelled. We'd rather leave the field out than fill it with something that isn't true.</p>
+            <p class="note" style="margin-top:13px">If IA 247 is ever reinstated, this page changes and you get a fresh notification. You will not have to keep checking.</p>
+          </div>
+          <footer>
+            <button class="cta" onclick="go('commit')">Find me a way there <i>→</i></button>
+            <button class="qbtn" style="align-self:center" onclick="go('status')">Back</button>
+          </footer>
+        </section>
+
+        <!-- 10 · BENEFITS -->
+        <section class="screen" data-s="entitlements">
+          <div class="pad" style="padding-top:24px">
+            <p class="micro" style="margin-bottom:11px">Issued to you automatically</p>
+            <h1 class="d-l" style="font-size:28px">Your benefits</h1>
+            <p class="body" style="margin-top:11px">These were issued the moment IA 247 was cancelled. Nothing to claim, nothing to negotiate.</p>
+            <div class="tally">
+              <span class="data-s okv">2 applied</span>
+              <span class="data-s" style="color:var(--caution)">1 waiting on you</span>
+              <span class="data-s" style="color:var(--ink-faint)">1 not applicable</span>
+            </div>
+          </div>
+
+          <div class="pad" style="margin-top:14px">
+            <div class="ben ok" style="margin-top:0">
+              <div class="hd"><h2 class="ttl">Meal &amp; refreshment voucher</h2><span class="st done">Applied</span></div>
+              <p class="sm">Enjoy a meal on us at any IndoAir lounge or partner outlet in the terminal.</p>
+              <p class="fnt">Issued 09:36 · single use · valid until tomorrow 09:35</p>
+              <button class="qbtn" onclick="go('voucher')">View voucher <span>→</span></button>
+            </div>
+            <div class="ben ok">
+              <div class="hd"><h2 class="ttl">Travel credit</h2><span class="st done">Applied</span></div>
+              <p class="sm">Credited to your IndoAir Miles account, yours to use on any flight for twelve months.</p>
+              <p class="fnt">Miles ••••4471 · issued 09:36 · under DGCA CAR Section 3, Series M, Part IV</p>
+            </div>
+            <div class="ben wait">
+              <div class="hd"><h2 class="ttl">Hotel for tonight</h2><span class="st wait">If you need it</span></div>
+              <p class="sm">Staying overnight? A room is covered, and an agent will confirm it for you.</p>
+              <p class="fnt">Applies if you take tomorrow's 08:00 · not needed if you fly today</p>
+              <button class="qbtn" onclick="toast('An agent would confirm a room and text you the address')">Ask for a room tonight <span>→</span></button>
+            </div>
+            <div class="ben na">
+              <div class="hd"><h2 class="ttl">Ground transport</h2><span class="st na">Not applicable</span></div>
+              <p class="sm">Covered only when a flight is diverted to a different airport. Yours departed from Bengaluru as booked, so it doesn't apply here.</p>
+            </div>
+
+            <div class="kgroup">
+              <p class="micro">Why you qualify</p>
+              <ul class="did" style="margin-top:4px">
+                <li><i>✓</i><span>Your flight was <b>cancelled</b>, which opens the hotel and travel credit</span></li>
+                <li><i>✓</i><span>You had <b>under 24 hours' notice</b>, so travel credit applies</span></li>
+                <li><i>✓</i><span>The cause was <b>within IndoAir's control</b>: a technical fault, not weather</span></li>
+              </ul>
+            </div>
+            <p class="fnt" style="margin-top:14px">Every IA 247 passenger receives the same benefits, set by IndoAir's compensation rules under DGCA CAR. They can't be reduced at a counter, and don't need to be asked for.</p>
+          </div>
+          <footer>
+            <button class="qbtn" style="align-self:center" onclick="go('status')">Back to recovery</button>
+          </footer>
+        </section>
+
+        <!-- 10a · VOUCHER -->
+        <section class="screen" data-s="voucher">
+          <div class="pad" style="padding-top:26px;text-align:center">
+            <p class="micro" style="margin-bottom:16px">Meal &amp; refreshment</p>
+            <div class="need" style="padding:24px 24px 20px">
+              <div class="qr"></div>
+              <p class="mono" style="font-size:17px;font-weight:600;letter-spacing:.1em;margin:16px 0 0">IA-MV-7K2M-41</p>
+              <p class="fnt" style="margin-top:6px">Show this at the counter. Single use.</p>
+            </div>
+          </div>
+          <div class="pad" style="margin-top:22px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">Voucher details</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Valid until</dt><dd class="mono">20 Aug, 09:35</dd></div>
+                <div class="kv"><dt>Where</dt><dd>IndoAir lounge<small>And partner outlets, terminal 1</small></dd></div>
+                <div class="kv"><dt>Issued</dt><dd class="mono">09:36<small>Automatically</small></dd></div>
+              </dl>
+            </div>
+            <p class="note" style="margin-top:19px">If the code won't scan, any IndoAir desk can redeem it from your booking reference. You won't be turned away because a machine failed.</p>
+          </div>
+          <footer>
+            <button class="btn2" onclick="go('entitlements')">Back to benefits</button>
+          </footer>
+        </section>
+
+        <!-- 11 · SUPPORT -->
+        <section class="screen" data-s="support">
+          <div class="pad" style="padding-top:24px">
+            <p class="micro" style="margin-bottom:11px">IndoAir customer support</p>
+            <h1 class="d-l" style="font-size:28px">Talk to a person.</h1>
+            <p class="body" style="margin-top:11px">An agent picks up with your situation already in front of them. You won't repeat anything.</p>
+          </div>
+          <div class="pad" style="margin-top:18px">
+            <div class="kgroup" style="margin-top:0">
+              <p class="micro">What the agent already sees</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Your booking</dt><dd class="mono">IA 247 · BLR→SIN</dd></div>
+                <div class="kv"><dt>What happened</dt><dd>Cancelled 09:35</dd></div>
+                <div class="kv"><dt>What you were shown</dt><dd>All three options</dd></div>
+                <div class="kv"><dt>What you're flying for</dt><dd>09:00 opening</dd></div>
+              </dl>
+            </div>
+            <div class="need" style="margin-top:18px;padding:4px 20px">
+              <button class="path" onclick="toast('A callback would be queued here')">
+                <span class="hd"><span class="ttl">Call me back</span></span>
+                <p class="sm">Keeps your place, no hold music</p>
+                <span class="chev">›</span>
+              </button>
+              <button class="path" onclick="toast('Chat would open here')">
+                <span class="hd"><span class="ttl">Chat now</span></span>
+                <p class="sm">Typical wait under 2 minutes</p>
+                <span class="chev">›</span>
+              </button>
+            </div>
+            <p class="note" style="margin-top:16px">Some situations come straight here without asking: groups of ten or more, unaccompanied minors, accessibility needs, and anyone whose rebooking has failed three times. Those aren't self-service problems and we don't pretend they are.</p>
+          </div>
+          <footer>
+            <button class="qbtn" style="align-self:center" onclick="go('status')">Back</button>
+          </footer>
+        </section>
+
+        <!-- 11a · UPDATES -->
+        <section class="screen" data-s="updates">
+          <div class="pad" style="padding-top:24px">
+            <h1 class="d-l" style="font-size:28px">Updates</h1>
+            <p class="body" style="margin-top:11px">Everything SkyConnect has done, and everything that has changed. You should never have to refresh a page to find out.</p>
+          </div>
+          <div class="pad" style="margin-top:16px">
+            <div class="kgroup" style="margin-top:0;padding-top:12px;padding-bottom:4px">
+              <div id="feed"></div>
+            </div>
+            <p class="note" style="margin-top:16px">You'll get a push for anything that changes your options or your money. Everything else just lands here quietly.</p>
+          </div>
+          <footer><button class="qbtn" style="align-self:center" onclick="go('status')">Back to recovery</button></footer>
+        </section>
+
+        <!-- 12 · PROFILE -->
+        <section class="screen" data-s="profile">
+          <div class="pad" style="padding-top:24px">
+            <h1 class="d-l" style="font-size:28px">Priya Sharma</h1>
+            <p class="data-s" style="color:var(--ink-faint);margin-top:8px">IndoAir Miles Gold · since 2019</p>
+            <p class="body" style="margin-top:14px">You got here from a link, not a password. This is everything that link knows about you.</p>
+            <hr class="horizon">
+          </div>
+          <div class="pad">
+            <div class="kgroup" style="margin-top:18px">
+              <p class="micro">This booking</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Reference</dt><dd class="mono">QR7K2M</dd></div>
+                <div class="kv"><dt>Flight</dt><dd class="mono">IA 247<small>Bengaluru → Singapore</small></dd></div>
+                <div class="kv"><dt>Return</dt><dd class="mono">IA 248 · 22 Aug<small>Unaffected</small></dd></div>
+                <div class="kv"><dt>Travelling</dt><dd>On your own<small>No one else on this reference</small></dd></div>
+              </dl>
+            </div>
+            <div class="kgroup">
+              <p class="micro">What you've paid for</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>Seat</dt><dd class="mono">14A<small>Window, forward cabin</small></dd></div>
+                <div class="kv"><dt>Meal</dt><dd>Vegetarian</dd></div>
+                <div class="kv"><dt>Lounge</dt><dd>Included</dd></div>
+                <div class="kv"><dt>Extra baggage</dt><dd class="mono">10 kg<small>Prepaid</small></dd></div>
+              </dl>
+              <p class="fnt" style="margin-top:8px">If you rebook, we try to move all four. Anything that can't move gets refunded without you asking.</p>
+            </div>
+            <div class="kgroup">
+              <p class="micro">How we reach you</p>
+              <dl style="margin:0">
+                <div class="kv"><dt>App notification</dt><dd class="okv">Delivered 09:35</dd></div>
+                <div class="kv"><dt>Mobile</dt><dd class="mono">+91 ••••• 4471<small>SMS delivered 09:35</small></dd></div>
+                <div class="kv"><dt>Email</dt><dd class="mono">p•••••@•••••.com<small>Delivered 09:36</small></dd></div>
+                <div class="kv"><dt>Language</dt><dd>English<small>हिंदी available</small></dd></div>
+              </dl>
+              <button class="qbtn" style="margin-top:6px" onclick="toast('Hindi is in the MVP scope — not translated in this prototype')">हिंदी में देखें <span>→</span></button>
+            </div>
+            <div class="kgroup">
+              <p class="micro">Your data</p>
+              <p class="sm" style="margin-top:4px">You agreed we could use this booking to manage the disruption. That's the only thing it's used for, and you can withdraw it — we'd hand you to an agent instead of dropping you.</p>
+              <button class="qbtn" style="margin-top:6px" onclick="toast('Consent settings would open here')">Manage consent <span>→</span></button>
+            </div>
+            <p class="note" style="margin-top:20px">This link works for 72 hours and books one flight. Sign in to IndoAir Miles if you want your full history, saved preferences and past disruptions — but you never have to.</p>
+          </div>
+          <footer>
+            <button class="qbtn" style="align-self:center" onclick="go('status')">Back</button>
+          </footer>
+        </section>
+
+      </div>
+
+      <button class="pushbanner" id="pushbanner" hidden onclick="go('backontrack')">
+        <span class="ph"><u></u> IndoAir · now</span>
+        <b>IA 247 is operating after all</b>
+        <p>Reinstated, departing 11:15. It lands before the seat you're holding — and your compensation changes.</p>
+        <span class="tap">See what changed →</span>
+      </button>
+
+      <nav class="instr" id="tabbar" hidden aria-label="Sections">
+        <button data-tab="status" onclick="go('status')">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          <span>Recovery</span></button>
+        <button data-tab="entitlements" onclick="go('entitlements')">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3a2.5 2.5 0 0 0 0 5v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a2.5 2.5 0 0 0 0-5z"/><path d="M13 6v2M13 11v2M13 16v2"/></svg>
+          <span>Benefits</span></button>
+        <button data-tab="updates" onclick="go('updates')">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8A6 6 0 1 0 6 8c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span>Updates</span><em id="badge" hidden></em></button>
+        <button data-tab="profile" onclick="go('profile')">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+          <span>You</span></button>
+      </nav>
+    </div>
+
+    <div class="caption" id="caption">
+      <span class="tag" id="capTag">SC-M-007</span>
+      <p id="capText"></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SCREENS = {
+  push:        ["SC-M-007", "<b>Notification dispatch.</b> Push, then SMS, then email — all fired at once, inside five minutes. The deep link carries no PNR and needs no password."],
+  status:      ["SC-M-008", "<b>Disruption status tracker.</b> Auto-refreshes every 60 seconds. Gate data is absent for cancellations, so it's suppressed rather than faked."],
+  commit:      ["DESIGN",   "<b>The commitment question.</b> Nothing in the BRD asks this. It's the one thing the airline can't already look up, and everything downstream is read against it."],
+  options:     ["SC-M-009", "<b>Alternate flights.</b> Ranked by earliest arrival then fewest connections, exactly as specified — the consequence labels sit on top of that order rather than replacing it."],
+  detail1:     ["DESIGN",   "<b>The option we argue against.</b> Fastest, and first in the BRD's order. The product tells you not to take it."],
+  detail2:     ["DESIGN",   "<b>The reasoning screen.</b> The recommendation is the second row, not the first. Weighing a tight connection against what she's flying for is judgement, not a sort key."],
+  detail3:     ["SC-M-009", "<b>The protected option.</b> Already hers, costs nothing, and honestly labelled as missing the thing she's flying for."],
+  hold:        ["DESIGN",   "<b>The ten-minute hold.</b> The largest addition in this iteration and the one most likely to be challenged. Short TTL, one per link, instant release — the trade-off is priced, not hidden."],
+  backontrack: ["SC-M-008", "<b>The exception nobody designs for.</b> The BRD says remove rebooking when a flight recovers. She's holding a seat, so the product asks instead — and volunteers that her compensation just got smaller."],
+  expired:     ["DESIGN",   "<b>The hold expires.</b> The seat goes back, the count is lower than it was, and the product says so before the confirmation screen can betray her."],
+  review:      ["SC-M-010", "<b>Review before commit.</b> No price, no card field — only her own fare class is ever offered, and disruption pricing is out of scope."],
+  done:        ["SC-M-016", "<b>Ancillary re-validation.</b> Seat, meal, lounge and prepaid bag move across; the seat that doesn't exist on the new aircraft is refunded automatically and named."],
+  stayed:      ["SC-M-012", "<b>Entitlements recalculated.</b> Reclassification withdrew the travel credit. The product says so to her face rather than letting her discover it."],
+  tell:        ["DESIGN",   "<b>Recovery isn't done when the seat is booked.</b> No integration — the message is composed and handed over. What we can't see, we don't claim to know."],
+  refund:      ["SC-M-011", "<b>Refund as a peer option.</b> Present on every screen, not buried. A product that can't recommend against itself doesn't earn trust."],
+  track:       ["SC-M-008", "<b>Tracking without deciding.</b> Sixty-second refresh, and no gate field invented to fill the space. Staying informed is a destination of its own."],
+  entitlements:["SC-M-012", "<b>Entitlements on their own terms.</b> Reachable before she books, not buried behind a booking. The basis is shown, because it's calculated and identical for all 180 passengers."],
+  support:     ["SC-M-014", "<b>Human fallback with context.</b> Escalation carries the booking, the options shown and her stated commitment, so she never retells the story."],
+  updates:     ["SC-M-007", "<b>Every notification, kept.</b> Dispatch, delivery and each change to her options in one ledger — so a push she missed in her pocket is never lost."],
+  voucher:     ["SC-M-013", "<b>The voucher itself.</b> Single-use, QR, expiring 24 hours after the disruption — and redeemable from her booking reference if the scanner fails."],
+  profile:     ["SC-M-001", "<b>Everything the link knows.</b> Booking summary, ancillaries, the channels she was reached on, and DPDP consent she can withdraw. Miles sign-in is offered, never required."]
+};
+
+let cur = "push", t0 = null, tick = null, left = 600, holding = false, backFired = false;
+let outcome = "rebooked", courseDrawn = false, resolved = null;
+
+/* Once a flight is confirmed, the Recovery tab stops asking and starts confirming. */
+const RESOLVED = {
+  rebooked: {
+    head: "You're booked on tonight's 16:30.",
+    t1: "16:30<i>IST</i>", t2: "23:20<i>SGT</i>",
+    sub: "<b>IA 288</b><i></i><span>Direct</span><i></i><span class=\"okv\" style=\"letter-spacing:.1em\">Confirmed</span>",
+    itin: "done"
+  },
+  stayed: {
+    head: "You're on your original flight, IA 247.",
+    t1: "11:15<i>IST</i>", t2: "18:05<i>SGT</i>",
+    sub: "<b>IA 247</b><i></i><span>Reinstated</span><i></i><span class=\"okv\" style=\"letter-spacing:.1em\">Confirmed</span>",
+    itin: "stayed"
+  }
+};
+function renderStatus(){
+  const open = document.getElementById("st-open"), doneB = document.getElementById("st-done");
+  if (resolved){
+    const r = RESOLVED[resolved];
+    document.getElementById("rs-head").textContent = r.head;
+    document.getElementById("rs-t1").innerHTML = r.t1;
+    document.getElementById("rs-t2").innerHTML = r.t2;
+    document.getElementById("rs-sub").innerHTML = r.sub;
+    document.getElementById("rs-itin").onclick = ()=>go(r.itin);
+    open.style.display = "none"; doneB.style.display = "contents";
+  } else {
+    open.style.display = "contents"; doneB.style.display = "none";
+  }
+}
+
+/* What she sends, and what may have broken, both depend on which ending
+   she actually took. A 23:20 arrival and an 18:05 one break different things. */
+const OUTCOME = {
+  rebooked: {
+    msg: "Flight got cancelled — I'm rebooked onto the 16:30 and landing in Singapore at 23:20 tonight instead of this afternoon. Still on for the 09:00 opening tomorrow. Will check in once I'm at the hotel.",
+    list: [
+      "Your hotel check-in time — you'll arrive after midnight",
+      "Any airport transfer booked for the old landing time",
+      "Anything else you arranged around this afternoon"
+    ]
+  },
+  stayed: {
+    msg: "False alarm — the cancellation was reversed and I'm on the original flight after all, just half an hour late. Landing in Singapore at 18:05 instead of 17:35. Nothing changes for the 09:00 opening.",
+    list: [
+      "Any airport transfer booked for 17:35 — you're half an hour behind it",
+      "Anyone you already told you'd be arriving late tonight"
+    ]
+  }
+};
+const NO_BAR = ["push"];
+const TABS = ["status","entitlements","updates","profile"];
+const TAB_OF = {voucher:"entitlements", track:"status", support:"status", refund:"status",
+  done:"status", stayed:"status", tell:"status", backontrack:"updates",
+  commit:"status", options:"status", detail1:"status", detail2:"status", detail3:"status",
+  hold:"status", expired:"status", review:"status"};
+
+/* The ledger behind the Updates tab. The recovery intelligence is only
+   trustworthy if it shows its work, so every automated act lands here. */
+let FEED = [
+  ["09:39","Availability refreshed","IA 288 is down to 3 seats from 5. Nothing you were shown has become unavailable.",0,null],
+  ["09:36","Protected on tomorrow's 08:00","Done automatically. You are not stranded even if you ignore all of this.",0,null],
+  ["09:36","Benefits calculated","Meal voucher and travel credit issued. Nothing to claim.",0,"entitlements"],
+  ["09:36","Email delivered","To p•••••@•••••.com",0,null],
+  ["09:35","SMS delivered","To +91 ••••• 4471",0,null],
+  ["09:35","Notification sent","Push, SMS and email dispatched together.",0,null],
+  ["09:35","IA 247 cancelled","Classified two minutes after operations filed it. 180 passengers identified.",0,null]
+];
+let unread = 0;
+function renderFeed(){
+  const f = document.getElementById("feed");
+  if(!f) return;
+  f.innerHTML = FEED.map(r=>
+    '<button class="feeditem'+(r[3]?' hot':'')+'" onclick="'+(r[4]?"go('"+r[4]+"')":"void 0")+'">'+
+    '<time>'+r[0]+'</time><span><b>'+r[1]+(r[3]?'<i class="nd"></i>':'')+'</b><p>'+r[2]+'</p></span></button>'
+  ).join("");
+}
+function pushFeed(time,title,body,hot,link){
+  FEED.unshift([time,title,body,hot?1:0,link||null]);
+  if(hot){ unread++; document.getElementById("badge").hidden = false; }
+  renderFeed();
+}
+
+function go(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("is-active", s.dataset.s===id));
+  cur = id;
+  if (id === "done") resolved = "rebooked";
+  if (id === "stayed") resolved = "stayed";
+  if (id === "status") renderStatus();
+  if (id !== "push" && !t0) t0 = Date.now();
+  const [tag, text] = SCREENS[id];
+  const el = document.getElementById("capTag");
+  el.textContent = tag === "DESIGN" ? "Design decision" : tag;
+  el.className = "tag" + (tag === "DESIGN" ? " design" : "");
+  document.getElementById("capText").innerHTML = text;
+  document.querySelectorAll("#jump button").forEach(b=>b.setAttribute("aria-current", String(b.dataset.go===id)));
+  const tb = document.getElementById("tabbar");
+  tb.hidden = (id === "push");
+  const activeTab = TABS.includes(id) ? id : TAB_OF[id];
+  tb.querySelectorAll("button").forEach(b=>b.setAttribute("aria-current", String(b.dataset.tab===activeTab)));
+  if (id === "updates"){ unread = 0; document.getElementById("badge").hidden = true; renderFeed(); }
+  document.querySelector(".screen.is-active").scrollTop = 0;
+  document.getElementById("clock").textContent = id==="push" ? "09:35" : clockFor(id);
+  if (id === "hold") startHold(); else if (id !== "backontrack") stopHold();
+  const ls = document.getElementById("livestrip");
+  if (ls) ls.hidden = !(id === "hold" && backFired);
+  if (id === "status" && !courseDrawn){
+    courseDrawn = true;
+    setTimeout(()=>document.getElementById("course").style.setProperty("--h","100%"), 420);
+  }
+  if (id === "tell"){
+    document.getElementById("elapsed").textContent = fmtElapsed();
+    const o = OUTCOME[outcome];
+    document.getElementById("msg").value = o.msg;
+    document.getElementById("checklist").innerHTML =
+      o.list.map(t=>'<li><span>&middot;</span> '+t+'</li>').join("");
+  }
+}
+function clockFor(id){
+  if (id === "status" && resolved) return "09:48";
+  const map = {status:"09:36", commit:"09:38", options:"09:39", detail1:"09:40",
+    detail2:"09:40", detail3:"09:40", hold:"09:41", backontrack:"09:44",
+    expired:"10:12", review:"09:46", done:"09:47", stayed:"09:45", tell:"09:48", refund:"09:42"};
+  return map[id] || "09:41";
+}
+function startHold(){
+  if(!holding){ holding = true; left = 600; backFired = false; }
+  paint();
+  if(tick) return;
+  tick = setInterval(()=>{
+    left--; paint();
+    if(left === 596 && !backFired) statusChange();
+    if(left<=0){ stopHold(); holding=false; go("expired"); }
+  }, 1000);
+}
+function stopHold(){ if(tick){ clearInterval(tick); tick=null; } }
+
+/* The event as the passenger actually meets it: a push arrives while the
+   clock is running, and the hold screen changes underneath her. Nothing
+   navigates on its own — she is mid-decision and it is not ours to hijack. */
+function statusChange(){
+  backFired = true;
+  pushFeed("09:44","IA 247 is operating after all",
+    "Reinstated, departing 11:15. It lands before the seat you are holding, and your compensation changes.",
+    true,"backontrack");
+  const ls = document.getElementById("livestrip");
+  if (ls && cur === "hold") ls.hidden = false;
+  const pb = document.getElementById("pushbanner");
+  pb.hidden = false;
+  clearTimeout(pb._t);
+  pb._t = setTimeout(()=>{ pb.hidden = true; }, 9000);
+}
+function paint(){
+  const m = Math.floor(left/60), s = left%60;
+  const el = document.getElementById("cd");
+  if(el){
+    el.textContent = m + ":" + String(s).padStart(2,"0");
+    el.classList.toggle("ending", left <= 60);
+  }
+}
+function release(){ stopHold(); holding=false; toast("Seat released — back in inventory"); go("options"); }
+function fireBack(){
+  if(cur !== "hold"){ go("hold"); setTimeout(statusChange, 600); }
+  else statusChange();
+}
+function fireExpire(){ stopHold(); holding=false; go("expired"); }
+function restart(){
+  stopHold(); holding=false; backFired=false; t0=null; unread=0; outcome="rebooked"; resolved=null;
+  FEED = FEED.filter(r=>!r[3]);
+  document.getElementById("badge").hidden = true;
+  document.getElementById("pushbanner").hidden = true;
+  renderFeed();
+  go("push");
+}
+function fmtElapsed(){
+  if(!t0) return "—";
+  const s = Math.max(1, Math.round((Date.now()-t0)/1000));
+  return s < 60 ? s + "s" : Math.floor(s/60) + "m " + (s%60) + "s";
+}
+function toast(m){
+  const t = document.getElementById("toast");
+  t.textContent = m; t.classList.add("on");
+  setTimeout(()=>t.classList.remove("on"), 1900);
+}
+function copyMsg(){
+  const v = document.getElementById("msg").value;
+  const b = document.getElementById("copybtn");
+  const ok = ()=>{
+    if(b){ b.textContent = "Copied ✓"; b.style.color = "var(--engaged)"; b.style.borderColor = "var(--engaged)";
+      setTimeout(()=>{ b.textContent = "Copy message"; b.style.color = ""; b.style.borderColor = ""; }, 1600); }
+  };
+  try{
+    navigator.clipboard.writeText(v).then(ok, ()=>toast("Select the text to copy"));
+  }catch(e){ toast("Select the text to copy"); }
+}
+
+/* Blue hour through terminal glass — painted, so the ground is a
+   material rather than a hex value. Repainted on theme change. */
+function paintSkies(){
+  const S = getComputedStyle(document.documentElement);
+  const v = n => S.getPropertyValue(n).trim();
+  document.querySelectorAll(".skyc").forEach(c=>{
+    const x = c.getContext("2d");
+    const W = c.width, H = c.height;
+    x.clearRect(0,0,W,H);
+    const g = x.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,    v("--sky-1"));
+    g.addColorStop(0.34, v("--sky-2"));
+    g.addColorStop(0.60, v("--sky-3"));
+    g.addColorStop(0.79, v("--sky-warm"));
+    g.addColorStop(0.90, v("--sky-ember"));
+    g.addColorStop(1,    v("--ground"));
+    x.fillStyle = g; x.fillRect(0,0,W,H);
+    const b = x.createRadialGradient(W*0.72, H*0.88, 0, W*0.72, H*0.88, W*0.78);
+    b.addColorStop(0, v("--sky-ember")); b.addColorStop(1, "transparent");
+    x.globalAlpha = .42; x.fillStyle = b; x.fillRect(0,0,W,H); x.globalAlpha = 1;
+    const h = Math.round(H*0.845);
+    const l = x.createLinearGradient(0,0,W,0);
+    l.addColorStop(0,"transparent"); l.addColorStop(.5, v("--sky-ember")); l.addColorStop(1,"transparent");
+    x.globalAlpha = .34; x.fillStyle = l; x.fillRect(0,h,W,1); x.globalAlpha = 1;
+  });
+}
+paintSkies();
+if (window.matchMedia){
+  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", paintSkies);
+}
+new MutationObserver(paintSkies).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+
+const NAV = [
+  ["push","Notification"],["status","Recovery Dashboard"],["commit","Trip purpose"],
+  ["options","Three options"],["detail2","Why this one"],["detail1","The fast risky one"],
+  ["detail3","Tomorrow's seat"],["hold","Seat held"],["backontrack","Flight comes back"],
+  ["expired","Hold expired"],["review","Review"],["done","Confirmed"],
+  ["stayed","Stayed on IA 247"],["tell","Tell people"],["track","Track live"],
+  ["entitlements","What you're owed"],["voucher","Meal voucher"],["support","Talk to a person"],
+  ["updates","Updates"],["profile","Your details"],["refund","Refund"]
+];
+
+/* One persistent way to reach identity, on every screen. */
+document.querySelectorAll(".screen").forEach(sc=>{
+  if (NO_BAR.includes(sc.dataset.s)) return;
+  const bar = document.createElement("div");
+  bar.className = "appbar";
+  bar.innerHTML =
+    '<span class="who"><b>Priya Sharma</b><span>IA 247 &middot; BLR&rarr;SIN</span></span>' +
+    '<span>72h link</span>';
+  sc.insertBefore(bar, sc.firstChild);
+});
+document.getElementById("jump").innerHTML = NAV.map((n,i)=>
+  '<button data-go="'+n[0]+'" onclick="go(\''+n[0]+'\')"><i>'+String(i+1).padStart(2,"0")+'</i>'+n[1]+'</button>'
+).join("");
+
+go("push");
+</script>
