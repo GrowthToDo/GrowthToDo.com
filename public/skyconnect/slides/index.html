@@ -143,7 +143,16 @@ a{color:var(--track);text-decoration:none}
 .mini .mnav span:first-child{color:var(--ink);position:relative}
 .mini .mnav span:first-child::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;width:16px;height:2px;background:var(--course);border-radius:1px}
 
-@media (max-width:760px){.two{grid-template-columns:1fr}.dots{display:none}.illus{max-height:34vh}.mini{display:none}}
+@media (max-width:760px){
+  .two{grid-template-columns:1fr}.dots{display:none}.illus{max-height:34vh}.mini{display:none}
+  /* important beats inline styles: the desktop slides use inline grids */
+  .slide{overflow-y:auto;justify-content:flex-start;padding:24px 20px 92px}
+  .slide .grid{grid-template-columns:1fr 1fr !important;max-width:none !important}
+  .slide .two{grid-template-columns:1fr !important}
+  .illus{display:none}
+  html,body{overflow-x:hidden}
+  body{overflow-y:auto}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
@@ -157,7 +166,7 @@ a{color:var(--track);text-decoration:none}
     <div>
       <p class="micro">IndoAir · Passenger disruption management · Proof of concept</p>
       <div class="courserule"></div>
-      <h1 class="d1" style="max-width:14ch">When a flight falls apart, the experience shouldn't.</h1>
+      <h1 class="d1" style="max-width:15ch">A cancelled flight shouldn't cost you the trip.</h1>
       <p class="lede" style="margin-top:clamp(18px,3vh,30px);max-width:44ch">A mobile-first recovery platform that helps passengers understand what happened, decide with confidence, and recover in minutes.</p>
       <p class="data" style="margin-top:clamp(24px,5vh,44px);color:var(--ink-faint)">Surya Haridasan · SkyConnect POC pitch</p>
     </div>
@@ -235,7 +244,7 @@ a{color:var(--track);text-decoration:none}
       <p class="micro">Live prototype</p>
       <h2 class="d2" style="margin-top:14px">Let me show you Priya's four minutes.</h2>
       <div class="courserule"></div>
-      <a class="mono" href="/skyconnect/" target="_blank" rel="noopener" style="font-size:clamp(18px,2.2vw,30px);font-weight:600;letter-spacing:.02em">Open the live prototype →</a>
+      <a class="mono" href="/skyconnect/prototype/" target="_blank" rel="noopener" style="font-size:clamp(18px,2.2vw,30px);font-weight:600;letter-spacing:.02em">Open the live prototype →</a>
       <div class="bd-sub" style="margin-top:14px"><span>21 screens</span><i></i><span>clickable end to end</span><i></i><span>no login</span></div>
       <div class="grid" style="grid-template-columns:1fr 1fr;max-width:620px;margin-top:clamp(18px,3vh,30px)">
         <div class="card"><p class="data" style="color:var(--course)">Decide</p><p class="sm" style="margin-top:8px">One recommended step, four paths in reach</p></div>
@@ -355,6 +364,8 @@ function show(i){
   dots.querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-current",String(j===cur)));
   document.getElementById("ct").textContent=(cur+1)+" / "+slides.length;
   document.getElementById("skywrap").classList.toggle("on",cur===0);
+  scrollTo(0,0);
+  const sc=slides[cur]; if(sc){sc.scrollTop=0;sc.scrollLeft=0}
   if(history.replaceState) history.replaceState(null,"","#"+(cur+1));
 }
 document.getElementById("prev").onclick=()=>show(cur-1);
