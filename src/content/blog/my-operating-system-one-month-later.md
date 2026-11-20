@@ -14,7 +14,7 @@ heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&
 5. [An Audit of My Follow-Up Pipeline Found 55% Was Overdue](/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue)
 6. [My Operating System Now Closes the Day Without Me](/blog/my-operating-system-now-closes-the-day-without-me)
 
-The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
+The system is live and still changing: see the [FounderOS overview](/founder-os) and its [changelog](/founder-os/changelog).
 
 ---
 

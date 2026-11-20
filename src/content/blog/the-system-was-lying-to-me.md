@@ -15,7 +15,7 @@ hidden: true
 5. **An Audit of My Follow-Up Pipeline Found 55% Was Overdue** (this post)
 6. [My Operating System Now Closes the Day Without Me](/blog/my-operating-system-now-closes-the-day-without-me)
 
-The system is live and still changing: see the [Founder OS overview](/founder-os) and its [changelog](/founder-os/changelog).
+The system is live and still changing: see the [FounderOS overview](/founder-os) and its [changelog](/founder-os/changelog).
 
 ---
 
