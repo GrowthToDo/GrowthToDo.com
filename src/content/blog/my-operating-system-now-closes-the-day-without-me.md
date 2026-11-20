@@ -33,4 +33,4 @@ The system now runs on a spare computer at home that never switches off. I can m
 
 At five to midnight it logs what I ticked off, writes the day's summary and adds my reflection. The first version of that summary ran to eleven paragraphs. I only read it the next morning to get back into the work, so the rule is now one phone screen. The log keeps the detail.
 
-All of this is a day old, and the first overnight run is tonight. The rule from Part 5 still holds: it only does what I can undo. It also sends me one line each night saying what it did, and if that line stops arriving I will know the day it fails.
+All of this is a day old. The first overnight run happened at five to midnight and wrote the day's summary. The rule from Part 5 still holds: it only does what I can undo. It also sends me one line each night saying what it did, and if that line stops arriving I will know the day it fails.
