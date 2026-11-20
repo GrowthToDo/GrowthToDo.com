@@ -10,9 +10,36 @@ const PART1 = { label: "My New Operating System for Work", href: "/blog/my-new-o
 const PART2 = { label: "My Operating System, One Month Later", href: "/blog/my-operating-system-one-month-later" };
 const PART3 = { label: "The Real Test of a System", href: "/blog/the-real-test-of-a-system-is-handing-it-to-someone-else" };
 const PART4 = { label: "The System Is Not Its Tools", href: "/blog/the-system-is-not-its-tools" };
+const PART5 = { label: "An Audit of My Follow-Up Pipeline Found 55% Was Overdue", href: "/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue" };
+const PART6 = { label: "My Operating System Now Closes the Day Without Me", href: "/blog/my-operating-system-now-closes-the-day-without-me" };
 
 // Newest first. A living log; dates are when the change went in.
 const changelog = [
+  {
+    date: "2026-11-20",
+    phase: "Away from the desk",
+    title: "The system moved onto a computer that stays on, and onto my phone",
+    items: [
+      "Moved onto a spare computer at home that never switches off.",
+      "Added a chat window on my phone: I type or dictate and it works on the same files. It cannot send email; anything for other people comes back as a draft.",
+      "New sessions open on my handwritten list only. The long agenda loads when I ask.",
+      "Each morning at 7 my list reaches my phone. Each night at five to midnight the day closes itself: ticked items logged, a one-screen summary written, my reflection added.",
+      "Wrote a setup script and a recovery checklist, so it can be rebuilt on another computer.",
+    ],
+    readMore: [PART6],
+  },
+  {
+    date: "2026-07-11",
+    phase: "Architecture",
+    title: "One clock became several loops",
+    items: [
+      "Replaced the single trigger, me opening a session, with separate loops: day, fortnightly review, decisions, and upkeep that runs without me.",
+      "A 6:30 morning run reads everything and writes a briefing of the changes it would make, without making them.",
+      "Open decisions now carry a recommended default, at most two a day.",
+      "Re-dated 36 stale follow-ups with a slipped counter instead of archiving them, and started a mistakes log.",
+    ],
+    readMore: [PART5],
+  },
   {
     date: "2026-07-02",
     phase: "Design",

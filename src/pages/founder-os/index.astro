@@ -10,9 +10,15 @@ const S = "'Spectral', ui-serif, serif";
 
 const stats = [
   { value: "6", label: "life areas, one structure" },
-  { value: "1", label: "AI agent, by voice" },
+  { value: "1", label: "AI agent, on my phone too" },
   { value: "100%", label: "plain text, no app" },
   { value: "Daily", label: "since May 2026" },
+];
+
+const away = [
+  { when: "7 AM", title: "My list reaches my phone", body: "The few things I chose for today, before I open anything." },
+  { when: "Any time", title: "I can message it", body: "From my phone. It cannot send email; for other people it drafts." },
+  { when: "11:55 PM", title: "The day closes itself", body: "What I ticked off is logged and a one-screen summary is written." },
 ];
 
 const fixed = [
@@ -43,8 +49,8 @@ const fixed = [
         The operating system<br class="hidden md:block" /> I run my work from.
       </h1>
       <p class="font-serif text-xl md:text-2xl leading-snug text-base-content/60 max-w-2xl">
-        Plain text files. An AI agent that works them by voice. A few rules that keep several
-        businesses from falling through the cracks.
+        Plain text files. An AI agent that works them by voice, at my desk or from my phone. A few
+        rules that keep several businesses from falling through the cracks.
       </p>
     </header>
 
@@ -111,8 +117,8 @@ const fixed = [
               </div>
               <p class="font-serif text-lg text-base-content">The interface</p>
             </div>
-            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: the terminal</p>
-            <p class="font-sans text-sm text-base-content/55 leading-snug">Where I actually talk to the model. No app, no dashboard, no tab to keep open.</p>
+            <p class="font-sans text-xs font-semibold uppercase tracking-wide text-base-content/35 mb-1.5">currently: terminal and phone chat</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">Where I talk to the agent: at my computer, or in a chat window on my phone.</p>
           </div>
           <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
             <div class="flex items-center gap-2.5 mb-2">
@@ -144,6 +150,8 @@ const fixed = [
           <symbol id="icCheck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
           <symbol id="icBell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 5 3 9H3c0-4 3-2 3-9M10.5 21a1.5 1.5 0 0 0 3 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
           <symbol id="icLayers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+          <symbol id="icPhone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18.2h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+          <symbol id="icClock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5.2l3.2 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
         </defs>
       </svg>
 
@@ -151,9 +159,9 @@ const fixed = [
       <div class="mb-12">
         <h3 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-2">The architecture</h3>
         <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-5 max-w-2xl">
-          The shape is simple. One AI agent (Claude Code), driven by your voice, sits between two
+          The shape is simple. One AI agent (Claude Code), driven by your voice or a chat message from your phone, sits between two
           layers of plain text in an Obsidian vault. One layer holds what is true and barely changes.
-          The other holds what is happening now. The agent reads from both and writes back to both.
+          The other holds what is happening now. The agent reads from both and writes back to both. It also works on a clock, so some things happen while I am away.
         </p>
 
         <div class="rounded-2xl border border-base-content/10 bg-base-100 p-2 md:p-4 overflow-x-auto">
@@ -171,11 +179,18 @@ const fixed = [
             <rect x="462" y="178" width="170" height="22" rx="11" fill="#fff" stroke="#e7e5e4"/><text x="547" y="193" text-anchor="middle" font-family={F} font-size="10" fill="#0f766e">reads truth, writes facts</text>
 
             <rect x="64" y="266" width="150" height="66" rx="14" fill="#fff" stroke="#eceae8" stroke-width="1.5" filter="url(#sh)"/>
-            <use href="#icMic" x="92" y="286" width="17" height="17" style="color:#0d9488"/>
-            <text x="146" y="296" text-anchor="middle" font-family={S} font-size="15" fill="#292524">You</text>
-            <text x="146" y="314" text-anchor="middle" font-family={F} font-size="10.5" fill="#78716c">by voice</text>
+            <use href="#icMic" x="80" y="291" width="17" height="17" style="color:#0d9488"/>
+            <text x="108" y="297" font-family={S} font-size="15" fill="#292524">At my desk</text>
+            <text x="108" y="315" font-family={F} font-size="10.5" fill="#78716c">by voice</text>
             <path d="M214,299 C 290,299 330,300 384,300" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
             <text x="300" y="290" text-anchor="middle" font-family={F} font-size="10" fill="#78716c">you ask</text>
+
+            <rect x="64" y="352" width="150" height="66" rx="14" fill="#fff" stroke="#eceae8" stroke-width="1.5" filter="url(#sh)"/>
+            <use href="#icPhone" x="80" y="377" width="17" height="17" style="color:#0d9488"/>
+            <text x="108" y="383" font-family={S} font-size="15" fill="#292524">On my phone</text>
+            <text x="108" y="401" font-family={F} font-size="10.5" fill="#78716c">by chat</text>
+            <path d="M214,385 C 300,385 360,362 405,339" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
+            <text x="300" y="400" text-anchor="middle" font-family={F} font-size="10" fill="#78716c">or you message</text>
 
             <circle cx="450" cy="300" r="72" fill="none" stroke="#5eead4" stroke-width="7" opacity="0.35"/>
             <circle cx="450" cy="300" r="58" fill="url(#gTeal)" filter="url(#shSoft)"/>
@@ -185,9 +200,13 @@ const fixed = [
 
             <path d="M508,300 C 590,300 630,300 676,300" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
             <text x="596" y="290" text-anchor="middle" font-family={F} font-size="10" fill="#78716c">you get</text>
+            <rect x="534" y="318" width="132" height="36" rx="18" fill="#fff" stroke="#99f6e4" stroke-width="1.5" filter="url(#sh)"/>
+            <use href="#icClock" x="544" y="328" width="15" height="15" style="color:#0d9488"/>
+            <text x="565" y="332" font-family={F} font-size="10" font-weight="700" fill="#0f766e">also on a clock</text>
+            <text x="565" y="346" font-family={F} font-size="9.5" fill="#78716c">7 AM &#183; 11:55 PM</text>
             <rect x="678" y="252" width="166" height="96" rx="14" fill="#fff" stroke="#eceae8" stroke-width="1.5" filter="url(#sh)"/>
             <text x="696" y="274" font-family={F} font-size="11" font-weight="700" fill="#292524">You get</text>
-            <use href="#icCheck" x="694" y="284" width="12" height="12" style="color:#0d9488"/><text x="712" y="294" font-family={S} font-size="11.5" fill="#57534e">A prioritized agenda</text>
+            <use href="#icCheck" x="694" y="284" width="12" height="12" style="color:#0d9488"/><text x="712" y="294" font-family={S} font-size="11.5" fill="#57534e">Today's short list</text>
             <use href="#icCheck" x="694" y="302" width="12" height="12" style="color:#0d9488"/><text x="712" y="312" font-family={S} font-size="11.5" fill="#57534e">Drafts to send</text>
             <use href="#icCheck" x="694" y="320" width="12" height="12" style="color:#0d9488"/><text x="712" y="330" font-family={S} font-size="11.5" fill="#57534e">Nudges before slips</text>
 
@@ -200,7 +219,7 @@ const fixed = [
             <rect x="318" y="468" width="122" height="46" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="328" y="480" width="12" height="12" style="color:#0d9488"/><text x="379" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#292524">Conversations</text><text x="379" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">people + nudges</text>
             <rect x="448" y="468" width="122" height="46" rx="10" fill="#fff" stroke="#ececea"/><use href="#icDoc" x="458" y="480" width="12" height="12" style="color:#0d9488"/><text x="509" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#292524">Working Doc</text><text x="509" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#a8a29e">drafts</text>
             <rect x="578" y="468" width="136" height="46" rx="10" fill="url(#gAccent)" stroke="#5eead4"/><use href="#icCheck" x="588" y="480" width="12" height="12" style="color:#0f766e"/><text x="648" y="489" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#0f766e">Done Tracker</text><text x="648" y="503" text-anchor="middle" font-family={F} font-size="8.5" fill="#5eada3">dated log</text>
-            <text x="190" y="544" font-family={F} font-size="9.5" fill="#a8a29e">finished items flow into the Done Tracker &#8594; distilled each morning into the Daily Summary</text>
+            <text x="190" y="544" font-family={F} font-size="9.5" fill="#a8a29e">finished items flow into the Done Tracker &#8594; distilled each night into the Daily Summary</text>
           </svg>
         </div>
         <p class="font-sans text-sm text-base-content/45 mt-3">Plain files, not an app. The clean layer stays readable; the messy layer absorbs the day.</p>
@@ -223,13 +242,13 @@ const fixed = [
 
             <rect x="70" y="26" width="760" height="46" rx="13" fill="url(#gTeal)" filter="url(#sh)"/>
             <use href="#icSpark" x="94" y="40" width="18" height="18" style="color:#fff"/>
-            <text x="464" y="55" text-anchor="middle" font-family={F} font-size="13" font-weight="600" fill="#fff">SESSION START &#183; reads every file, surfaces overdue, builds the agenda</text>
+            <text x="464" y="55" text-anchor="middle" font-family={F} font-size="13" font-weight="600" fill="#fff">SESSION START &#183; opens on my handwritten list for today</text>
 
             <line x1="450" y1="72" x2="450" y2="96" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
             <rect x="356" y="98" width="188" height="58" rx="16" fill="#fff" stroke="#eceae8" stroke-width="1.5" filter="url(#sh)"/>
             <use href="#icMic" x="384" y="116" width="18" height="18" style="color:#0d9488"/>
-            <text x="470" y="124" text-anchor="middle" font-family={S} font-size="15.5" fill="#292524">You speak</text>
-            <text x="470" y="142" text-anchor="middle" font-family={F} font-size="11" fill="#78716c">by voice</text>
+            <text x="470" y="124" text-anchor="middle" font-family={S} font-size="15.5" fill="#292524">You speak or type</text>
+            <text x="470" y="142" text-anchor="middle" font-family={F} font-size="11" fill="#78716c">desk or phone</text>
 
             <text x="84" y="210" font-family={F} font-size="11" font-weight="700" letter-spacing="1.5" fill="#a8a29e">WORK</text>
             <text x="596" y="210" font-family={F} font-size="11" font-weight="700" letter-spacing="1.5" fill="#5eada3">PEOPLE</text>
@@ -260,7 +279,7 @@ const fixed = [
             <text x="608" y="344" font-family={S} font-size="13" fill="#57534e">In Flight</text>
             <rect x="726" y="333" width="72" height="16" rx="5" fill="#f0fdfa" stroke="#99f6e4"/><use href="#icBell" x="731" y="336" width="10" height="10" style="color:#0f766e"/><text x="788" y="344" text-anchor="end" font-family={F} font-size="9" fill="#0f766e">nudge</text>
             <text x="608" y="368" font-family={S} font-size="13" fill="#57534e">Queue</text><text x="798" y="368" text-anchor="end" font-family={F} font-size="9.5" fill="#a8a29e">not contacted</text>
-            <text x="608" y="390" font-family={F} font-size="9.5" fill="#a8a29e">a passed date jumps to the agenda top</text>
+            <text x="608" y="390" font-family={F} font-size="9.5" fill="#a8a29e">a passed date jumps to the top</text>
 
             <path d="M197,386 C 197,430 320,452 408,454" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
             <path d="M703,408 C 703,440 600,452 492,454" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
@@ -284,7 +303,7 @@ const fixed = [
             <text x="346" y="648" font-family={S} font-size="12.5" fill="#57534e">Replied to her questions</text>
 
             <line x1="450" y1="658" x2="450" y2="692" stroke="#a8a29e" stroke-width="1.6" marker-end="url(#aM)"/>
-            <text x="462" y="678" font-family={F} font-size="10" fill="#78716c">next morning, distilled into</text>
+            <text x="462" y="678" font-family={F} font-size="10" fill="#78716c">that night, distilled into</text>
 
             <rect x="322" y="694" width="256" height="58" rx="16" fill="#fff" stroke="#eceae8" stroke-width="1.5" filter="url(#sh)"/>
             <use href="#icDoc" x="346" y="714" width="15" height="15" style="color:#0d9488"/>
@@ -293,15 +312,46 @@ const fixed = [
 
             <path d="M578,722 C 872,722 872,127 546,127" fill="none" stroke="#0d9488" stroke-width="1.6" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#aT)"/>
             <rect x="648" y="116" width="132" height="24" rx="12" fill="#fff" stroke="#99f6e4" filter="url(#sh)"/>
-            <text x="714" y="132" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#0d9488">loops to the agenda</text>
+            <text x="714" y="132" text-anchor="middle" font-family={F} font-size="10.5" font-weight="600" fill="#0d9488">loops to the list</text>
+
+            <rect x="70" y="548" width="212" height="190" rx="16" fill="#f3fdfb" stroke="#99f6e4" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <text x="88" y="572" font-family={F} font-size="11" font-weight="700" letter-spacing="1.2" fill="#5eada3">WHILE I'M AWAY</text>
+            <use href="#icClock" x="88" y="584" width="14" height="14" style="color:#0d9488"/>
+            <text x="108" y="596" font-family={F} font-size="12" font-weight="700" fill="#0f766e">7 AM</text>
+            <text x="88" y="614" font-family={S} font-size="12.5" fill="#57534e">my list reaches my phone</text>
+            <use href="#icClock" x="88" y="636" width="14" height="14" style="color:#0d9488"/>
+            <text x="108" y="648" font-family={F} font-size="12" font-weight="700" fill="#0f766e">11:55 PM</text>
+            <text x="88" y="666" font-family={S} font-size="12.5" fill="#57534e">the day closes itself:</text>
+            <text x="88" y="684" font-family={S} font-size="12.5" fill="#57534e">ticked items logged,</text>
+            <text x="88" y="702" font-family={S} font-size="12.5" fill="#57534e">summary written,</text>
+            <text x="88" y="720" font-family={S} font-size="12.5" fill="#57534e">reflection added</text>
+            <path d="M282,650 L296,650" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
+            <path d="M282,723 L320,723" fill="none" stroke="#0d9488" stroke-width="1.8" marker-end="url(#aT)"/>
 
             <line x1="450" y1="752" x2="450" y2="778" stroke="#a8a29e" stroke-width="1.6" marker-end="url(#aM)"/>
             <rect x="70" y="780" width="760" height="46" rx="13" fill="url(#gDark)" filter="url(#sh)"/>
             <use href="#icLayers" x="94" y="794" width="18" height="18" style="color:#5eead4"/>
-            <text x="466" y="809" text-anchor="middle" font-family={F} font-size="13" font-weight="600" fill="#fff">SESSION END &#183; updates project context, logs done, backs up to GitHub</text>
+            <text x="466" y="809" text-anchor="middle" font-family={F} font-size="13" font-weight="600" fill="#fff">DAY END &#183; ticked items logged, summary written, all overnight</text>
           </svg>
         </div>
-        <p class="font-sans text-sm text-base-content/45 mt-3">Born in ToDos or Conversations, worked in the Working Doc, wraps into the Done Tracker, distilled into the Daily Summary, loops back to the agenda.</p>
+        <p class="font-sans text-sm text-base-content/45 mt-3">Born in ToDos or Conversations, worked in the Working Doc, wraps into the Done Tracker, distilled into the Daily Summary, loops back to the next day's list.</p>
+      </div>
+    </section>
+
+    <!-- While I'm away -->
+    <section class="mb-16">
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-3">While I'm away</h2>
+      <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-5 max-w-2xl">
+        It now lives on a spare computer at home that never switches off.
+      </p>
+      <div class="grid md:grid-cols-3 gap-4">
+        {away.map((a) => (
+          <div class="border border-base-content/10 rounded-2xl p-5 bg-base-100">
+            <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600 mb-2">{a.when}</p>
+            <p class="font-serif text-lg text-base-content leading-tight mb-1.5">{a.title}</p>
+            <p class="font-sans text-sm text-base-content/55 leading-snug">{a.body}</p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -323,14 +373,15 @@ const fixed = [
 
     <!-- Series -->
     <section class="mb-12">
-      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">Read the story: a five-part series</h2>
+      <h2 class="font-sans text-sm font-semibold uppercase tracking-wider text-base-content/40 mb-5">Read the story: a six-part series</h2>
       <div class="flex flex-col gap-3">
         {[
           { href: "/blog/my-new-operating-system-for-work", title: "1. My New Operating System for Work" },
           { href: "/blog/my-operating-system-one-month-later", title: "2. My Operating System, One Month Later" },
-          { href: "/blog/the-real-test-of-a-system", title: "3. The Real Test of a System Is Handing It to Someone Else" },
+          { href: "/blog/the-real-test-of-a-system-is-handing-it-to-someone-else", title: "3. The Real Test of a System Is Handing It to Someone Else" },
           { href: "/blog/the-system-is-not-its-tools", title: "4. The System Is Not Its Tools" },
           { href: "/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue", title: "5. An Audit of My Follow-Up Pipeline Found 55% Was Overdue" },
+          { href: "/blog/my-operating-system-now-closes-the-day-without-me", title: "6. My Operating System Now Closes the Day Without Me" },
         ].map((post) => (
           <a href={post.href}
              class="flex items-center justify-between border border-base-content/10 rounded-2xl p-5 hover:border-teal-500/40 hover:bg-teal-50/40 transition-all duration-200">
