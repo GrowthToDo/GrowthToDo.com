@@ -16,25 +16,26 @@ const sections = [
     heading: "What it receives",
     body: [
       "When the owner sends a message to the bot's WhatsApp number, the bot receives the text of that message and the sender's WhatsApp number. It uses the message to carry out the request and replies in the same chat.",
-      "WhatsApp, which is run by Meta, delivers the messages. Meta's own privacy policy applies to that part.",
+      "If the owner sends photos or PDF files, the bot also receives those. It saves them in a private folder on that computer so it can read them for the request.",
+      "WhatsApp, which is run by Meta, delivers the messages and files. Meta's own privacy policy applies to that part.",
     ],
   },
   {
     heading: "Messages from anyone else",
     body: [
-      "If anyone other than the owner sends a message to the number, the bot does not reply and does not act on it. It keeps no copy of the message. It writes only the last four digits of the sender's number to a private log, to record that a message was ignored.",
+      "If anyone other than the owner sends a message or a file to the number, the bot does not reply and does not act on it. It keeps no copy of it. It writes only the last four digits of the sender's number to a private log, to record that a message was ignored.",
     ],
   },
   {
     heading: "How the owner's messages are used",
     body: [
-      "Messages are handled on a private computer owned by Growth To Do. To write a reply, the text may be sent to an AI service (Claude, by Anthropic). Messages are not sold, shared for advertising, or used to build profiles of anyone.",
+      "Messages are handled on a private computer owned by Growth To Do. To write a reply, the text, and any photos or PDFs the owner sent with it, may be sent to an AI service (Claude, by Anthropic). Messages are not sold, shared for advertising, or used to build profiles of anyone.",
     ],
   },
   {
     heading: "How long things are kept",
     body: [
-      "The bot's memory of a conversation is cleared every night. Records the owner asks it to make, such as notes or to-do items, stay in the owner's private files until the owner deletes them. Technical logs contain only limited details, such as times and the last four digits of an ignored sender's number.",
+      "The bot's memory of a conversation is cleared every night. Photos and PDFs are deleted automatically after about two weeks. Records the owner asks it to make, such as notes or to-do items, stay in the owner's private files until the owner deletes them. If the owner asks for a file to be saved to his Google Drive, a copy is stored there and stays until the owner deletes it. Technical logs contain only limited details, such as times and the last four digits of an ignored sender's number.",
     ],
   },
   {
