@@ -5,7 +5,7 @@ pubDate: "Jun 22 2026"
 heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=630&fit=crop"
 ---
 
-**A six-part series on building a personal operating system:**
+**A seven-part series on building a personal operating system:**
 
 1. [My New Operating System for Work](/blog/my-new-operating-system-for-work)
 2. **My Operating System, One Month Later** (this post)
@@ -13,6 +13,7 @@ heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&
 4. [The System Is Not Its Tools](/blog/the-system-is-not-its-tools)
 5. [An Audit of My Follow-Up Pipeline Found 55% Was Overdue](/blog/an-audit-of-my-follow-up-pipeline-found-55-was-overdue)
 6. [My Operating System Now Closes the Day Without Me](/blog/my-operating-system-now-closes-the-day-without-me)
+7. [How to Run Your Own AI Assistant on WhatsApp for Free](/blog/how-to-run-your-own-ai-assistant-on-whatsapp-for-free)
 
 The system is live and still changing: see the [FounderOS overview](/founder-os) and its [changelog](/founder-os/changelog).
 
