@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Privacy Policy";
+const description =
+  "How the FounderOS Bot, a private WhatsApp assistant used by the founder of Growth To Do, handles messages and data.";
+
+const sections = [
+  {
+    heading: "What this is",
+    body: [
+      "FounderOS Bot is a private assistant that Gautham, the founder of Growth To Do, uses to run his own work from WhatsApp. It is not offered to the public, and only one person, its owner, can use it.",
+    ],
+  },
+  {
+    heading: "What it receives",
+    body: [
+      "When the owner sends a message to the bot's WhatsApp number, the bot receives the text of that message and the sender's WhatsApp number. It uses the message to carry out the request and replies in the same chat.",
+      "WhatsApp, which is run by Meta, delivers the messages. Meta's own privacy policy applies to that part.",
+    ],
+  },
+  {
+    heading: "Messages from anyone else",
+    body: [
+      "If anyone other than the owner sends a message to the number, the bot does not reply and does not act on it. It keeps no copy of the message. It writes only the last four digits of the sender's number to a private log, to record that a message was ignored.",
+    ],
+  },
+  {
+    heading: "How the owner's messages are used",
+    body: [
+      "Messages are handled on a private computer owned by Growth To Do. To write a reply, the text may be sent to an AI service (Claude, by Anthropic). Messages are not sold, shared for advertising, or used to build profiles of anyone.",
+    ],
+  },
+  {
+    heading: "How long things are kept",
+    body: [
+      "The bot's memory of a conversation is cleared every night. Records the owner asks it to make, such as notes or to-do items, stay in the owner's private files until the owner deletes them. Technical logs contain only limited details, such as times and the last four digits of an ignored sender's number.",
+    ],
+  },
+  {
+    heading: "Questions or deletion",
+    body: [
+      "To ask a question or to have anything deleted, email gautham@growthtodo.com.",
+    ],
+  },
+];
+---
+
+<div data-theme="cogniswitch" class="min-h-screen bg-base-100">
+<BaseLayout title={title} description={description}>
+
+  <div class="py-6 md:py-14 max-w-3xl mx-auto px-1 md:px-0">
+
+    <header class="space-y-4 mb-10">
+      <p class="font-sans text-xs font-semibold uppercase tracking-widest text-teal-600">Growth To Do</p>
+      <h1 class="font-serif text-3xl md:text-5xl font-normal leading-[1.1] tracking-tight text-base-content">
+        Privacy Policy
+      </h1>
+      <p class="font-serif text-lg md:text-xl leading-snug text-base-content/60 max-w-2xl">
+        FounderOS Bot, a private WhatsApp assistant.
+      </p>
+      <p class="font-sans text-sm text-base-content/45">Last updated 21 November 2026</p>
+    </header>
+
+    <div class="space-y-8">
+      {sections.map((s) => (
+        <section>
+          <h2 class="font-serif text-xl md:text-2xl text-base-content mb-2">{s.heading}</h2>
+          {s.body.map((p) => (
+            <p class="font-serif text-lg leading-relaxed text-base-content/75 mb-3 max-w-2xl">{p}</p>
+          ))}
+        </section>
+      ))}
+    </div>
+
+  </div>
+
+</BaseLayout>
+</div>
